@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../../core/auth/services/auth.service';
 
@@ -19,6 +20,8 @@ import { AuthService } from '../../core/auth/services/auth.service';
 export class Register {
   authService = inject(AuthService);
 
+  snackBar = inject(MatSnackBar);
+
   router = inject(Router);
 
   nombre = '';
@@ -30,7 +33,11 @@ export class Register {
   error = '';
 
   registrarse() {
-    this.error = '';
+    if (!this.nombre || !this.email || !this.password) {
+      this.error = 'Completá todos los campos';
+
+      return;
+    }
 
     const registrado = this.authService.registrar({
       nombre: this.nombre,
@@ -44,6 +51,16 @@ export class Register {
       return;
     }
 
-    this.router.navigate(['/login']);
+    this.error = '';
+
+    this.snackBar.open('Cuenta creada correctamente 👋 Ahora iniciá sesión', 'Cerrar', {
+      duration: 4000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1800);
   }
 }
