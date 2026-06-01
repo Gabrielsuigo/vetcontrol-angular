@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "registro-personas": {
+    "vetcontrol": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -54,10 +54,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "registro-personas:build:production"
+              "buildTarget": "vetcontrol:build:production"
             },
             "development": {
-              "buildTarget": "registro-personas:build:development"
+              "buildTarget": "vetcontrol:build:development"
             }
           },
           "defaultConfiguration": "development"
