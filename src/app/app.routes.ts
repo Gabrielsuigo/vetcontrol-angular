@@ -53,4 +53,8 @@ export const routes: Routes = [
     path: 'turnos',
     component: Turnos,
   },
+  {
+    path: '**',
+    redirectTo: 'login',
+  },
 ];
