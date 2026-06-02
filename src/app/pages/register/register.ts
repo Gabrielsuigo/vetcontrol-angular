@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { EmpresaService } from '../../core/services/empresa.service';
+
 import { AuthService } from '../../core/auth/services/auth.service';
 
 @Component({
@@ -20,6 +22,8 @@ import { AuthService } from '../../core/auth/services/auth.service';
 export class Register {
   authService = inject(AuthService);
 
+  empresaService = inject(EmpresaService);
+
   snackBar = inject(MatSnackBar);
 
   router = inject(Router);
@@ -30,19 +34,57 @@ export class Register {
 
   password = '';
 
+  confirmarPassword = '';
+
+  nombreComercial = '';
+
+  razonSocial = '';
+
+  pais = '';
+
+  direccion = '';
+
+  telefono = '';
+
   error = '';
 
   registrarse() {
-    if (!this.nombre || !this.email || !this.password) {
+    if (
+      !this.nombre ||
+      !this.email ||
+      !this.password ||
+      !this.confirmarPassword ||
+      !this.nombreComercial ||
+      !this.razonSocial ||
+      !this.pais ||
+      !this.direccion ||
+      !this.telefono
+    ) {
       this.error = 'Completá todos los campos';
 
       return;
     }
 
+    if (this.password !== this.confirmarPassword) {
+      this.error = 'Las contraseñas no coinciden';
+
+      return;
+    }
+
+    this.empresaService.guardarEmpresa({
+      nombreComercial: this.nombreComercial,
+      razonSocial: this.razonSocial,
+      pais: this.pais,
+      direccion: this.direccion,
+      telefono: this.telefono,
+    });
+
     const registrado = this.authService.registrar({
       nombre: this.nombre,
       email: this.email,
       password: this.password,
+      rol: 'Administrador',
+      fechaRegistro: new Date().toLocaleDateString('es-AR'),
     });
 
     if (!registrado) {
@@ -53,7 +95,7 @@ export class Register {
 
     this.error = '';
 
-    this.snackBar.open('Cuenta creada correctamente 👋 Ahora iniciá sesión', 'Cerrar', {
+    this.snackBar.open('Veterinaria creada correctamente 👋 Ahora iniciá sesión', 'Cerrar', {
       duration: 4000,
       horizontalPosition: 'center',
       verticalPosition: 'top',

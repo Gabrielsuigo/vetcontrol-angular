@@ -1,0 +1,29 @@
+<div class="perfil-container">
+  <div class="perfil-card">
+    <h1>Mi Perfil</h1>
+
+    <div class="avatar">
+      {{ usuario()?.nombre?.charAt(0)?.toUpperCase() }}
+    </div>
+
+    <div class="info">
+      <label>Nombre</label>
+      <p>{{ usuario()?.nombre }}</p>
+    </div>
+
+    <div class="info">
+      <label>Email</label>
+      <p>{{ usuario()?.email }}</p>
+    </div>
+
+    <div class="info">
+      <label>Rol</label>
+      <p>{{ usuario()?.rol || 'Administrador' }}</p>
+    </div>
+
+    <div class="info">
+      <label>Fecha de registro</label>
+      <p>{{ usuario()?.fechaRegistro || 'No disponible' }}</p>
+    </div>
+  </div>
+</div>

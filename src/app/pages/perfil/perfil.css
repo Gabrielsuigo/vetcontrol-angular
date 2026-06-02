@@ -1,0 +1,75 @@
+.perfil-container {
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+}
+
+.perfil-card {
+  width: 100%;
+
+  max-width: 500px;
+
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 40px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.perfil-card h1 {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 100px;
+
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: #6366f1;
+
+  color: white;
+
+  font-size: 40px;
+
+  font-weight: bold;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin: 0 auto 30px;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.info label {
+  display: block;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}
+
+.info p {
+  font-size: 18px;
+
+  font-weight: 600;
+}
