@@ -108,13 +108,6 @@
   font-weight: 600;
 }
 
-.main-content {
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-}
-
 .topbar {
   height: 80px;
 
@@ -167,10 +160,6 @@
   transform: translateY(-2px);
 
   box-shadow: 0 6px 20px rgba(239, 68, 68, 0.25);
-}
-
-.page-container {
-  flex: 1;
 }
 
 .menu a.active {
@@ -247,4 +236,19 @@
   color: #6b7280;
 
   font-size: 14px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+router-outlet + * {
+  flex: 1;
 }
