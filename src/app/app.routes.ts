@@ -8,12 +8,12 @@ import { DetalleMascota } from './pages/detalle-mascota/detalle-mascota';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { authGuard } from './core/auth/guards/auth.guard';
 import { Perfil } from './pages/perfil/perfil';
+import { Home } from './pages/home/home';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
+    component: Home,
   },
   {
     path: 'perfil',
