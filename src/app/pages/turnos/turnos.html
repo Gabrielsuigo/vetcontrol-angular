@@ -1,17 +1,93 @@
-<div class="page">
+<div class="turnos-page">
+  <div class="turnos-header">
+    <h1>📅 Gestión de Turnos</h1>
 
-  <h1>📅 Gestión de Turnos</h1>
-
-  <div class="turno-card">
-
-    <h2>Próximo turno</h2>
-
-    <p>🐶 India</p>
-
-    <p>📅 25/05/2026</p>
-
-    <p>🕒 18:30 hs</p>
-
+    <p>Administrá los turnos de todas las mascotas registradas.</p>
   </div>
 
+  <!-- FORMULARIO -->
+
+  <div class="form-card">
+    <h2>Nuevo Turno</h2>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Mascota</label>
+
+        <select [(ngModel)]="mascotaId">
+          <option [value]="0">Seleccionar mascota</option>
+
+          @for (mascota of mascotas(); track mascota.id) {
+            <option [value]="mascota.id">
+              {{ mascota.nombre }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha</label>
+
+        <input type="date" [(ngModel)]="fecha" />
+      </div>
+
+      <div class="form-group">
+        <label>Hora</label>
+
+        <input type="time" [(ngModel)]="hora" />
+      </div>
+
+      <div class="form-group">
+        <label>Motivo</label>
+
+        <input type="text" [(ngModel)]="motivo" placeholder="Ej: Vacunación anual" />
+      </div>
+    </div>
+
+    <button class="btn-primary" (click)="guardarTurno()">Guardar Turno</button>
+  </div>
+
+  <!-- ESTADISTICA -->
+
+  <div class="stats-card">
+    <h3>Total de Turnos</h3>
+
+    <span>{{ totalTurnos() }}</span>
+  </div>
+
+  <!-- LISTA -->
+
+  <div class="lista-turnos">
+    <h2>Turnos Registrados</h2>
+
+    @if (turnos().length === 0) {
+      <div class="empty-state">No hay turnos registrados.</div>
+    }
+
+    @for (turno of turnos(); track turno.id) {
+      <div class="turno-card">
+        <div class="turno-info">
+          <h3>{{ turno.mascotaNombre }}</h3>
+
+          <p>📅 {{ turno.fecha }}</p>
+
+          <p>🕒 {{ turno.hora }}</p>
+
+          <p>📝 {{ turno.motivo }}</p>
+
+          <span class="estado" [class.completado]="turno.estado === 'Completado'">
+            {{ turno.estado }}
+          </span>
+        </div>
+
+        <div class="acciones">
+          @if (turno.estado === 'Pendiente') {
+            <button class="btn-completar" (click)="completar(turno.id)">Completar</button>
+          }
+
+          <button class="btn-eliminar" (click)="eliminar(turno.id)">Eliminar</button>
+        </div>
+      </div>
+    }
+  </div>
 </div>

@@ -1,57 +1,61 @@
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="navbar-left">
-    <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <div class="logo-icon">
+        <mat-icon>menu</mat-icon>
+      </div>
 
-    <div class="logo" routerLink="/">VetControl</div>
+      <h2>VetControl</h2>
+    </div>
+
+    <nav class="menu">
+      <a routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+
+      <a routerLink="/mascotas">
+        <mat-icon>pets</mat-icon>
+        <span>Mascotas</span>
+      </a>
+
+      <a routerLink="/historial">
+        <mat-icon>vaccines</mat-icon>
+        <span>Vacunas</span>
+      </a>
+
+      <a routerLink="/turnos">
+        <mat-icon>calendar_month</mat-icon>
+        <span>Turnos</span>
+      </a>
+
+      <a routerLink="/perfil">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <div class="main-content">
+    <header class="topbar">
+      <div class="user-info">
+        <mat-icon>account_circle</mat-icon>
+
+        <span>
+          {{ authService.usuarioActual()?.nombre }}
+        </span>
+      </div>
+
+      <button class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Cerrar sesión
+      </button>
+    </header>
+
+    <div class="page-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-
-  <div class="navbar-right">
-    @if (!authService.estaLogueado()) {
-      <a routerLink="/login">Iniciar sesión</a>
-
-      <a class="register-btn" routerLink="/register"> Registrarse </a>
-    }
-
-    @if (authService.estaLogueado()) {
-      <span class="usuario">
-        {{ authService.usuarioActual()?.nombre }}
-      </span>
-
-      <button (click)="logout()">Cerrar sesión</button>
-    }
-  </div>
-</header>
-
-<!-- OVERLAY -->
-@if (sidebarOpen) {
-  <div class="overlay" (click)="toggleSidebar()"></div>
-}
-
-<!-- SIDEBAR -->
-<aside class="sidebar" [class.open]="sidebarOpen">
-  <div class="sidebar-header">
-    <h2>VetControl</h2>
-
-    <button (click)="toggleSidebar()">✕</button>
-  </div>
-
-  <nav>
-    <a routerLink="/" (click)="toggleSidebar()"> Inicio </a>
-
-    <a routerLink="/dashboard" (click)="toggleSidebar()"> Dashboard </a>
-
-    <a routerLink="/mascotas" (click)="toggleSidebar()"> Mascotas </a>
-
-    <a routerLink="/historial" (click)="toggleSidebar()"> Historial </a>
-
-    <a routerLink="/turnos" (click)="toggleSidebar()"> Turnos </a>
-
-    <a routerLink="/perfil" (click)="toggleSidebar()"> Perfil </a>
-  </nav>
-</aside>
-
-<!-- CONTENIDO -->
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
+</div>
