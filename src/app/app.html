@@ -3,38 +3,50 @@
   <aside class="sidebar">
     <div class="logo-section">
       <div class="logo-icon">
-        <mat-icon>menu</mat-icon>
+        <mat-icon>pets</mat-icon>
       </div>
 
       <h2>VetControl</h2>
     </div>
 
     <nav class="menu">
-      <a routerLink="/dashboard">
+      <a routerLink="/dashboard" routerLinkActive="active">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </a>
 
-      <a routerLink="/mascotas">
+      <a routerLink="/mascotas" routerLinkActive="active">
         <mat-icon>pets</mat-icon>
         <span>Mascotas</span>
       </a>
 
-      <a routerLink="/historial">
+      <a routerLink="/historial" routerLinkActive="active">
         <mat-icon>vaccines</mat-icon>
         <span>Vacunas</span>
       </a>
 
-      <a routerLink="/turnos">
+      <a routerLink="/turnos" routerLinkActive="active">
         <mat-icon>calendar_month</mat-icon>
         <span>Turnos</span>
       </a>
 
-      <a routerLink="/perfil">
+      <a routerLink="/perfil" routerLinkActive="active">
         <mat-icon>person</mat-icon>
         <span>Perfil</span>
       </a>
+
+      <a routerLink="/configuracion">
+        <mat-icon>settings</mat-icon>
+        <span>Configuración</span>
+      </a>
     </nav>
+    <div class="sidebar-company">
+      <div class="company-avatar">🐾</div>
+
+      <h3>VetControl</h3>
+
+      <p>+54 11 2503 3874</p>
+    </div>
   </aside>
 
   <!-- CONTENIDO -->

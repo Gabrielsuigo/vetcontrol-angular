@@ -60,9 +60,14 @@
   width: 100%;
 
   display: flex;
+
   align-items: center;
 
   gap: 14px;
+
+  width: 100%;
+
+  justify-content: flex-start;
 
   padding: 16px;
 
@@ -75,10 +80,24 @@
   transition: 0.25s;
 }
 
+.menu a mat-icon {
+  width: 24px;
+
+  min-width: 24px;
+
+  text-align: center;
+}
+
 .menu a:hover {
-  background: #f3f4f6;
+  background: #eef2ff;
 
   transform: translateX(4px);
+
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.12);
+}
+
+.menu a span {
+  flex: 1;
 }
 
 .menu a span {
@@ -105,9 +124,11 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 30px;
+  padding: 0 35px;
 
   border-bottom: 1px solid #e5e7eb;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
 .user-info {
@@ -122,8 +143,108 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
+  border: none;
+
+  background: #ef4444;
+
+  color: white;
+
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+
+  transition: 0.25s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.25);
 }
 
 .page-container {
   flex: 1;
+}
+
+.menu a.active {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+
+  color: white;
+
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
+}
+
+.menu a.active mat-icon {
+  color: white;
+}
+.sidebar {
+  justify-content: space-between;
+}
+
+.avatar mat-icon {
+  color: #4f46e5;
+}
+
+.user-card strong {
+  color: #111827;
+}
+
+.user-card p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+.sidebar-company {
+  width: 100%;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #e5e7eb;
+
+  text-align: center;
+}
+
+.company-avatar {
+  width: 70px;
+
+  height: 70px;
+
+  margin: 0 auto 15px auto;
+
+  border-radius: 20px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 34px;
+
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+
+  color: white;
+}
+
+.sidebar-company h3 {
+  color: #111827;
+
+  margin-bottom: 6px;
+
+  font-size: 18px;
+}
+
+.sidebar-company p {
+  color: #6b7280;
+
+  font-size: 14px;
 }

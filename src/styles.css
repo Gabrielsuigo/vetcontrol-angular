@@ -9,10 +9,7 @@ body {
 
   overflow-x: hidden;
 
-  background:
-    radial-gradient(circle at top left, #312e81 0%, transparent 30%),
-    radial-gradient(circle at top right, #0f172a 0%, transparent 25%),
-    linear-gradient(135deg, #0f172a, #111827);
+  background: #0f172a;
 
   color: white;
 }
