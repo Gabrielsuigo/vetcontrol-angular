@@ -1,7 +1,78 @@
+/* NAVBAR */
+
+.landing-navbar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 80px;
+
+  padding: 0 60px;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(7, 12, 24, 0.55);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  z-index: 1000;
+}
+
+.navbar-logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 24px;
+
+  font-weight: 800;
+}
+
+.navbar-logo mat-icon {
+  color: #8b5cf6;
+}
+
+.navbar-links {
+  display: flex;
+
+  gap: 35px;
+}
+
+.navbar-links a {
+  color: rgba(255, 255, 255, 0.8);
+
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition: 0.25s;
+}
+
+.navbar-links a:hover {
+  color: white;
+}
+
+.navbar-actions {
+  display: flex;
+
+  gap: 12px;
+}
+
 .landing {
   min-height: 100vh;
 
-  padding: 60px;
+  padding: 120px 60px 60px;
+
+  position: relative;
 
   box-sizing: border-box;
 
