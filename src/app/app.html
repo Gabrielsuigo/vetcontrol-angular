@@ -1,73 +1,78 @@
-<div class="layout">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo-section">
-      <div class="logo-icon">
-        <mat-icon>pets</mat-icon>
+@if (!esPaginaPublica()) {
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <mat-icon>pets</mat-icon>
+        </div>
+
+        <h2>VetControl</h2>
       </div>
 
-      <h2>VetControl</h2>
-    </div>
+      <nav class="menu">
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
 
-    <nav class="menu">
-      <a routerLink="/dashboard" routerLinkActive="active">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </a>
+        <a routerLink="/mascotas" routerLinkActive="active">
+          <mat-icon>pets</mat-icon>
+          <span>Mascotas</span>
+        </a>
 
-      <a routerLink="/mascotas" routerLinkActive="active">
-        <mat-icon>pets</mat-icon>
-        <span>Mascotas</span>
-      </a>
+        <a routerLink="/historial" routerLinkActive="active">
+          <mat-icon>vaccines</mat-icon>
+          <span>Vacunas</span>
+        </a>
 
-      <a routerLink="/historial" routerLinkActive="active">
-        <mat-icon>vaccines</mat-icon>
-        <span>Vacunas</span>
-      </a>
+        <a routerLink="/turnos" routerLinkActive="active">
+          <mat-icon>calendar_month</mat-icon>
+          <span>Turnos</span>
+        </a>
 
-      <a routerLink="/turnos" routerLinkActive="active">
-        <mat-icon>calendar_month</mat-icon>
-        <span>Turnos</span>
-      </a>
+        <a routerLink="/perfil" routerLinkActive="active">
+          <mat-icon>person</mat-icon>
+          <span>Perfil</span>
+        </a>
 
-      <a routerLink="/perfil" routerLinkActive="active">
-        <mat-icon>person</mat-icon>
-        <span>Perfil</span>
-      </a>
+        <a routerLink="/configuracion">
+          <mat-icon>settings</mat-icon>
+          <span>Configuración</span>
+        </a>
+      </nav>
 
-      <a routerLink="/configuracion">
-        <mat-icon>settings</mat-icon>
-        <span>Configuración</span>
-      </a>
-    </nav>
-    <div class="sidebar-company">
-      <div class="company-avatar">🐾</div>
+      <div class="sidebar-company">
+        <div class="company-avatar">🐾</div>
 
-      <h3>VetControl</h3>
+        <h3>VetControl</h3>
 
-      <p>+54 11 2503 3874</p>
-    </div>
-  </aside>
-
-  <!-- CONTENIDO -->
-  <div class="main-content">
-    <header class="topbar">
-      <div class="user-info">
-        <mat-icon>account_circle</mat-icon>
-
-        <span>
-          {{ authService.usuarioActual()?.nombre }}
-        </span>
+        <p>+54 11 2503 3874</p>
       </div>
+    </aside>
 
-      <button class="logout-btn" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        Cerrar sesión
-      </button>
-    </header>
+    <!-- CONTENIDO -->
+    <div class="main-content">
+      <header class="topbar">
+        <div class="user-info">
+          <mat-icon>account_circle</mat-icon>
 
-    <div class="page-container">
-      <router-outlet></router-outlet>
+          <span>
+            {{ authService.usuarioActual()?.nombre }}
+          </span>
+        </div>
+
+        <button class="logout-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Cerrar sesión
+        </button>
+      </header>
+
+      <div class="page-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
+} @else {
+  <router-outlet></router-outlet>
+}

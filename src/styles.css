@@ -86,3 +86,19 @@ button {
 
   line-height: 1.6;
 }
+
+.logout-snackbar {
+  background: linear-gradient(135deg, #4f46e5, #6366f1, #8b5cf6) !important;
+
+  color: white !important;
+
+  font-size: 18px !important;
+
+  font-weight: 700 !important;
+
+  padding: 24px !important;
+
+  border-radius: 18px !important;
+
+  box-shadow: 0 15px 45px rgba(99, 102, 241, 0.4) !important;
+}
