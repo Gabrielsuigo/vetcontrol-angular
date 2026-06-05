@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet, Router } from '@angular/router';
 
 import { CommonModule } from '@angular/common';

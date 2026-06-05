@@ -50,6 +50,9 @@ export class Login {
 
     this.snackBar.open('Bienvenido al sistema', 'Cerrar', {
       duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['login-snackbar'],
     });
 
     this.router.navigate(['/dashboard']);
