@@ -49,10 +49,14 @@ export class PersonaForm {
       }
     });
   }
-  seleccionarImagen(event: any) {
-    const file = event.target.files[0];
+  seleccionarImagen(event: Event) {
+    const input = event.target as HTMLInputElement;
 
-    if (!file) return;
+    if (!input || !input.files || input.files.length === 0) {
+      return;
+    }
+
+    const file = input.files[0];
 
     const reader = new FileReader();
 
