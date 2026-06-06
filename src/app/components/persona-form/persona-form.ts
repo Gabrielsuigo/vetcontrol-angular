@@ -52,16 +52,35 @@ export class PersonaForm {
   seleccionarImagen(event: Event) {
     const input = event.target as HTMLInputElement;
 
-    if (!input || !input.files || input.files.length === 0) {
-      return;
-    }
+    if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
 
     const reader = new FileReader();
 
-    reader.onload = () => {
-      this.imagen = reader.result as string;
+    reader.onload = (e) => {
+      const img = new Image();
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+
+        const MAX_WIDTH = 200;
+
+        const scale = MAX_WIDTH / img.width;
+
+        canvas.width = MAX_WIDTH;
+        canvas.height = img.height * scale;
+
+        const ctx = canvas.getContext('2d');
+
+        if (!ctx) return;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        this.imagen = canvas.toDataURL('image/jpeg', 0.3);
+      };
+
+      img.src = e.target?.result as string;
     };
 
     reader.readAsDataURL(file);
