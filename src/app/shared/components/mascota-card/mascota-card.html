@@ -1,15 +1,12 @@
 <a class="mascota-link" [routerLink]="['/mascotas', mascota.id]">
   <div class="mascota-card">
     <img [src]="mascota.imagen" [alt]="mascota.nombre" />
-
     <div class="mascota-info">
       <h3 class="nombre">
         {{ mascota.nombre }}
       </h3>
 
-      <p class="raza">
-        {{ mascota.raza }}
-      </p>
+      <p class="raza"></p>
 
       <span class="duenio"> Dueño: {{ mascota.duenio }} </span>
 
