@@ -26,9 +26,20 @@ import { MatExpansionModule } from '@angular/material/expansion';
 export class PersonaList {
   filtro = '';
 
+  usuarioActual = JSON.parse(localStorage.getItem('sesion') || '{}');
+
   mascotaEditandoId: number | null = null;
   historialAbiertoId: number | null = null;
   consultasAbiertasId: number | null = null;
+  get mascotasFiltradas() {
+    return this.personaService
+      .mascotas()
+      .filter(
+        (m) =>
+          m.usuarioEmail === this.usuarioActual.email &&
+          m.nombre.toLowerCase().includes(this.filtro.toLowerCase()),
+      );
+  }
 
   constructor(public personaService: MascotaService) {}
 

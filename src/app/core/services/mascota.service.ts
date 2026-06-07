@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
+import { AuthService } from '../auth/services/auth.service';
 
 import { Mascota, Vacuna, Consulta } from '../../models/mascota.model';
 
@@ -6,8 +7,18 @@ import { Mascota, Vacuna, Consulta } from '../../models/mascota.model';
   providedIn: 'root',
 })
 export class MascotaService {
+  constructor(public authService: AuthService) {}
+
   mascotas = signal<Mascota[]>(this.cargar());
   mascotaEditando = signal<Mascota | null>(null);
+
+  mascotasUsuario = computed(() => {
+    const usuario = this.authService.usuarioActual();
+
+    if (!usuario) return [];
+
+    return this.mascotas().filter((m) => m.usuarioEmail === usuario.email);
+  });
 
   private guardar(data: Mascota[]) {
     localStorage.setItem('mascotas', JSON.stringify(data));
@@ -27,12 +38,17 @@ export class MascotaService {
   }
 
   agregar(mascota: Omit<Mascota, 'id'>) {
+    const usuario = this.authService.usuarioActual();
+
+    if (!usuario) return;
+
     this.mascotas.update((lista) => {
       const nueva = [
         ...lista,
         {
           ...mascota,
           id: Date.now(),
+          usuarioEmail: usuario.email,
           vacunas: [],
           consultas: [],
         },

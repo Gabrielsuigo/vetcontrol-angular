@@ -21,8 +21,7 @@ import { MascotaService } from '../../core/services/mascota.service';
 export class Dashboard {
   mascotaService = inject(MascotaService);
 
-  mascotas = this.mascotaService.mascotas;
-
+  mascotas = this.mascotaService.mascotasUsuario;
   totalMascotas = computed(() => this.mascotas().length);
 
   totalVacunas = computed(() =>

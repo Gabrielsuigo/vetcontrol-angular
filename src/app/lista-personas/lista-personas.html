@@ -6,7 +6,7 @@
   <div class="dashboard">
     <div class="dashboard-card mascotas">
       <h3>
-        {{ personaService.mascotas().length }}
+        {{ personaService.mascotasUsuario().length }}
       </h3>
 
       <p>Mascotas</p>
@@ -14,7 +14,7 @@
 
     <div class="dashboard-card dashboard-vacunas">
       <h3>
-        {{ personaService.mascotas().reduce((total, m) => total + m.vacunas.length, 0) }}
+        {{ personaService.mascotasUsuario().reduce((total, m) => total + m.vacunas.length, 0) }}
       </h3>
 
       <p>Vacunas</p>
@@ -22,7 +22,7 @@
 
     <div class="dashboard-card consultas">
       <h3>
-        {{ personaService.mascotas().reduce((total, m) => total + m.consultas.length, 0) }}
+        {{ personaService.mascotasUsuario().reduce((total, m) => total + m.consultas.length, 0) }}
       </h3>
 
       <p>Consultas</p>
@@ -30,7 +30,7 @@
 
     <div class="dashboard-card alertas">
       <h3>
-        {{ personaService.mascotas().filter((m) => m.vacunas.length === 0).length }}
+        {{ personaService.mascotasUsuario().filter((m) => m.vacunas.length === 0).length }}
       </h3>
 
       <p>Sin vacunas</p>
@@ -48,14 +48,7 @@
   <!-- CARDS -->
 
   <div class="cards-mascotas">
-    <mat-card
-      class="pet-card"
-      *ngFor="
-        let m of personaService
-          .mascotas()
-          .filter((m) => m.nombre.toLowerCase().includes(filtro.toLowerCase()))
-      "
-    >
+    <mat-card class="pet-card" *ngFor="let m of mascotasFiltradas">
       <!-- EDITAR -->
 
       <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">

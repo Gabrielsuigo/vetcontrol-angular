@@ -110,6 +110,8 @@ export class PersonaForm {
       duenio: this.duenio,
       imagen: this.imagen,
 
+      usuarioEmail: JSON.parse(localStorage.getItem('sesion') || '{}').email,
+
       vacunas: [],
       consultas: [],
     };
