@@ -20,7 +20,7 @@ export class Turnos {
 
   mascotas = this.mascotaService.mascotasUsuario;
 
-  turnos = this.turnoService.turnos;
+  turnos = this.turnoService.turnosUsuario;
 
   mascotaId = 0;
 
@@ -47,6 +47,9 @@ export class Turnos {
     this.turnoService.agregar({
       mascotaId: mascota.id,
       mascotaNombre: mascota.nombre,
+
+      usuarioEmail: JSON.parse(localStorage.getItem('sesion') || '{}').email,
+
       fecha: this.fecha,
       hora: this.hora,
       motivo: this.motivo,

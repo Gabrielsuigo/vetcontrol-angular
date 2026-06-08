@@ -1,3 +1,6 @@
+import { computed } from '@angular/core';
+import { AuthService } from '../auth/services/auth.service';
+
 import { Injectable, signal } from '@angular/core';
 
 import { Turno } from '../../models/turno.model';
@@ -6,7 +9,15 @@ import { Turno } from '../../models/turno.model';
   providedIn: 'root',
 })
 export class TurnoService {
+  constructor(public authService: AuthService) {}
   turnos = signal<Turno[]>(this.cargar());
+  turnosUsuario = computed(() => {
+    const usuario = this.authService.usuarioActual();
+
+    if (!usuario) return [];
+
+    return this.turnos().filter((t) => t.usuarioEmail === usuario.email);
+  });
 
   private guardar(data: Turno[]) {
     localStorage.setItem('turnos', JSON.stringify(data));

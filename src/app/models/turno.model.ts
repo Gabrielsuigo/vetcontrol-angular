@@ -3,6 +3,8 @@ export interface Turno {
 
   mascotaId: number;
 
+  usuarioEmail: string;
+
   mascotaNombre: string;
 
   fecha: string;
