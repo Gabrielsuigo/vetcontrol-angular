@@ -65,45 +65,98 @@
 
   <!-- ESTADISTICA -->
 
-  <div class="stats-card">
-    <h3>Total de Turnos</h3>
+  <div class="stats-dashboard">
+    <div class="stat-item">
+      <div class="stat-icon purple">📅</div>
 
-    <span>{{ totalTurnos() }}</span>
+      <div>
+        <h2>{{ totalTurnos() }}</h2>
+        <p>Total de Turnos Registrados</p>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon orange">🕒</div>
+
+      <div>
+        <h2>{{ turnosPendientes() }}</h2>
+        <p>Pendientes</p>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon green">✔</div>
+
+      <div>
+        <h2>{{ turnosCompletados() }}</h2>
+        <p>Completados</p>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon purple">📆</div>
+
+      <div>
+        <h2>{{ totalTurnos() }}</h2>
+        <p>Total</p>
+      </div>
+    </div>
   </div>
 
   <!-- LISTA -->
 
   <div class="lista-turnos">
-    <h2>Turnos Registrados</h2>
+    <div class="tabla-header">
+      <h2>📅 Turnos Registrados</h2>
+    </div>
 
     @if (turnos().length === 0) {
       <div class="empty-state">No hay turnos registrados.</div>
     }
 
-    @for (turno of turnos(); track turno.id) {
-      <div class="turno-card">
-        <div class="turno-info">
-          <h3>{{ turno.mascotaNombre }}</h3>
+    @if (turnos().length > 0) {
+      <table class="turnos-table">
+        <thead>
+          <tr>
+            <th>Mascota</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
 
-          <p>📅 {{ turno.fecha }}</p>
+        <tbody>
+          @for (turno of turnos(); track turno.id) {
+            <tr>
+              <td>
+                <strong>{{ turno.mascotaNombre }}</strong>
+              </td>
 
-          <p>🕒 {{ turno.hora }}</p>
+              <td>{{ turno.fecha }}</td>
 
-          <p>📝 {{ turno.motivo }}</p>
+              <td>{{ turno.hora }}</td>
 
-          <span class="estado" [class.completado]="turno.estado === 'Completado'">
-            {{ turno.estado }}
-          </span>
-        </div>
+              <td>{{ turno.motivo }}</td>
 
-        <div class="acciones">
-          @if (turno.estado === 'Pendiente') {
-            <button class="btn-completar" (click)="completar(turno.id)">Completar</button>
+              <td>
+                <span class="estado" [class.completado]="turno.estado === 'Completado'">
+                  {{ turno.estado }}
+                </span>
+              </td>
+
+              <td class="acciones">
+                @if (turno.estado === 'Pendiente') {
+                  <button class="btn-completar" (click)="completar(turno.id)">✔ Completar</button>
+                }
+
+                <button class="btn-eliminar" (click)="eliminar(turno.id)">🗑 Eliminar</button>
+              </td>
+            </tr>
           }
-
-          <button class="btn-eliminar" (click)="eliminar(turno.id)">Eliminar</button>
-        </div>
-      </div>
+        </tbody>
+      </table>
     }
   </div>
 </div>

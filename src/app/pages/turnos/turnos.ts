@@ -18,7 +18,7 @@ export class Turnos {
 
   turnoService = inject(TurnoService);
 
-  mascotas = this.mascotaService.mascotas;
+  mascotas = this.mascotaService.mascotasUsuario;
 
   turnos = this.turnoService.turnos;
 
@@ -32,6 +32,9 @@ export class Turnos {
 
   totalTurnos = computed(() => this.turnos().length);
 
+  turnosPendientes = computed(() => this.turnos().filter((t) => t.estado === 'Pendiente').length);
+
+  turnosCompletados = computed(() => this.turnos().filter((t) => t.estado === 'Completado').length);
   guardarTurno() {
     if (!this.mascotaId || !this.fecha || !this.hora || !this.motivo) {
       return;
