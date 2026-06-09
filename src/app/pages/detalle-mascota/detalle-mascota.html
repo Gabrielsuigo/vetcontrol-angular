@@ -6,36 +6,123 @@
       <div class="detalle-info">
         <h1>{{ mascota()?.nombre }}</h1>
 
-        <p>{{ mascota()?.raza }}</p>
+        <p>
+          {{ mascota()?.especie }} •
+          {{ mascota()?.raza }}
+        </p>
 
-        <span>{{ mascota()?.duenio }}</span>
+        <span> {{ mascota()?.edad }} años </span>
+      </div>
+    </div>
 
-        <div class="detalle-stats">
-          <div class="stat">
-            <mat-icon>vaccines</mat-icon>
+    <!-- RESUMEN -->
 
-            <div>
-              <strong>
-                {{ mascota()?.vacunas?.length }}
-              </strong>
+    <div class="detalle-stats">
+      <div class="stat">
+        <mat-icon>vaccines</mat-icon>
 
-              <p>Vacunas</p>
-            </div>
-          </div>
-
-          <div class="stat">
-            <mat-icon>medical_services</mat-icon>
-
-            <div>
-              <strong>
-                {{ mascota()?.consultas?.length }}
-              </strong>
-
-              <p>Consultas</p>
-            </div>
-          </div>
+        <div>
+          <strong>{{ totalVacunas() }}</strong>
+          <p>Vacunas</p>
         </div>
       </div>
+
+      <div class="stat">
+        <mat-icon>medical_services</mat-icon>
+
+        <div>
+          <strong>{{ totalConsultas() }}</strong>
+          <p>Consultas</p>
+        </div>
+      </div>
+
+      <div class="stat">
+        <mat-icon>event</mat-icon>
+
+        <div>
+          <strong>{{ totalTurnos() }}</strong>
+          <p>Turnos</p>
+        </div>
+      </div>
+
+      <div class="stat">
+        <mat-icon>monitor_weight</mat-icon>
+
+        <div>
+          <strong>
+            {{ ultimoPeso() ?? '-' }}
+          </strong>
+
+          <p>Último peso</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VACUNAS -->
+
+    <div class="historial-card">
+      <h2>💉 Vacunas</h2>
+
+      @if (mascota()?.vacunas?.length === 0) {
+        <p>No hay vacunas registradas.</p>
+      }
+
+      @for (vacuna of mascota()?.vacunas; track vacuna.nombre) {
+        <div class="historial-item">
+          <strong>{{ vacuna.nombre }}</strong>
+
+          <p>Aplicada: {{ vacuna.fecha }}</p>
+
+          <p>
+            Próxima dosis:
+            {{ vacuna.proximaDosis }}
+          </p>
+        </div>
+      }
+    </div>
+
+    <!-- CONSULTAS -->
+
+    <div class="historial-card">
+      <h2>🩺 Consultas</h2>
+
+      @if (mascota()?.consultas?.length === 0) {
+        <p>No hay consultas registradas.</p>
+      }
+
+      @for (consulta of mascota()?.consultas; track consulta.fecha) {
+        <div class="historial-item">
+          <strong>{{ consulta.motivo }}</strong>
+
+          <p>{{ consulta.diagnostico }}</p>
+
+          <p>Peso: {{ consulta.peso }} kg</p>
+
+          <p>Fecha: {{ consulta.fecha }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- TURNOS -->
+
+    <div class="historial-card">
+      <h2>📅 Turnos</h2>
+
+      @if (turnosMascota().length === 0) {
+        <p>No hay turnos registrados.</p>
+      }
+
+      @for (turno of turnosMascota(); track turno.id) {
+        <div class="historial-item">
+          <strong>{{ turno.motivo }}</strong>
+
+          <p>{{ turno.fecha }}</p>
+
+          <p>{{ turno.hora }}</p>
+
+          <p>{{ turno.estado }}</p>
+        </div>
+      }
     </div>
   </div>
 }

@@ -204,13 +204,13 @@
           <div *ngIf="m.consultas && m.consultas.length > 0; else sinConsultas">
             <div *ngFor="let c of m.consultas; let i = index" class="consulta-item">
               <div class="consulta-info">
-                <p>🩺 {{ c.motivo }}</p>
+                <p>{{ c.motivo }}</p>
 
-                <span> 📋 {{ c.diagnostico }} </span>
+                <span>📋 Diagnóstico: {{ c.diagnostico }}</span>
 
-                <span> ⚖ {{ c.peso }}kg </span>
+                <span>⚖ Peso: {{ c.peso }} kg</span>
 
-                <span> 📅 {{ c.fecha }} </span>
+                <span>📅 {{ c.fecha }}</span>
               </div>
 
               <button mat-mini-button color="warn" (click)="eliminarConsulta(m.id, i)">✖</button>

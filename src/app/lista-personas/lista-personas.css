@@ -591,3 +591,76 @@ button[mat-raised-button]:hover::before {
 
   pointer-events: none;
 }
+
+/* =========================
+   CONSULTAS PREMIUM
+========================= */
+
+.consulta-item {
+  border-left: 5px solid #6366f1;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.consulta-info {
+  width: 100%;
+}
+
+.consulta-info p {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.consulta-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.consulta-form {
+  margin-top: 25px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+  gap: 12px;
+}
+
+.consulta-form input {
+  height: 48px;
+
+  border-radius: 14px;
+
+  border: 1px solid #dbe2ea;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  transition: 0.25s;
+}
+
+.consulta-form input:focus {
+  outline: none;
+
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.consulta-form button {
+  height: 48px;
+}
