@@ -67,18 +67,24 @@
         <p>No hay vacunas registradas.</p>
       }
 
-      @for (vacuna of mascota()?.vacunas; track vacuna.nombre) {
-        <div class="historial-item">
-          <strong>{{ vacuna.nombre }}</strong>
+      <div class="timeline">
+        @for (vacuna of vacunasOrdenadas(); track vacuna.nombre) {
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
 
-          <p>Aplicada: {{ vacuna.fecha }}</p>
+            <div class="timeline-content">
+              <strong>{{ vacuna.nombre }}</strong>
 
-          <p>
-            Próxima dosis:
-            {{ vacuna.proximaDosis }}
-          </p>
-        </div>
-      }
+              <p>💉 Aplicada: {{ vacuna.fecha }}</p>
+
+              <p>
+                📅 Próxima dosis:
+                {{ vacuna.proximaDosis }}
+              </p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
 
     <!-- CONSULTAS -->
@@ -90,17 +96,23 @@
         <p>No hay consultas registradas.</p>
       }
 
-      @for (consulta of mascota()?.consultas; track consulta.fecha) {
-        <div class="historial-item">
-          <strong>{{ consulta.motivo }}</strong>
+      <div class="timeline">
+        @for (consulta of consultasOrdenadas(); track consulta.fecha) {
+          <div class="timeline-item">
+            <div class="timeline-dot consulta"></div>
 
-          <p>{{ consulta.diagnostico }}</p>
+            <div class="timeline-content">
+              <strong>{{ consulta.motivo }}</strong>
 
-          <p>Peso: {{ consulta.peso }} kg</p>
+              <p>{{ consulta.diagnostico }}</p>
 
-          <p>Fecha: {{ consulta.fecha }}</p>
-        </div>
-      }
+              <p>⚖ Peso: {{ consulta.peso }} kg</p>
+
+              <p>📅 {{ consulta.fecha }}</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
 
     <!-- TURNOS -->
@@ -108,21 +120,45 @@
     <div class="historial-card">
       <h2>📅 Turnos</h2>
 
-      @if (turnosMascota().length === 0) {
-        <p>No hay turnos registrados.</p>
-      }
+      @if (mascota()?.consultas?.length === 0) {
+        <div class="empty-state">
+          <mat-icon>medical_services</mat-icon>
 
-      @for (turno of turnosMascota(); track turno.id) {
-        <div class="historial-item">
-          <strong>{{ turno.motivo }}</strong>
-
-          <p>{{ turno.fecha }}</p>
-
-          <p>{{ turno.hora }}</p>
-
-          <p>{{ turno.estado }}</p>
+          <p>No hay consultas registradas todavía</p>
         </div>
       }
+
+      <div class="timeline">
+        @for (turno of turnosOrdenados(); track turno.id) {
+          <div class="timeline-item">
+            <div class="timeline-dot turno"></div>
+
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <strong>{{ turno.motivo }}</strong>
+
+                <span
+                  class="estado-badge"
+                  [class.pendiente]="turno.estado === 'Pendiente'"
+                  [class.completado]="turno.estado === 'Completado'"
+                >
+                  @if (turno.estado === 'Pendiente') {
+                    ⏳ Pendiente
+                  }
+
+                  @if (turno.estado === 'Completado') {
+                    ✅ Completado
+                  }
+                </span>
+              </div>
+
+              <p>📅 {{ turno.fecha }}</p>
+
+              <p>⏰ {{ turno.hora }}</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </div>
 }

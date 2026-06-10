@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-persona-list',
@@ -31,6 +32,22 @@ export class PersonaList {
   mascotaEditandoId: number | null = null;
   historialAbiertoId: number | null = null;
   consultasAbiertasId: number | null = null;
+
+  vacunasDisponibles = [
+    'Antirrábica',
+    'Séxtuple Canina',
+    'Octuple Canina',
+    'Parvovirus',
+    'Moquillo',
+    'Hepatitis Canina',
+    'Leptospirosis',
+    'Coronavirus Canino',
+    'Bordetella',
+    'Triple Felina',
+    'Cuádruple Felina',
+    'Leucemia Felina',
+    'Rabia Felina',
+  ];
   get mascotasFiltradas() {
     return this.personaService
       .mascotas()
@@ -41,10 +58,16 @@ export class PersonaList {
       );
   }
 
-  constructor(public personaService: MascotaService) {}
-
+  constructor(
+    public personaService: MascotaService,
+    private router: Router,
+  ) {}
   editar(mascota: any) {
     this.mascotaEditandoId = mascota.id;
+  }
+
+  verFicha(id: number) {
+    this.router.navigate(['/mascotas', id]);
   }
 
   guardar(mascota: any) {

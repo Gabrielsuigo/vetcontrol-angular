@@ -664,3 +664,82 @@ button[mat-raised-button]:hover::before {
 .consulta-form button {
   height: 48px;
 }
+
+/* =========================
+   VACUNAS PREMIUM
+========================= */
+
+.vacuna-form {
+  margin-top: 25px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+  gap: 12px;
+}
+
+.vacuna-form select,
+.vacuna-form input {
+  height: 48px;
+
+  border-radius: 14px;
+
+  border: 1px solid #dbe2ea;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  background: white;
+
+  transition: 0.25s;
+}
+
+.vacuna-form select:focus,
+.vacuna-form input:focus {
+  outline: none;
+
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.vacuna-form button {
+  height: 48px;
+}
+
+.vacuna-item {
+  border-left: 5px solid #06b6d4;
+
+  padding: 20px;
+
+  border-radius: 20px;
+}
+
+.vacuna-info p {
+  font-size: 18px;
+
+  font-weight: 800;
+
+  margin-bottom: 8px;
+}
+
+.vacuna-info span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 6px 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #475569;
+}
