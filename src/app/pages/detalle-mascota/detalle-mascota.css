@@ -297,18 +297,27 @@
 }
 
 .timeline-content {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: #f8fafc;
+  background: white;
 
   padding: 18px;
 
   border-radius: 18px;
 
-  border: 1px solid #e2e8f0;
+  border-left: 5px solid #6366f1;
+
+  border-top: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
 
   transition: 0.3s;
+}
+
+.timeline-item .consulta + .timeline-content {
+  border-left-color: #06b6d4;
+}
+
+.timeline-item .turno + .timeline-content {
+  border-left-color: #f59e0b;
 }
 
 .timeline-content:hover {

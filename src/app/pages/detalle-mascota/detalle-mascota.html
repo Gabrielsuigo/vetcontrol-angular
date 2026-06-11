@@ -119,12 +119,11 @@
 
     <div class="historial-card">
       <h2>📅 Turnos</h2>
-
-      @if (mascota()?.consultas?.length === 0) {
+      @if (turnosOrdenados().length === 0) {
         <div class="empty-state">
-          <mat-icon>medical_services</mat-icon>
+          <mat-icon>event_busy</mat-icon>
 
-          <p>No hay consultas registradas todavía</p>
+          <p>No hay turnos registrados todavía</p>
         </div>
       }
 
