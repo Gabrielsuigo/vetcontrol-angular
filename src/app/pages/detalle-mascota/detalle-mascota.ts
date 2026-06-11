@@ -32,6 +32,12 @@ export class DetalleMascota {
       .filter((t) => t.mascotaId === this.id)
       .sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime()),
   );
+
+  proximoTurno() {
+    const pendientes = this.turnosOrdenados().filter((t) => t.estado === 'Pendiente');
+
+    return pendientes.length > 0 ? pendientes[0] : null;
+  }
   totalVacunas = computed(() => this.mascota()?.vacunas.length ?? 0);
 
   totalConsultas = computed(() => this.mascota()?.consultas.length ?? 0);

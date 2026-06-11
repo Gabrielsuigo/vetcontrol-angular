@@ -2,16 +2,32 @@
   <div class="detalle-page">
     <div class="detalle-card">
       <img [src]="mascota()?.imagen" [alt]="mascota()?.nombre" />
-
       <div class="detalle-info">
         <h1>{{ mascota()?.nombre }}</h1>
 
-        <p>
-          {{ mascota()?.especie }} •
-          {{ mascota()?.raza }}
-        </p>
+        <div class="pet-tags">
+          <span class="tag especie">
+            {{ mascota()?.especie }}
+          </span>
 
-        <span> {{ mascota()?.edad }} años </span>
+          <span class="tag raza">
+            {{ mascota()?.raza }}
+          </span>
+
+          <span class="tag edad"> {{ mascota()?.edad }} años </span>
+        </div>
+
+        <div class="pet-owner">👤 {{ mascota()?.duenio }}</div>
+
+        <div class="pet-status">
+          @if (totalVacunas() > 0) {
+            <span class="status-ok"> 🟢 Vacunas al día </span>
+          }
+
+          @if (totalVacunas() === 0) {
+            <span class="status-alert"> 🔴 Sin vacunas registradas </span>
+          }
+        </div>
       </div>
     </div>
 
@@ -57,6 +73,25 @@
         </div>
       </div>
     </div>
+
+    @if (proximoTurno()) {
+      <div class="proximo-turno-card">
+        <div class="proximo-turno-header">
+          <mat-icon>event_available</mat-icon>
+          <h2>Próximo Turno</h2>
+        </div>
+
+        <div class="proximo-turno-info">
+          <strong>{{ proximoTurno()?.motivo }}</strong>
+
+          <p>📅 {{ proximoTurno()?.fecha }}</p>
+
+          <p>⏰ {{ proximoTurno()?.hora }}</p>
+
+          <span class="estado-badge pendiente"> ⏳ Pendiente </span>
+        </div>
+      </div>
+    }
 
     <!-- VACUNAS -->
 
