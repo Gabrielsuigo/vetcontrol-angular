@@ -20,14 +20,41 @@
         <div class="pet-owner">👤 {{ mascota()?.duenio }}</div>
 
         <div class="pet-status">
-          @if (totalVacunas() > 0) {
+          @if (estadoSanitario() === 'ok') {
             <span class="status-ok"> 🟢 Vacunas al día </span>
           }
 
-          @if (totalVacunas() === 0) {
+          @if (estadoSanitario() === 'pendiente') {
+            <span class="status-warning"> 🟠 Vacunas pendientes </span>
+          }
+
+          @if (estadoSanitario() === 'sin-vacunas') {
             <span class="status-alert"> 🔴 Sin vacunas registradas </span>
           }
         </div>
+        <p class="status-detail">
+          {{ mensajeSanitario() }}
+        </p>
+
+        @if (proximaVacuna()) {
+          <div class="next-vaccine-card">
+            <h3>💉 Próxima vacuna</h3>
+
+            <strong>
+              {{ proximaVacuna()?.nombre }}
+            </strong>
+
+            <p>📅 {{ proximaVacuna()?.proximaDosis }}</p>
+
+            @if (diasParaProximaVacuna()! > 0) {
+              <span class="vacuna-ok"> Faltan {{ diasParaProximaVacuna() }} días </span>
+            }
+
+            @if (diasParaProximaVacuna()! <= 0) {
+              <span class="vacuna-alerta"> Vacuna vencida </span>
+            }
+          </div>
+        }
       </div>
     </div>
 
