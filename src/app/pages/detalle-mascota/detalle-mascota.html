@@ -3,8 +3,11 @@
     <div class="detalle-card">
       <img [src]="mascota()?.imagen" [alt]="mascota()?.nombre" />
       <div class="detalle-info">
-        <h1>{{ mascota()?.nombre }}</h1>
+        <div class="header-mascota">
+          <h1>{{ mascota()?.nombre }}</h1>
 
+          <button class="btn-pdf" (click)="descargarPDF()">📄 Descargar PDF</button>
+        </div>
         <div class="pet-tags">
           <span class="tag especie">
             {{ mascota()?.especie }}
@@ -53,6 +56,23 @@
             @if (diasParaProximaVacuna()! <= 0) {
               <span class="vacuna-alerta"> Vacuna vencida </span>
             }
+          </div>
+        }
+        @if (ultimaConsulta()) {
+          <div class="consulta-destacada">
+            <h3>🩺 Última consulta</h3>
+
+            <strong>
+              {{ ultimaConsulta()?.motivo }}
+            </strong>
+
+            <p>📅 {{ ultimaConsulta()?.fecha }}</p>
+
+            <p>
+              {{ ultimaConsulta()?.diagnostico }}
+            </p>
+
+            <p>⚖ {{ ultimaConsulta()?.peso }} kg</p>
           </div>
         }
       </div>
