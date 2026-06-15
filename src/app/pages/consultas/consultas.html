@@ -46,6 +46,7 @@
               <span>Motivo</span>
               <span>Diagnóstico</span>
               <span>Peso</span>
+              <span>Acciones</span>
             </div>
 
             @for (consulta of mascota.consultas; track $index) {
@@ -59,6 +60,19 @@
                 <span>{{ consulta.diagnostico }}</span>
 
                 <span>{{ consulta.peso }} kg</span>
+
+                <span class="acciones">
+                  <button class="btn-editar" (click)="editarConsulta(mascota.id, $index)">
+                    ✏️
+                  </button>
+
+                  <button
+                    class="btn-eliminar separar-eliminar"
+                    (click)="eliminarConsulta(mascota.id, $index)"
+                  >
+                    🗑
+                  </button>
+                </span>
               </div>
             }
           </div>

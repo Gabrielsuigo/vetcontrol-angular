@@ -48,4 +48,20 @@ export class Consultas {
       this.mensajeExito = '';
     }, 3000);
   }
+  eliminarConsulta(mascotaId: number, index: number) {
+    const confirmar = confirm('¿Eliminar esta consulta?');
+
+    if (!confirmar) return;
+
+    this.mascotaService.eliminarConsulta(mascotaId, index);
+
+    this.mensajeExito = '🗑 Consulta eliminada correctamente';
+
+    setTimeout(() => {
+      this.mensajeExito = '';
+    }, 3000);
+  }
+  editarConsulta(mascotaId: number, index: number) {
+    alert('La edición de consultas será el próximo paso 🚀');
+  }
 }
