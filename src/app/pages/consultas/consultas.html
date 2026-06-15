@@ -34,5 +34,36 @@
         {{ mensajeExito }}
       </div>
     }
+    <div class="consulta-form-card">
+      <h2>Consultas Registradas</h2>
+
+      @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+        @if (mascota.consultas.length > 0) {
+          <div class="consulta-item">
+            <div class="consulta-header">
+              <span>Mascota</span>
+              <span>Fecha</span>
+              <span>Motivo</span>
+              <span>Diagnóstico</span>
+              <span>Peso</span>
+            </div>
+
+            @for (consulta of mascota.consultas; track $index) {
+              <div class="consulta-row">
+                <span>🐶 {{ mascota.nombre }}</span>
+
+                <span>{{ consulta.fecha }}</span>
+
+                <span>{{ consulta.motivo }}</span>
+
+                <span>{{ consulta.diagnostico }}</span>
+
+                <span>{{ consulta.peso }} kg</span>
+              </div>
+            }
+          </div>
+        }
+      }
+    </div>
   </div>
 </div>

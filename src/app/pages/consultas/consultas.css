@@ -59,3 +59,42 @@
   color: #166534;
   font-weight: 600;
 }
+
+.consulta-item {
+  margin-top: 25px;
+}
+
+.consulta-item h3 {
+  margin-bottom: 15px;
+}
+
+.consulta-header,
+.consulta-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 2fr 120px;
+
+  gap: 15px;
+
+  padding: 12px;
+}
+
+.consulta-header {
+  background: #f3f4f6;
+
+  font-weight: 700;
+
+  border-radius: 10px;
+
+  margin-bottom: 8px;
+}
+
+.consulta-row {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  margin-bottom: 6px;
+}
