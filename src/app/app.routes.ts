@@ -9,6 +9,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { authGuard } from './core/auth/guards/auth.guard';
 import { Perfil } from './pages/perfil/perfil';
 import { Home } from './pages/home/home';
+import { Consultas } from './pages/consultas/consultas';
 
 export const routes: Routes = [
   {
@@ -57,6 +58,13 @@ export const routes: Routes = [
     path: 'turnos',
     component: Turnos,
   },
+
+  {
+    path: 'consultas',
+    component: Consultas,
+    canActivate: [authGuard],
+  },
+
   {
     path: '**',
     redirectTo: 'login',

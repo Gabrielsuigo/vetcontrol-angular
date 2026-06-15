@@ -1,0 +1,38 @@
+<div class="consultas-page">
+  <div class="consultas-header">
+    <h1>🩺 Consultas Médicas</h1>
+
+    <p>Registrar consultas veterinarias de las mascotas.</p>
+  </div>
+
+  <div class="consulta-form-card">
+    <h2>Nueva Consulta</h2>
+
+    <div class="form-grid">
+      <select [(ngModel)]="mascotaId">
+        <option [ngValue]="0">Seleccionar mascota</option>
+
+        @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+          <option [ngValue]="mascota.id">
+            {{ mascota.nombre }}
+          </option>
+        }
+      </select>
+
+      <input type="text" placeholder="Motivo" [(ngModel)]="motivo" />
+
+      <input type="text" placeholder="Diagnóstico" [(ngModel)]="diagnostico" />
+
+      <input type="number" placeholder="Peso" [(ngModel)]="peso" />
+
+      <input type="date" [(ngModel)]="fecha" />
+    </div>
+
+    <button class="btn-guardar" (click)="registrarConsulta()">Registrar Consulta</button>
+    @if (mensajeExito) {
+      <div class="alert-success">
+        {{ mensajeExito }}
+      </div>
+    }
+  </div>
+</div>
