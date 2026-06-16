@@ -28,21 +28,44 @@ export class Consultas {
 
   mensajeExito = '';
 
+  modoEdicion = false;
+
+  mascotaEditandoId = 0;
+
+  consultaEditandoIndex = -1;
+
   registrarConsulta() {
     if (!this.mascotaId) return;
 
-    this.mascotaService.agregarConsulta(this.mascotaId, {
-      motivo: this.motivo,
-      diagnostico: this.diagnostico,
-      peso: this.peso,
-      fecha: this.fecha,
-    });
+    if (this.modoEdicion) {
+      this.mascotaService.editarConsulta(this.mascotaEditandoId, this.consultaEditandoIndex, {
+        motivo: this.motivo,
+        diagnostico: this.diagnostico,
+        peso: this.peso,
+        fecha: this.fecha,
+      });
+
+      this.mensajeExito = '✏️ Consulta editada correctamente';
+
+      this.modoEdicion = false;
+      this.mascotaEditandoId = 0;
+      this.consultaEditandoIndex = -1;
+    } else {
+      this.mascotaService.agregarConsulta(this.mascotaId, {
+        motivo: this.motivo,
+        diagnostico: this.diagnostico,
+        peso: this.peso,
+        fecha: this.fecha,
+      });
+
+      this.mensajeExito = '✅ Consulta registrada correctamente';
+    }
 
     this.motivo = '';
     this.diagnostico = '';
     this.peso = 0;
     this.observaciones = '';
-    this.mensajeExito = '✅ Consulta registrada correctamente';
+    this.fecha = new Date().toISOString().split('T')[0];
 
     setTimeout(() => {
       this.mensajeExito = '';
@@ -62,6 +85,27 @@ export class Consultas {
     }, 3000);
   }
   editarConsulta(mascotaId: number, index: number) {
-    alert('La edición de consultas será el próximo paso 🚀');
+    const mascota = this.mascotaService.mascotasUsuario().find((m) => m.id === mascotaId);
+
+    if (!mascota) return;
+
+    const consulta = mascota.consultas[index];
+
+    this.modoEdicion = true;
+    this.mascotaEditandoId = mascotaId;
+    this.consultaEditandoIndex = index;
+
+    this.mascotaId = mascotaId;
+    this.motivo = consulta.motivo;
+    this.diagnostico = consulta.diagnostico;
+    this.peso = consulta.peso;
+    this.fecha = consulta.fecha;
+
+    this.mensajeExito = '✏️ Editando consulta seleccionada';
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 }

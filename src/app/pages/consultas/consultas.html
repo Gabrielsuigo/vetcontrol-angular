@@ -6,8 +6,9 @@
   </div>
 
   <div class="consulta-form-card">
-    <h2>Nueva Consulta</h2>
-
+    <h2>
+      {{ modoEdicion ? '✏️ Editando Consulta' : 'Nueva Consulta' }}
+    </h2>
     <div class="form-grid">
       <select [(ngModel)]="mascotaId">
         <option [ngValue]="0">Seleccionar mascota</option>
@@ -27,8 +28,14 @@
 
       <input type="date" [(ngModel)]="fecha" />
     </div>
+    <button
+      class="btn-guardar"
+      [style.background]="modoEdicion ? '#f59e0b' : '#6366f1'"
+      (click)="registrarConsulta()"
+    >
+      {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Consulta' }}
+    </button>
 
-    <button class="btn-guardar" (click)="registrarConsulta()">Registrar Consulta</button>
     @if (mensajeExito) {
       <div class="alert-success">
         {{ mensajeExito }}

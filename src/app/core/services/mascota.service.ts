@@ -168,4 +168,20 @@ export class MascotaService {
       return nueva;
     });
   }
+  editarConsulta(mascotaId: number, index: number, consultaActualizada: Consulta) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
+        m.id === mascotaId
+          ? {
+              ...m,
+              consultas: m.consultas.map((c, i) => (i === index ? consultaActualizada : c)),
+            }
+          : m,
+      );
+
+      this.guardar(nueva);
+
+      return nueva;
+    });
+  }
 }
