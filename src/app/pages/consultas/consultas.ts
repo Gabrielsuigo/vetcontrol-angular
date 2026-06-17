@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +13,8 @@ import { MascotaService } from '../../core/services/mascota.service';
 })
 export class Consultas {
   mascotaService = inject(MascotaService);
+
+  cdr = inject(ChangeDetectorRef);
 
   mascotaId = 0;
 
@@ -50,6 +52,7 @@ export class Consultas {
       this.modoEdicion = false;
       this.mascotaEditandoId = 0;
       this.consultaEditandoIndex = -1;
+      this.mascotaId = 0;
     } else {
       this.mascotaService.agregarConsulta(this.mascotaId, {
         motivo: this.motivo,
@@ -69,6 +72,7 @@ export class Consultas {
 
     setTimeout(() => {
       this.mensajeExito = '';
+      this.cdr.detectChanges();
     }, 3000);
   }
   eliminarConsulta(mascotaId: number, index: number) {
@@ -82,6 +86,7 @@ export class Consultas {
 
     setTimeout(() => {
       this.mensajeExito = '';
+      this.cdr.detectChanges();
     }, 3000);
   }
   editarConsulta(mascotaId: number, index: number) {
@@ -103,9 +108,32 @@ export class Consultas {
 
     this.mensajeExito = '✏️ Editando consulta seleccionada';
 
+    setTimeout(() => {
+      this.mensajeExito = '';
+    }, 3000);
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
+  }
+
+  cancelarEdicion() {
+    this.modoEdicion = false;
+    this.mascotaEditandoId = 0;
+    this.consultaEditandoIndex = -1;
+
+    this.mascotaId = 0;
+    this.motivo = '';
+    this.diagnostico = '';
+    this.peso = 0;
+    this.observaciones = '';
+    this.fecha = new Date().toISOString().split('T')[0];
+
+    this.mensajeExito = '❌ Edición cancelada';
+
+    setTimeout(() => {
+      this.mensajeExito = '';
+    }, 3000);
   }
 }

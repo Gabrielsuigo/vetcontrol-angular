@@ -28,63 +28,62 @@
 
       <input type="date" [(ngModel)]="fecha" />
     </div>
-    <button
-      class="btn-guardar"
-      [style.background]="modoEdicion ? '#f59e0b' : '#6366f1'"
-      (click)="registrarConsulta()"
-    >
+    <button class="btn-guardar" (click)="registrarConsulta()">
       {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Consulta' }}
     </button>
 
-    @if (mensajeExito) {
+    @if (modoEdicion) {
+      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
+    }
+
+    @if (mensajeExito !== '') {
       <div class="alert-success">
         {{ mensajeExito }}
       </div>
     }
-    <div class="consulta-form-card">
-      <h2>Consultas Registradas</h2>
+  </div>
 
-      @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
-        @if (mascota.consultas.length > 0) {
-          <div class="consulta-item">
-            <div class="consulta-header">
-              <span>Mascota</span>
-              <span>Fecha</span>
-              <span>Motivo</span>
-              <span>Diagnóstico</span>
-              <span>Peso</span>
-              <span>Acciones</span>
-            </div>
+  <div class="consulta-form-card">
+    <h2>Consultas Registradas</h2>
 
-            @for (consulta of mascota.consultas; track $index) {
-              <div class="consulta-row">
-                <span>🐶 {{ mascota.nombre }}</span>
-
-                <span>{{ consulta.fecha }}</span>
-
-                <span>{{ consulta.motivo }}</span>
-
-                <span>{{ consulta.diagnostico }}</span>
-
-                <span>{{ consulta.peso }} kg</span>
-
-                <span class="acciones">
-                  <button class="btn-editar" (click)="editarConsulta(mascota.id, $index)">
-                    ✏️
-                  </button>
-
-                  <button
-                    class="btn-eliminar separar-eliminar"
-                    (click)="eliminarConsulta(mascota.id, $index)"
-                  >
-                    🗑
-                  </button>
-                </span>
-              </div>
-            }
+    @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+      @if (mascota.consultas.length > 0) {
+        <div class="consulta-item">
+          <div class="consulta-header">
+            <span>Mascota</span>
+            <span>Fecha</span>
+            <span>Motivo</span>
+            <span>Diagnóstico</span>
+            <span>Peso</span>
+            <span>Acciones</span>
           </div>
-        }
+
+          @for (consulta of mascota.consultas; track $index) {
+            <div class="consulta-row">
+              <span>🐶 {{ mascota.nombre }}</span>
+
+              <span>{{ consulta.fecha }}</span>
+
+              <span>{{ consulta.motivo }}</span>
+
+              <span>{{ consulta.diagnostico }}</span>
+
+              <span>{{ consulta.peso }} kg</span>
+
+              <span class="acciones">
+                <button class="btn-editar" (click)="editarConsulta(mascota.id, $index)">✏️</button>
+
+                <button
+                  class="btn-eliminar separar-eliminar"
+                  (click)="eliminarConsulta(mascota.id, $index)"
+                >
+                  🗑
+                </button>
+              </span>
+            </div>
+          }
+        </div>
       }
-    </div>
+    }
   </div>
 </div>
