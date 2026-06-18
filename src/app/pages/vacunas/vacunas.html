@@ -1,0 +1,109 @@
+<div class="vacunas-page">
+  <div class="vacunas-header">
+    <h1>💉 Vacunas</h1>
+
+    <p>Registrar y administrar las vacunas de las mascotas.</p>
+  </div>
+
+  <div class="vacuna-form-card">
+    <h2>Nueva Vacuna</h2>
+
+    <div class="form-grid">
+      <div class="campo">
+        <label>Mascota</label>
+
+        <select [(ngModel)]="mascotaId">
+          <option [ngValue]="0">Seleccionar mascota</option>
+
+          @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+            <option [ngValue]="mascota.id">
+              {{ mascota.nombre }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Vacuna</label>
+
+        <input type="text" placeholder="Nombre de la vacuna" [(ngModel)]="nombre" />
+      </div>
+
+      <div class="campo">
+        <label>Fecha de aplicación</label>
+
+        <input type="date" [(ngModel)]="fecha" />
+      </div>
+
+      <div class="campo">
+        <label>Próxima dosis</label>
+
+        <input type="text" [value]="proximaDosisCalculada" disabled />
+      </div>
+
+      <div class="campo">
+        <label>Observaciones</label>
+
+        <input type="text" placeholder="Opcional" />
+      </div>
+
+      <div class="campo">
+        <label>&nbsp;</label>
+
+        <button class="btn-guardar" (click)="registrarVacuna()">
+          {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Vacuna' }}
+        </button>
+      </div>
+    </div>
+
+    @if (modoEdicion) {
+      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
+    }
+    @if (mensajeExito) {
+      <div class="alert-success">
+        {{ mensajeExito }}
+      </div>
+    }
+  </div>
+
+  <div class="vacuna-form-card">
+    <h2>Vacunas Registradas</h2>
+
+    @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+      @if (mascota.vacunas.length > 0) {
+        <div class="vacuna-item">
+          <div class="consulta-header">
+            <span>Mascota</span>
+            <span>Vacuna</span>
+            <span>Fecha aplicada</span>
+            <span>Próxima dosis</span>
+            <span>Acciones</span>
+          </div>
+
+          @for (vacuna of mascota.vacunas; track $index) {
+            <div class="consulta-row">
+              <span>🐶 {{ mascota.nombre }}</span>
+
+              <span>{{ vacuna.nombre }}</span>
+
+              <span>{{ vacuna.fecha }}</span>
+
+              <span>{{ vacuna.proximaDosis }}</span>
+
+              <span class="acciones">
+                <button class="btn-editar" (click)="editarVacuna(mascota.id, $index)">✏️</button>
+
+                <button
+                  class="btn-eliminar separar-eliminar"
+                  (click)="eliminarVacuna(mascota.id, $index)"
+                >
+                  🗑
+                </button>
+              </span>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

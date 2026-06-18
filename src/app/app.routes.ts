@@ -10,6 +10,7 @@ import { authGuard } from './core/auth/guards/auth.guard';
 import { Perfil } from './pages/perfil/perfil';
 import { Home } from './pages/home/home';
 import { Consultas } from './pages/consultas/consultas';
+import { Vacunas } from './pages/vacunas/vacunas';
 
 export const routes: Routes = [
   {
@@ -49,10 +50,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  {
-    path: 'historial',
-    component: Historial,
-  },
+  // {
+  //   path: 'historial',
+  //   component: Historial,
+  // },
 
   {
     path: 'turnos',
@@ -63,6 +64,12 @@ export const routes: Routes = [
     path: 'consultas',
     component: Consultas,
     canActivate: [authGuard],
+  },
+
+  {
+    path: 'vacunas',
+    component: Vacunas,
+    // canActivate: [authGuard],
   },
 
   {

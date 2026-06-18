@@ -184,4 +184,20 @@ export class MascotaService {
       return nueva;
     });
   }
+  editarVacuna(mascotaId: number, index: number, vacunaActualizada: Vacuna) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
+        m.id === mascotaId
+          ? {
+              ...m,
+              vacunas: m.vacunas.map((v, i) => (i === index ? vacunaActualizada : v)),
+            }
+          : m,
+      );
+
+      this.guardar(nueva);
+
+      return nueva;
+    });
+  }
 }
