@@ -29,6 +29,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './app.css',
 })
 export class App {
+  sidebarAbierto = false;
   authService = inject(AuthService);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
@@ -47,5 +48,12 @@ export class App {
       panelClass: ['logout-snackbar'],
     });
     this.router.navigate(['/']);
+  }
+  toggleSidebar() {
+    this.sidebarAbierto = !this.sidebarAbierto;
+  }
+
+  cerrarSidebar() {
+    this.sidebarAbierto = false;
   }
 }
