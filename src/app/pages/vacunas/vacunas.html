@@ -36,6 +36,17 @@
       </div>
 
       <div class="campo">
+        <label>Frecuencia</label>
+
+        <select [(ngModel)]="frecuencia">
+          <option [ngValue]="1">1 mes</option>
+          <option [ngValue]="3">3 meses</option>
+          <option [ngValue]="6">6 meses</option>
+          <option [ngValue]="12">1 año</option>
+        </select>
+      </div>
+
+      <div class="campo">
         <label>Próxima dosis</label>
 
         <input type="text" [value]="proximaDosisCalculada" disabled />
@@ -77,6 +88,7 @@
             <span>Vacuna</span>
             <span>Fecha aplicada</span>
             <span>Próxima dosis</span>
+            <span>Estado</span>
             <span>Acciones</span>
           </div>
 
@@ -89,6 +101,8 @@
               <span>{{ vacuna.fecha }}</span>
 
               <span>{{ vacuna.proximaDosis }}</span>
+
+              <span>{{ obtenerEstado(vacuna.proximaDosis) }}</span>
 
               <span class="acciones">
                 <button class="btn-editar" (click)="editarVacuna(mascota.id, $index)">✏️</button>

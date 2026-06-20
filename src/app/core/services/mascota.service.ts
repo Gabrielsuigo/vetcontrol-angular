@@ -29,10 +29,10 @@ export class MascotaService {
     return data ? JSON.parse(data) : [];
   }
 
-  private calcularProximaDosis(fecha: string): string {
+  private calcularProximaDosis(fecha: string, meses: number): string {
     const fechaVacuna = new Date(fecha);
 
-    fechaVacuna.setMonth(fechaVacuna.getMonth() + 12);
+    fechaVacuna.setMonth(fechaVacuna.getMonth() + meses);
 
     return fechaVacuna.toISOString().split('T')[0];
   }
@@ -80,7 +80,7 @@ export class MascotaService {
     });
   }
 
-  agregarVacuna(id: number, vacuna: Vacuna) {
+  agregarVacuna(id: number, vacuna: Vacuna, meses: number) {
     this.mascotas.update((lista) => {
       const nueva = lista.map((m) =>
         m.id === id
@@ -91,8 +91,8 @@ export class MascotaService {
 
                 {
                   ...vacuna,
-
-                  proximaDosis: this.calcularProximaDosis(vacuna.fecha),
+                  frecuenciaMeses: meses,
+                  proximaDosis: this.calcularProximaDosis(vacuna.fecha, meses),
                 },
               ],
             }
@@ -184,13 +184,21 @@ export class MascotaService {
       return nueva;
     });
   }
-  editarVacuna(mascotaId: number, index: number, vacunaActualizada: Vacuna) {
+  editarVacuna(mascotaId: number, index: number, vacunaActualizada: Vacuna, meses: number) {
     this.mascotas.update((lista) => {
       const nueva = lista.map((m) =>
         m.id === mascotaId
           ? {
               ...m,
-              vacunas: m.vacunas.map((v, i) => (i === index ? vacunaActualizada : v)),
+              vacunas: m.vacunas.map((v, i) =>
+                i === index
+                  ? {
+                      ...vacunaActualizada,
+                      frecuenciaMeses: meses,
+                      proximaDosis: this.calcularProximaDosis(vacunaActualizada.fecha, meses),
+                    }
+                  : v,
+              ),
             }
           : m,
       );

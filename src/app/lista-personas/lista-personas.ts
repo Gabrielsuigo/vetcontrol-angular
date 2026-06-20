@@ -100,6 +100,8 @@ export class PersonaList {
         nombre,
         fecha,
       },
+
+      this.usuarioActual.email,
     );
   }
 

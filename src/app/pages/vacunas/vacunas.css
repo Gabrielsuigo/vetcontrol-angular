@@ -80,7 +80,7 @@
 .consulta-header,
 .consulta-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 100px;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 120px 100px;
   gap: 15px;
   padding: 12px;
   align-items: center;

@@ -2,6 +2,7 @@ export interface Vacuna {
   nombre: string;
   fecha: string;
   proximaDosis?: string;
+  frecuenciaMeses?: number;
 }
 
 export interface Consulta {
