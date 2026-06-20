@@ -244,20 +244,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .landing {
-    padding: 30px;
-  }
-
-  .hero-content h1 {
-    font-size: 42px;
-  }
-
-  .hero-content p {
-    font-size: 17px;
-  }
-}
-
 /* ==========================
    ESTADISTICAS
 ========================== */
@@ -304,4 +290,126 @@
   color: rgba(255, 255, 255, 0.75);
 
   font-size: 16px;
+}
+
+/* ==========================
+   RESPONSIVE MOBILE
+========================== */
+
+@media (max-width: 768px) {
+  .landing {
+    padding: 100px 20px 40px;
+    gap: 40px;
+    overflow-x: hidden;
+  }
+
+  .landing-navbar {
+    padding: 0 16px;
+    height: auto;
+    min-height: 70px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navbar-logo {
+    font-size: 20px;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .landing-hero,
+  .features,
+  .stats-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card,
+  .stat-card {
+    padding: 24px;
+  }
+
+  body,
+  html {
+    overflow-x: hidden;
+  }
+}
+
+/* ==========================
+   MENU HAMBURGUESA (VISUAL)
+========================== */
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+  .landing-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .navbar-actions a {
+    font-size: 13px;
+    padding: 0 12px !important;
+    min-width: auto !important;
+  }
 }
