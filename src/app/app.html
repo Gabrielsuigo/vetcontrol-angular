@@ -11,37 +11,37 @@
       </div>
 
       <nav class="menu">
-        <a routerLink="/dashboard" routerLinkActive="active">
+        <a routerLink="/dashboard" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>dashboard</mat-icon>
           <span>Dashboard</span>
         </a>
 
-        <a routerLink="/mascotas" routerLinkActive="active">
+        <a routerLink="/mascotas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>pets</mat-icon>
           <span>Mascotas</span>
         </a>
 
-        <a routerLink="/vacunas" routerLinkActive="active">
+        <a routerLink="/vacunas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>vaccines</mat-icon>
           <span>Vacunas</span>
         </a>
 
-        <a routerLink="/consultas" routerLinkActive="active">
+        <a routerLink="/consultas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>medical_services</mat-icon>
           <span>Consultas</span>
         </a>
 
-        <a routerLink="/turnos" routerLinkActive="active">
+        <a routerLink="/turnos" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>calendar_month</mat-icon>
           <span>Turnos</span>
         </a>
 
-        <a routerLink="/perfil" routerLinkActive="active">
+        <a routerLink="/perfil" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>person</mat-icon>
           <span>Perfil</span>
         </a>
 
-        <a routerLink="/configuracion">
+        <a routerLink="/configuracion" (click)="cerrarSidebar()">
           <mat-icon>settings</mat-icon>
           <span>Configuración</span>
         </a>
@@ -55,6 +55,9 @@
         <p>+54 11 2503 3874</p>
       </div>
     </aside>
+    @if (sidebarAbierto) {
+      <div class="sidebar-overlay" (click)="cerrarSidebar()"></div>
+    }
 
     <!-- CONTENIDO -->
     <div class="main-content">

@@ -278,6 +278,7 @@ router-outlet + * {
   background: transparent;
   cursor: pointer;
   margin-right: 10px;
+  z-index: 1101;
 }
 
 @media (max-width: 768px) {
@@ -305,4 +306,11 @@ router-outlet + * {
     padding-left: 16px;
     padding-right: 16px;
   }
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
 }

@@ -11,6 +11,7 @@ import { Perfil } from './pages/perfil/perfil';
 import { Home } from './pages/home/home';
 import { Consultas } from './pages/consultas/consultas';
 import { Vacunas } from './pages/vacunas/vacunas';
+import { Demo } from './demo/demo';
 
 export const routes: Routes = [
   {
@@ -70,6 +71,11 @@ export const routes: Routes = [
     path: 'vacunas',
     component: Vacunas,
     // canActivate: [authGuard],
+  },
+
+  {
+    path: 'demo',
+    component: Demo,
   },
 
   {
