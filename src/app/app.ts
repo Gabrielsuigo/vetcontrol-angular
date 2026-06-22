@@ -35,7 +35,10 @@ export class App {
   snackBar = inject(MatSnackBar);
   esPaginaPublica(): boolean {
     return (
-      this.router.url === '/' || this.router.url === '/login' || this.router.url === '/register'
+      this.router.url === '/' ||
+      this.router.url === '/login' ||
+      this.router.url === '/register' ||
+      this.router.url === '/demo'
     );
   }
 

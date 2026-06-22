@@ -1,15 +1,64 @@
 <div class="demo-page">
-  <h1>🚧 Demo en desarrollo</h1>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>🐾 VetControl Demo</h1>
 
-  <p>
-    Estamos preparando una demostración interactiva de VetControl para que puedas conocer todas sus
-    funcionalidades sin necesidad de crear una cuenta.
-  </p>
+      <p>Explorá una versión demostrativa de la plataforma antes de registrarte.</p>
+    </div>
 
-  <p>
-    Próximamente vas a poder explorar mascotas, vacunas, consultas y turnos desde una versión de
-    prueba.
-  </p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h2>3</h2>
+        <span>Mascotas</span>
+      </div>
 
-  <a routerLink="/" class="volver-btn"> ⬅ Volver al inicio </a>
+      <div class="stat-card">
+        <h2>1</h2>
+        <span>Vacuna próxima</span>
+      </div>
+
+      <div class="stat-card">
+        <h2>8</h2>
+        <span>Consultas</span>
+      </div>
+    </div>
+
+    <div class="demo-list">
+      <div class="pet-card">
+        <div>
+          <h3>🐶 Luna</h3>
+          <p>Vacuna: Antirrábica</p>
+          <small>Próxima dosis: 15/08/2026</small>
+        </div>
+
+        <span class="estado vigente">Vigente</span>
+      </div>
+
+      <div class="pet-card">
+        <div>
+          <h3>🐱 Milo</h3>
+          <p>Vacuna: Triple Felina</p>
+          <small>Próxima dosis: 01/07/2026</small>
+        </div>
+
+        <span class="estado proxima">Próxima</span>
+      </div>
+
+      <div class="pet-card">
+        <div>
+          <h3>🐶 Rocky</h3>
+          <p>Vacuna: Séxtuple</p>
+          <small>Próxima dosis: 20/05/2026</small>
+        </div>
+
+        <span class="estado vencida">Vencida</span>
+      </div>
+    </div>
+
+    <div class="demo-actions">
+      <a routerLink="/register" class="crear-btn"> Crear cuenta </a>
+
+      <a routerLink="/" class="volver-btn"> Volver al inicio </a>
+    </div>
+  </div>
 </div>

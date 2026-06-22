@@ -413,3 +413,37 @@
     min-width: auto !important;
   }
 }
+.demo-wrapper {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-top: 40px;
+}
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px 42px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+
+  transition: transform 0.2s ease;
+}
+
+.demo-btn:hover {
+  transform: translateY(-2px);
+}
