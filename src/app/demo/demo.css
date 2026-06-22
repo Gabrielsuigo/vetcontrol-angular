@@ -1,0 +1,36 @@
+.demo-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 40px;
+}
+
+.demo-page h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.demo-page p {
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.volver-btn {
+  margin-top: 24px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #4f46e5;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.volver-btn:hover {
+  opacity: 0.9;
+}
