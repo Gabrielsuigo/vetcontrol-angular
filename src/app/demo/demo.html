@@ -5,7 +5,7 @@
 
       <p>Explorá una versión demostrativa de la plataforma antes de registrarte.</p>
     </div>
-
+    <h2 class="demo-section-title">📊 Resumen general</h2>
     <div class="stats-grid">
       <div class="stat-card">
         <h2>3</h2>
@@ -23,36 +23,48 @@
       </div>
     </div>
 
+    <h2 class="demo-section-title">📅 Próximos turnos</h2>
     <div class="demo-list">
-      <div class="pet-card">
-        <div>
-          <h3>🐶 Luna</h3>
-          <p>Vacuna: Antirrábica</p>
-          <small>Próxima dosis: 15/08/2026</small>
+      @for (turno of turnosDemo; track $index) {
+        <div class="pet-card">
+          <div>
+            <h3>{{ turno.mascota }}</h3>
+            <p>{{ turno.motivo }}</p>
+            <small>{{ turno.fecha }}</small>
+          </div>
         </div>
+      }
+    </div>
 
-        <span class="estado vigente">Vigente</span>
-      </div>
+    <h2 class="demo-section-title">🩺 Últimas consultas</h2>
 
-      <div class="pet-card">
-        <div>
-          <h3>🐱 Milo</h3>
-          <p>Vacuna: Triple Felina</p>
-          <small>Próxima dosis: 01/07/2026</small>
+    <div class="demo-list">
+      @for (consulta of consultasDemo; track $index) {
+        <div class="pet-card">
+          <div>
+            <h3>{{ consulta.mascota }}</h3>
+            <p>{{ consulta.motivo }}</p>
+            <small>{{ consulta.fecha }}</small>
+          </div>
         </div>
+      }
+    </div>
+    <h2 class="demo-section-title">💉 Estado de vacunas</h2>
 
-        <span class="estado proxima">Próxima</span>
-      </div>
+    <div class="demo-list">
+      @for (mascota of mascotasDemo; track $index) {
+        <div class="pet-card">
+          <div>
+            <h3>{{ mascota.especie }} {{ mascota.nombre }}</h3>
+            <p>Vacuna: {{ mascota.vacuna }}</p>
+            <small>Próxima dosis: {{ mascota.proximaDosis }}</small>
+          </div>
 
-      <div class="pet-card">
-        <div>
-          <h3>🐶 Rocky</h3>
-          <p>Vacuna: Séxtuple</p>
-          <small>Próxima dosis: 20/05/2026</small>
+          <span class="estado">
+            {{ mascota.estado }}
+          </span>
         </div>
-
-        <span class="estado vencida">Vencida</span>
-      </div>
+      }
     </div>
 
     <div class="demo-actions">

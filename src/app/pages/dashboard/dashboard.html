@@ -3,31 +3,33 @@
   <section class="hero">
     <div class="hero-left">
       <div class="hero-icon">
-        <mat-icon>dashboard</mat-icon>
+        <mat-icon>pets</mat-icon>
       </div>
 
       <div>
-        <h1>Dashboard Veterinario</h1>
+        <span class="hero-badge">🐾 Centro de control</span>
 
-        <p>Gestión completa de mascotas, vacunas y consultas médicas.</p>
+        <h1>Bienvenido a VetControl</h1>
+
+        <p>
+          Desde aquí podés visualizar rápidamente el estado general de tus mascotas, vacunas,
+          consultas médicas y turnos registrados.
+        </p>
       </div>
-    </div>
-
-    <div class="hero-image">
-      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Mascota" />
     </div>
   </section>
 
-  <!-- CARDS -->
+  <!-- TARJETAS -->
   <section class="dashboard-grid">
     <div class="dashboard-card">
       <div class="card-icon">
         <mat-icon>pets</mat-icon>
       </div>
 
-      <div>
+      <div class="card-content">
+        <span class="card-label">Mascotas registradas</span>
         <h2>{{ totalMascotas() }}</h2>
-        <p>Mascotas registradas</p>
+        <small>Total de mascotas cargadas</small>
       </div>
     </div>
 
@@ -36,9 +38,10 @@
         <mat-icon>vaccines</mat-icon>
       </div>
 
-      <div>
+      <div class="card-content">
+        <span class="card-label">Vacunas</span>
         <h2>{{ totalVacunas() }}</h2>
-        <p>Vacunas aplicadas</p>
+        <small>Dosis registradas</small>
       </div>
     </div>
 
@@ -47,21 +50,73 @@
         <mat-icon>medical_services</mat-icon>
       </div>
 
-      <div>
+      <div class="card-content">
+        <span class="card-label">Consultas</span>
         <h2>{{ totalConsultas() }}</h2>
-        <p>Consultas médicas</p>
+        <small>Historial médico</small>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>calendar_month</mat-icon>
+      </div>
+
+      <div class="card-content">
+        <span class="card-label">Turnos</span>
+        <h2>{{ totalTurnos() }}</h2>
+        <small>Citas registradas</small>
       </div>
     </div>
   </section>
 
-  <!-- ULTIMAS MASCOTAS -->
-  <section class="recent-section">
-    <h2>Últimas mascotas</h2>
+  <section class="dashboard-panels">
+    <!-- Panel Próximos turnos -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2>📅 Próximos turnos</h2>
+      </div>
 
-    <div class="recent-grid">
-      @for (mascota of mascotasRecientes(); track mascota.id) {
-        <app-mascota-card [mascota]="mascota"> </app-mascota-card>
-      }
-    </div>
+      <div class="panel-body">
+        @if (proximosTurnos().length > 0) {
+          @for (turno of proximosTurnos(); track $index) {
+            <div class="mini-item">
+              <strong>{{ turno.mascotaNombre }}</strong>
+              <span>{{ turno.motivo }}</span>
+              <small>{{ turno.fecha }} - {{ turno.hora }}</small>
+            </div>
+          }
+        } @else {
+          <div class="mini-item">
+            <strong>No hay turnos programados</strong>
+            <span>Cuando registres uno aparecerá aquí.</span>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Panel Próximas vacunas -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2>💉 Próximas vacunas</h2>
+      </div>
+
+      <div class="panel-body">
+        @if (vacunasProximas().length > 0) {
+          @for (vacuna of vacunasProximas(); track $index) {
+            <div class="mini-item">
+              <strong>{{ vacuna.nombre }}</strong>
+              <span>{{ vacuna.mascota }}</span>
+              <small>Próxima dosis: {{ vacuna.proximaDosis }}</small>
+            </div>
+          }
+        } @else {
+          <div class="mini-item">
+            <strong>No hay vacunas próximas</strong>
+            <span>Todas las mascotas están al día.</span>
+          </div>
+        }
+      </div>
+    </section>
   </section>
 </div>

@@ -172,3 +172,12 @@
     text-align: center;
   }
 }
+.demo-section-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: white;
+}

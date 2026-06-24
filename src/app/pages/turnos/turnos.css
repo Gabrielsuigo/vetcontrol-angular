@@ -103,8 +103,8 @@
 
 .section-title h2 {
   margin: 0;
-
-  color: #4f46e5;
+  color: black;
+  /* color: #4f46e5; */
 
   font-size: 34px;
 
@@ -112,22 +112,11 @@
 }
 
 .section-icon {
-  width: 42px;
-  height: 42px;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.section-icon mat-icon {
-  color: #4f46e5;
+  flex-direction: column;
 
-  font-size: 34px !important;
-  width: 34px !important;
-  height: 34px !important;
-
-  line-height: 34px !important;
+  gap: 20px;
 }
 
 .form-grid {
