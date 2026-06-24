@@ -27,9 +27,13 @@
       </div>
 
       <div class="card-content">
-        <span class="card-label">Mascotas registradas</span>
+        <span class="card-label">Mascotas</span>
+
         <h2>{{ totalMascotas() }}</h2>
-        <small>Total de mascotas cargadas</small>
+
+        <small>Total registradas</small>
+
+        <a routerLink="/mascotas">Ver mascotas →</a>
       </div>
     </div>
 
@@ -42,6 +46,7 @@
         <span class="card-label">Vacunas</span>
         <h2>{{ totalVacunas() }}</h2>
         <small>Dosis registradas</small>
+        <a routerLink="/vacunas">Ver vacunas →</a>
       </div>
     </div>
 
@@ -54,6 +59,7 @@
         <span class="card-label">Consultas</span>
         <h2>{{ totalConsultas() }}</h2>
         <small>Historial médico</small>
+        <a routerLink="/consultas">Ver consultas →</a>
       </div>
     </div>
 
@@ -66,57 +72,80 @@
         <span class="card-label">Turnos</span>
         <h2>{{ totalTurnos() }}</h2>
         <small>Citas registradas</small>
+        <a routerLink="/turnos">Ver turnos →</a>
       </div>
     </div>
   </section>
 
   <section class="dashboard-panels">
-    <!-- Panel Próximos turnos -->
-    <section class="panel">
-      <div class="panel-header">
-        <h2>📅 Próximos turnos</h2>
-      </div>
+    <!-- IZQUIERDA -->
+    <div class="left-column">
+      <!-- Próximos turnos -->
+      <section class="panel">
+        <div class="panel-header">
+          <h2>📅 Próximos turnos</h2>
+        </div>
 
-      <div class="panel-body">
-        @if (proximosTurnos().length > 0) {
-          @for (turno of proximosTurnos(); track $index) {
+        <div class="panel-body">
+          @if (proximosTurnos().length > 0) {
+            @for (turno of proximosTurnos(); track $index) {
+              <div class="mini-item">
+                <strong>{{ turno.mascotaNombre }}</strong>
+                <span>{{ turno.motivo }}</span>
+                <small>{{ turno.fecha }} - {{ turno.hora }}</small>
+              </div>
+            }
+          } @else {
             <div class="mini-item">
-              <strong>{{ turno.mascotaNombre }}</strong>
-              <span>{{ turno.motivo }}</span>
-              <small>{{ turno.fecha }} - {{ turno.hora }}</small>
+              <strong>No hay turnos programados</strong>
+              <span>Cuando registres uno aparecerá aquí.</span>
             </div>
           }
-        } @else {
-          <div class="mini-item">
-            <strong>No hay turnos programados</strong>
-            <span>Cuando registres uno aparecerá aquí.</span>
-          </div>
-        }
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- Panel Próximas vacunas -->
-    <section class="panel">
-      <div class="panel-header">
-        <h2>💉 Próximas vacunas</h2>
-      </div>
+      <!-- Próximas vacunas -->
+      <section class="panel">
+        <div class="panel-header">
+          <h2>💉 Próximas vacunas</h2>
+        </div>
 
-      <div class="panel-body">
-        @if (vacunasProximas().length > 0) {
-          @for (vacuna of vacunasProximas(); track $index) {
+        <div class="panel-body">
+          @if (vacunasProximas().length > 0) {
+            @for (vacuna of vacunasProximas(); track $index) {
+              <div class="mini-item">
+                <strong>{{ vacuna.nombre }}</strong>
+                <span>{{ vacuna.mascota }}</span>
+                <small>Próxima dosis: {{ vacuna.proximaDosis }}</small>
+              </div>
+            }
+          } @else {
             <div class="mini-item">
-              <strong>{{ vacuna.nombre }}</strong>
-              <span>{{ vacuna.mascota }}</span>
-              <small>Próxima dosis: {{ vacuna.proximaDosis }}</small>
+              <strong>No hay vacunas próximas</strong>
+              <span>Todas las mascotas están al día.</span>
             </div>
           }
-        } @else {
-          <div class="mini-item">
-            <strong>No hay vacunas próximas</strong>
-            <span>Todas las mascotas están al día.</span>
-          </div>
-        }
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="right-column">
+      <section class="panel">
+        <div class="panel-header">
+          <h2>🐾 Últimas mascotas registradas</h2>
+        </div>
+
+        <div class="recent-grid">
+          @for (mascota of mascotasRecientes(); track mascota.id) {
+            <div class="mini-item">
+              <strong>{{ mascota.nombre }}</strong>
+              <span>{{ mascota.especie }} · {{ mascota.raza }}</span>
+              <small>Dueño: {{ mascota.duenio }}</small>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
   </section>
 </div>
