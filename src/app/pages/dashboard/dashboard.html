@@ -1,23 +1,15 @@
 <div class="home">
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-left">
-      <div class="hero-icon">
-        <mat-icon>pets</mat-icon>
-      </div>
-
-      <div>
-        <span class="hero-badge">🐾 Centro de control</span>
-
-        <h1>Bienvenido a VetControl</h1>
-
-        <p>
-          Desde aquí podés visualizar rápidamente el estado general de tus mascotas, vacunas,
-          consultas médicas y turnos registrados.
-        </p>
-      </div>
+  <div class="dashboard-header">
+    <div>
+      <h1>⚙️ Dashboard</h1>
+      <p>Resumen general de la clínica veterinaria</p>
     </div>
-  </section>
+
+    <div class="dashboard-date">
+      <p>Hoy, {{ fechaActual }}</p>
+    </div>
+  </div>
 
   <!-- TARJETAS -->
   <section class="dashboard-grid">
@@ -31,9 +23,9 @@
 
         <h2>{{ totalMascotas() }}</h2>
 
-        <small>Total registradas</small>
+        <small>Registradas</small>
 
-        <a routerLink="/mascotas">Ver mascotas →</a>
+        <a routerLink="/mascotas">Ver mascotas</a>
       </div>
     </div>
 
@@ -43,10 +35,10 @@
       </div>
 
       <div class="card-content">
-        <span class="card-label">Vacunas</span>
+        <span class="card-label">Próximas vacunas</span>
         <h2>{{ totalVacunas() }}</h2>
-        <small>Dosis registradas</small>
-        <a routerLink="/vacunas">Ver vacunas →</a>
+        <small>a aplicar</small>
+        <a routerLink="/vacunas">Ver vacunas</a>
       </div>
     </div>
 
@@ -56,10 +48,10 @@
       </div>
 
       <div class="card-content">
-        <span class="card-label">Consultas</span>
+        <span class="card-label">Consultas hoy</span>
         <h2>{{ totalConsultas() }}</h2>
-        <small>Historial médico</small>
-        <a routerLink="/consultas">Ver consultas →</a>
+        <small>programadas</small>
+        <a routerLink="/consultas">Ver consultas</a>
       </div>
     </div>
 
@@ -71,8 +63,8 @@
       <div class="card-content">
         <span class="card-label">Turnos</span>
         <h2>{{ totalTurnos() }}</h2>
-        <small>Citas registradas</small>
-        <a routerLink="/turnos">Ver turnos →</a>
+        <small>programados</small>
+        <a routerLink="/turnos">Ver turnos</a>
       </div>
     </div>
   </section>

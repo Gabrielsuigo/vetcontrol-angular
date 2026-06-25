@@ -12,57 +12,6 @@
    HERO
 ========================= */
 
-.hero {
-  max-width: 1300px;
-  width: 100%;
-  margin: 0 auto;
-
-  background: white;
-  border-radius: 24px;
-  padding: 32px;
-
-  border: 1px solid #e5e7eb;
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-}
-
-.hero-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.hero-icon {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: linear-gradient(135deg, #4f46e5, #06b6d4);
-}
-
-.hero-icon mat-icon {
-  color: white;
-  font-size: 36px;
-  width: 36px;
-  height: 36px;
-}
-
-.hero h1 {
-  margin: 0;
-  font-size: 40px;
-  color: #111827;
-}
-
-.hero p {
-  margin-top: 8px;
-  color: #6b7280;
-}
-
 /* =========================
    RESUMEN
 ========================= */
@@ -82,13 +31,13 @@
   border-radius: 20px;
   border: 1px solid #e5e7eb;
 
-  padding: 18px 20px;
+  padding: 14px 16px;
 
   display: flex;
   align-items: center;
-  gap: 14px;
+  min-height: 140px;
 
-  transition: 0.25s;
+  justify-content: space-between;
 }
 
 .dashboard-card:hover {
@@ -96,6 +45,7 @@
 }
 
 .card-icon {
+  order: 2;
   width: 48px;
   height: 48px;
 
@@ -159,7 +109,8 @@
 .panel-header h2 {
   margin: 0;
   color: #111827;
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .panel-body {
@@ -169,10 +120,9 @@
 }
 
 .mini-item {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 14px;
   background: #f8fafc;
-
   border: 1px solid #eef2f7;
 
   display: flex;
@@ -183,8 +133,8 @@
 }
 
 .mini-item:hover {
-  background: #ffffff;
   transform: translateY(-2px);
+  background: white;
 }
 
 .mini-item strong {
@@ -225,38 +175,15 @@
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  .hero-left {
-    align-items: flex-start;
-  }
-}
-.hero-badge {
-  display: inline-block;
-
-  margin-bottom: 10px;
-
-  padding: 6px 12px;
-
-  border-radius: 999px;
-
-  background: #eef2ff;
-
-  color: #4f46e5;
-
-  font-size: 13px;
-
-  font-weight: 700;
 }
 
 .card-content {
+  flex: 1;
+  order: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 6px;
 }
 
 .card-label {
@@ -271,72 +198,79 @@
 }
 
 .card-content h2 {
-  margin: 4px 0;
-  font-size: 30px;
+  margin: 8px 0;
+  font-size: 26px;
   font-weight: 700;
   color: #111827;
   line-height: 1;
 }
 
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.card-content a {
+  margin-top: 10px;
 
-.card-circle {
-  width: 48px;
-  height: 48px;
-
-  border-radius: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: #eef2ff;
-}
-
-.card-circle mat-icon {
-  color: #6366f1;
-  font-size: 22px;
-  width: 22px;
-  height: 22px;
-}
-
-.card-middle {
-  margin: 18px 0 10px;
-}
-
-.card-middle h2 {
-  margin: 0;
-  font-size: 42px;
-  font-weight: 800;
-}
-
-.card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-bottom small {
-  color: #9ca3af;
-}
-
-.card-bottom a {
   text-decoration: none;
-  color: #6366f1;
-  font-size: 13px;
+
+  color: #4f46e5;
+
+  font-size: 12px;
+
   font-weight: 600;
 }
 
-.card-content a {
-  margin-top: 16px; /* separa el link del texto */
-  display: flex; /* permite que el margin funcione bien */
-  /* text-decoration: none; */
-  color: #6366f1;
+.recent-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dashboard-header {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: -10px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dashboard-header p {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.dashboard-date {
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
   font-size: 13px;
-  font-weight: 300;
-  font-family: 'Inter', bold;
+
+  color: #6b7280;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.left-column .panel,
+.right-column .panel {
+  flex: 1;
 }

@@ -63,4 +63,10 @@ export class Dashboard {
   });
 
   mascotasRecientes = computed(() => [...this.mascotas()].reverse().slice(0, 3));
+
+  fechaActual = new Date().toLocaleDateString('es-AR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 }
