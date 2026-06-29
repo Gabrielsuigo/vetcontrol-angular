@@ -8,12 +8,14 @@ import { MascotaCardComponent } from '../../shared/components/mascota-card/masco
 import { MascotaService } from '../../core/services/mascota.service';
 import { TurnoService } from '../../core/services/turno.service';
 
+import { PieChartComponent } from './charts/pie-chart/pie-chart';
+
 @Component({
   selector: 'app-dashboard',
 
   standalone: true,
 
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatIconModule, PieChartComponent],
 
   templateUrl: './dashboard.html',
 
@@ -63,10 +65,42 @@ export class Dashboard {
   });
 
   mascotasRecientes = computed(() => [...this.mascotas()].reverse().slice(0, 3));
+  ultimaMascota = computed(() => {
+    const mascotas = this.mascotas();
+
+    return mascotas.length ? mascotas[mascotas.length - 1] : null;
+  });
 
   fechaActual = new Date().toLocaleDateString('es-AR', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
+  });
+  vacunasPendientes = computed(
+    () =>
+      this.mascotas()
+        .flatMap((m) => m.vacunas)
+        .filter((v) => !!v.proximaDosis).length,
+  );
+  turnosHoy = computed(() => {
+    const hoy = new Date().toLocaleDateString('sv-SE'); // yyyy-mm-dd
+
+    return this.turnos().filter((t) => t.fecha === hoy).length;
+  });
+  consultasEsteMes = computed(() => {
+    const hoy = new Date();
+    const mesActual = hoy.getMonth() + 1;
+    const anioActual = hoy.getFullYear();
+
+    return this.mascotas()
+      .flatMap((m) => m.consultas)
+      .filter((c) => {
+        const fecha = new Date(c.fecha);
+
+        return fecha.getMonth() + 1 === mesActual && fecha.getFullYear() === anioActual;
+      }).length;
+  });
+  especiesRegistradas = computed(() => {
+    return new Set(this.mascotas().map((m) => m.especie)).size;
   });
 }

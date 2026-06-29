@@ -9,10 +9,6 @@
 }
 
 /* =========================
-   HERO
-========================= */
-
-/* =========================
    RESUMEN
 ========================= */
 
@@ -33,7 +29,7 @@
 
   padding: 14px 16px;
 
-  display: flex;
+  display: block;
   align-items: center;
   min-height: 140px;
 
@@ -61,10 +57,9 @@
 }
 
 .card-icon mat-icon {
-  font-size: 22px;
-  width: 22px;
-  height: 22px;
-  color: #4f46e5;
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
 }
 
 .dashboard-card h2 {
@@ -81,14 +76,14 @@
 /* =========================
    PANELES
 ========================= */
-
 .dashboard-panels {
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 24px;
 }
 
@@ -97,7 +92,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 20px;
 
-  padding: 18px;
+  padding: 10px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
@@ -183,7 +178,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: 2px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
 }
 
 .card-label {
@@ -198,21 +201,21 @@
 }
 
 .card-content h2 {
-  margin: 8px 0;
-  font-size: 26px;
-  font-weight: 700;
+  margin: 4px 0;
+  font-size: 46px;
+  font-weight: 800;
   color: #111827;
   line-height: 1;
 }
 
 .card-content a {
-  margin-top: 10px;
+  margin-top: 15px;
 
   text-decoration: none;
 
   color: #4f46e5;
 
-  font-size: 12px;
+  font-size: 14px;
 
   font-weight: 600;
 }
@@ -267,10 +270,51 @@
 .right-column {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .left-column .panel,
 .right-column .panel {
-  flex: 1;
+  height: 100%;
+}
+
+/*=====================================
+  COLORES DE LOS ICONOS
+=====================================*/
+
+.card-pets .card-icon {
+  background: #eef2ff;
+}
+
+.card-pets .card-icon mat-icon {
+  color: #6366f1;
+}
+
+.card-vaccines .card-icon {
+  background: #ecfdf5;
+}
+
+.card-vaccines .card-icon mat-icon {
+  color: #16a34a;
+}
+
+.card-consultas .card-icon {
+  background: #fff7ed;
+}
+
+.card-consultas .card-icon mat-icon {
+  color: #f97316;
+}
+
+.card-turnos .card-icon {
+  background: #eff6ff;
+}
+
+.card-turnos .card-icon mat-icon {
+  color: #2563eb;
+}
+
+.dashboard-chart {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
 }

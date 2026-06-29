@@ -69,4 +69,9 @@ export class Turnos {
   eliminar(id: number) {
     this.turnoService.eliminar(id);
   }
+  fechaActual = new Date().toLocaleDateString('es-AR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 }
