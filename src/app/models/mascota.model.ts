@@ -21,6 +21,7 @@ export interface Mascota {
   duenio: string;
   imagen: string;
   usuarioEmail: string;
+  fechaRegistro: string;
   vacunas: Vacuna[];
   consultas: Consulta[];
 }

@@ -9,13 +9,21 @@ import { MascotaService } from '../../core/services/mascota.service';
 import { TurnoService } from '../../core/services/turno.service';
 
 import { PieChartComponent } from './charts/pie-chart/pie-chart';
+import { LineChartComponent } from './charts/line-chart/line-chart';
 
 @Component({
   selector: 'app-dashboard',
 
   standalone: true,
 
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatIconModule, PieChartComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    RouterModule,
+    MatIconModule,
+    PieChartComponent,
+    LineChartComponent,
+  ],
 
   templateUrl: './dashboard.html',
 

@@ -37,7 +37,7 @@ export class MascotaService {
     return fechaVacuna.toISOString().split('T')[0];
   }
 
-  agregar(mascota: Omit<Mascota, 'id'>) {
+  agregar(mascota: Omit<Mascota, 'id' | 'fechaRegistro'>) {
     const usuario = this.authService.usuarioActual();
 
     if (!usuario) return;
@@ -49,6 +49,9 @@ export class MascotaService {
           ...mascota,
           id: Date.now(),
           usuarioEmail: usuario.email,
+
+          fechaRegistro: new Date().toISOString().split('T')[0],
+
           vacunas: [],
           consultas: [],
         },
