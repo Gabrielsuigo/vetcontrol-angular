@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MascotaService } from '../../../../core/services/mascota.service';
+import { TurnoService } from '../../../../core/services/turno.service';
 import {
   NgApexchartsModule,
   ApexAxisChartSeries,
@@ -19,6 +20,7 @@ import {
 })
 export class LineChartComponent implements OnInit {
   mascotaService = inject(MascotaService);
+  turnoService = inject(TurnoService);
   ngOnInit(): void {
     this.cargarGrafico();
   }
@@ -86,6 +88,8 @@ export class LineChartComponent implements OnInit {
     const meses = this.obtenerUltimos6Meses();
     const mascotasPorMes = [0, 0, 0, 0, 0, 0];
     const consultasPorMes = [0, 0, 0, 0, 0, 0];
+    const turnosPorMes = [0, 0, 0, 0, 0, 0];
+    const vacunasPorMes = [0, 0, 0, 0, 0, 0];
 
     const hoy = new Date();
 
@@ -106,6 +110,18 @@ export class LineChartComponent implements OnInit {
           }
         }
       }
+      m.vacunas.forEach((vacuna) => {
+        if (!vacuna.fecha) return;
+
+        const fecha = new Date(vacuna.fecha);
+
+        const diferenciaMeses =
+          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
+
+        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
+          vacunasPorMes[5 - diferenciaMeses]++;
+        }
+      });
 
       // Consultas registradas
       m.consultas.forEach((consulta) => {
@@ -119,6 +135,20 @@ export class LineChartComponent implements OnInit {
           }
         }
       });
+      const usuarioTurnos = this.turnoService.turnosUsuario();
+
+      usuarioTurnos.forEach((t) => {
+        if (!t.fecha) return;
+
+        const fecha = new Date(t.fecha);
+
+        const diferenciaMeses =
+          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
+
+        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
+          turnosPorMes[5 - diferenciaMeses]++;
+        }
+      });
     });
 
     this.series = [
@@ -129,6 +159,14 @@ export class LineChartComponent implements OnInit {
       {
         name: 'Consultas',
         data: consultasPorMes,
+      },
+      {
+        name: 'Turnos',
+        data: turnosPorMes,
+      },
+      {
+        name: 'Vacunas',
+        data: vacunasPorMes,
       },
     ];
 
