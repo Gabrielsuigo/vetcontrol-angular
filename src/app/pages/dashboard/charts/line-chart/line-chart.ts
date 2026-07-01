@@ -100,14 +100,13 @@ export class LineChartComponent implements OnInit {
     usuarioMascotas.forEach((m) => {
       // Mascotas registradas
       if (m.fechaRegistro) {
-        const fechaMascota = new Date(m.fechaRegistro);
+        const fecha = new Date(m.fechaRegistro);
 
-        if (fechaMascota.getFullYear() === anio) {
-          const indice = fechaMascota.getMonth();
+        const diferenciaMeses =
+          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
 
-          if (indice < 6) {
-            mascotasPorMes[indice]++;
-          }
+        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
+          mascotasPorMes[5 - diferenciaMeses]++;
         }
       }
       m.vacunas.forEach((vacuna) => {
@@ -125,16 +124,16 @@ export class LineChartComponent implements OnInit {
 
       // Consultas registradas
       m.consultas.forEach((consulta) => {
-        const fechaConsulta = new Date(consulta.fecha);
+        const fecha = new Date(consulta.fecha);
 
-        if (fechaConsulta.getFullYear() === anio) {
-          const indice = fechaConsulta.getMonth();
+        const diferenciaMeses =
+          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
 
-          if (indice < 6) {
-            consultasPorMes[indice]++;
-          }
+        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
+          consultasPorMes[5 - diferenciaMeses]++;
         }
       });
+
       const usuarioTurnos = this.turnoService.turnosUsuario();
 
       usuarioTurnos.forEach((t) => {
