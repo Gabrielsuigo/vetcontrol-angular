@@ -265,6 +265,11 @@
 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
+.dashboard-evolution {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
 
 .left-column,
 .right-column {
@@ -313,8 +318,8 @@
   color: #2563eb;
 }
 
-.dashboard-chart {
+/* .dashboard-chart {
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
-}
+} */

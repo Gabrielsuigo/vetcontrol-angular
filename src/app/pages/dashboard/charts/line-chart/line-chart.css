@@ -1,0 +1,33 @@
+.line-chart-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 20px;
+
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.line-chart-header {
+  margin-bottom: 20px;
+}
+
+.line-chart-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.line-chart-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+apx-chart {
+  display: block;
+}

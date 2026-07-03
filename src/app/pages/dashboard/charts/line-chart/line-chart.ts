@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { MascotaService } from '../../../../core/services/mascota.service';
 import { TurnoService } from '../../../../core/services/turno.service';
 import {
@@ -18,11 +18,16 @@ import {
   templateUrl: './line-chart.html',
   styleUrl: './line-chart.css',
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent {
   mascotaService = inject(MascotaService);
   turnoService = inject(TurnoService);
-  ngOnInit(): void {
-    this.cargarGrafico();
+  constructor() {
+    effect(() => {
+      this.mascotaService.mascotasUsuario();
+      this.turnoService.turnosUsuario();
+
+      this.cargarGrafico();
+    });
   }
 
   public series: ApexAxisChartSeries = [];
@@ -70,6 +75,12 @@ export class LineChartComponent implements OnInit {
 
     const hoy = new Date();
 
+    console.log('========== MASCOTAS ==========');
+    console.log(this.mascotaService.mascotasUsuario());
+
+    console.log('========== TURNOS ==========');
+    console.log(this.turnoService.turnosUsuario());
+
     const meses: { indice: number; nombre: string }[] = [];
 
     for (let i = 5; i >= 0; i--) {
@@ -86,69 +97,68 @@ export class LineChartComponent implements OnInit {
 
   private cargarGrafico() {
     const meses = this.obtenerUltimos6Meses();
-    const mascotasPorMes = [0, 0, 0, 0, 0, 0];
-    const consultasPorMes = [0, 0, 0, 0, 0, 0];
-    const turnosPorMes = [0, 0, 0, 0, 0, 0];
-    const vacunasPorMes = [0, 0, 0, 0, 0, 0];
+
+    const mascotasPorMes = Array(6).fill(0);
+    const consultasPorMes = Array(6).fill(0);
+    const vacunasPorMes = Array(6).fill(0);
+    const turnosPorMes = Array(6).fill(0);
 
     const hoy = new Date();
 
-    const anio = hoy.getFullYear();
+    const obtenerIndice = (fechaTexto: string) => {
+      const fecha = new Date(fechaTexto);
 
-    const usuarioMascotas = this.mascotaService.mascotasUsuario();
+      const diferenciaMeses =
+        (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
 
-    usuarioMascotas.forEach((m) => {
-      // Mascotas registradas
-      if (m.fechaRegistro) {
-        const fecha = new Date(m.fechaRegistro);
-
-        const diferenciaMeses =
-          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
-
-        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
-          mascotasPorMes[5 - diferenciaMeses]++;
-        }
+      if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
+        return 5 - diferenciaMeses;
       }
-      m.vacunas.forEach((vacuna) => {
-        if (!vacuna.fecha) return;
 
-        const fecha = new Date(vacuna.fecha);
+      return -1;
+    };
 
-        const diferenciaMeses =
-          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
+    // Mascotas
+    this.mascotaService.mascotasUsuario().forEach((mascota) => {
+      console.log('Mascota:', mascota.nombre);
+      console.log('Fecha registro:', mascota.fechaRegistro);
+      console.log('Consultas:', mascota.consultas);
+      console.log('Vacunas:', mascota.vacunas);
 
-        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
-          vacunasPorMes[5 - diferenciaMeses]++;
-        }
+      if (mascota.fechaRegistro) {
+        const indice = obtenerIndice(mascota.fechaRegistro);
+        console.log('Mascota:', mascota.fechaRegistro, 'Indice:', indice);
+
+        if (indice >= 0) mascotasPorMes[indice]++;
+      }
+
+      mascota.consultas.forEach((consulta) => {
+        const indice = obtenerIndice(consulta.fecha);
+        console.log('Consulta:', consulta.fecha, 'Indice:', indice);
+
+        if (indice >= 0) consultasPorMes[indice]++;
       });
 
-      // Consultas registradas
-      m.consultas.forEach((consulta) => {
-        const fecha = new Date(consulta.fecha);
+      mascota.vacunas.forEach((vacuna) => {
+        const indice = obtenerIndice(vacuna.fecha);
+        console.log('Vacuna:', vacuna.fecha, 'Indice:', indice);
 
-        const diferenciaMeses =
-          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
-
-        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
-          consultasPorMes[5 - diferenciaMeses]++;
-        }
-      });
-
-      const usuarioTurnos = this.turnoService.turnosUsuario();
-
-      usuarioTurnos.forEach((t) => {
-        if (!t.fecha) return;
-
-        const fecha = new Date(t.fecha);
-
-        const diferenciaMeses =
-          (hoy.getFullYear() - fecha.getFullYear()) * 12 + (hoy.getMonth() - fecha.getMonth());
-
-        if (diferenciaMeses >= 0 && diferenciaMeses < 6) {
-          turnosPorMes[5 - diferenciaMeses]++;
-        }
+        if (indice >= 0) vacunasPorMes[indice]++;
       });
     });
+
+    // Turnos
+    this.turnoService.turnosUsuario().forEach((turno) => {
+      console.log('Turno:', turno);
+      const indice = obtenerIndice(turno.fecha);
+
+      if (indice >= 0) turnosPorMes[indice]++;
+    });
+
+    console.log('Mascotas por mes:', JSON.stringify(mascotasPorMes));
+    console.log('Consultas por mes:', JSON.stringify(consultasPorMes));
+    console.log('Vacunas por mes:', JSON.stringify(vacunasPorMes));
+    console.log('Turnos por mes:', JSON.stringify(turnosPorMes));
 
     this.series = [
       {
@@ -160,14 +170,16 @@ export class LineChartComponent implements OnInit {
         data: consultasPorMes,
       },
       {
-        name: 'Turnos',
-        data: turnosPorMes,
-      },
-      {
         name: 'Vacunas',
         data: vacunasPorMes,
       },
+      {
+        name: 'Turnos',
+        data: turnosPorMes,
+      },
     ];
+    console.log('SERIES QUE ENVÍO AL CHART');
+    console.log(this.series);
 
     this.xaxis = {
       categories: meses.map((m) => m.nombre),
