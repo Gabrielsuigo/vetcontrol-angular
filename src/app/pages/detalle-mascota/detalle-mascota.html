@@ -1,171 +1,129 @@
 @if (mascota()) {
   <div class="detalle-page">
     <div class="detalle-card">
-      <img [src]="mascota()?.imagen" [alt]="mascota()?.nombre" />
+      <div class="detalle-foto">
+        <img [src]="mascota()?.imagen" [alt]="mascota()?.nombre" />
+      </div>
+
       <div class="detalle-info">
         <div class="header-mascota">
-          <h1>{{ mascota()?.nombre }}</h1>
+          <div class="header-titulo">
+            <h1>{{ mascota()?.nombre }}</h1>
+
+            <div class="pet-tags">
+              <span class="tag especie">
+                {{ mascota()?.especie }}
+              </span>
+
+              <span class="tag raza">
+                {{ mascota()?.raza }}
+              </span>
+
+              <span class="tag edad"> {{ mascota()?.edad }} años </span>
+            </div>
+
+            <div class="pet-owner">👤 {{ mascota()?.duenio }}</div>
+          </div>
 
           <button class="btn-pdf" (click)="descargarPDF()">📄 Descargar PDF</button>
         </div>
-        <div class="pet-tags">
-          <span class="tag especie">
-            {{ mascota()?.especie }}
-          </span>
 
-          <span class="tag raza">
-            {{ mascota()?.raza }}
-          </span>
+        <div class="hero-panels">
+          <div class="hero-box">
+            <h3>Estado sanitario</h3>
 
-          <span class="tag edad"> {{ mascota()?.edad }} años </span>
-        </div>
+            <div class="pet-status">
+              @if (estadoSanitario() === 'ok') {
+                <span class="status-ok"> 🟢 Vacunas al día </span>
+              }
 
-        <div class="pet-owner">👤 {{ mascota()?.duenio }}</div>
+              @if (estadoSanitario() === 'pendiente') {
+                <span class="status-warning"> 🟠 Vacunas pendientes </span>
+              }
 
-        <div class="pet-status">
-          @if (estadoSanitario() === 'ok') {
-            <span class="status-ok"> 🟢 Vacunas al día </span>
-          }
+              @if (estadoSanitario() === 'sin-vacunas') {
+                <span class="status-alert"> 🔴 Sin vacunas </span>
+              }
+            </div>
 
-          @if (estadoSanitario() === 'pendiente') {
-            <span class="status-warning"> 🟠 Vacunas pendientes </span>
-          }
-
-          @if (estadoSanitario() === 'sin-vacunas') {
-            <span class="status-alert"> 🔴 Sin vacunas registradas </span>
-          }
-        </div>
-        <p class="status-detail">
-          {{ mensajeSanitario() }}
-        </p>
-
-        @if (proximaVacuna()) {
-          <div class="next-vaccine-card">
-            <h3>💉 Próxima vacuna</h3>
-
-            <strong>
-              {{ proximaVacuna()?.nombre }}
-            </strong>
-
-            <p>📅 {{ proximaVacuna()?.proximaDosis }}</p>
-
-            @if (diasParaProximaVacuna()! > 0) {
-              <span class="vacuna-ok"> Faltan {{ diasParaProximaVacuna() }} días </span>
-            }
-
-            @if (diasParaProximaVacuna()! <= 0) {
-              <span class="vacuna-alerta"> Vacuna vencida </span>
-            }
-          </div>
-        }
-        @if (ultimaConsulta()) {
-          <div class="consulta-destacada">
-            <h3>🩺 Última consulta</h3>
-
-            <strong>
-              {{ ultimaConsulta()?.motivo }}
-            </strong>
-
-            <p>📅 {{ ultimaConsulta()?.fecha }}</p>
-
-            <p>
-              {{ ultimaConsulta()?.diagnostico }}
+            <p class="status-detail">
+              {{ mensajeSanitario() }}
             </p>
-
-            <p>⚖ {{ ultimaConsulta()?.peso }} kg</p>
           </div>
-        }
+
+          @if (proximaVacuna()) {
+            <div class="hero-box">
+              <h3>💉 Próxima vacuna</h3>
+
+              <strong>{{ proximaVacuna()?.nombre }}</strong>
+
+              <p>📅 {{ proximaVacuna()?.proximaDosis }}</p>
+
+              @if (diasParaProximaVacuna()! > 0) {
+                <span class="vacuna-ok"> {{ diasParaProximaVacuna() }} días restantes </span>
+              }
+
+              @if (diasParaProximaVacuna()! <= 0) {
+                <span class="vacuna-alerta"> Vacuna vencida </span>
+              }
+            </div>
+          }
+
+          @if (ultimaConsulta()) {
+            <div class="hero-box">
+              <h3>🩺 Última consulta</h3>
+
+              <p>{{ ultimaConsulta()?.motivo }}</p>
+
+              <p>🕒 {{ ultimaConsulta()?.fecha }}</p>
+
+              <small>{{ ultimaConsulta()?.diagnostico }}</small>
+            </div>
+          }
+        </div>
       </div>
     </div>
 
     <!-- RESUMEN -->
 
     <div class="detalle-stats">
-      <div class="stat">
+      <div class="stat-card vacunas">
         <mat-icon>vaccines</mat-icon>
 
         <div>
-          <strong>{{ totalVacunas() }}</strong>
+          <span class="stat-number">{{ totalVacunas() }}</span>
           <p>Vacunas</p>
         </div>
       </div>
 
-      <div class="stat">
+      <div class="stat-card consultas">
         <mat-icon>medical_services</mat-icon>
 
         <div>
-          <strong>{{ totalConsultas() }}</strong>
+          <span class="stat-number">{{ totalConsultas() }}</span>
           <p>Consultas</p>
         </div>
       </div>
 
-      <div class="stat">
+      <div class="stat-card turnos">
         <mat-icon>event</mat-icon>
 
         <div>
-          <strong>{{ totalTurnos() }}</strong>
+          <span class="stat-number">{{ totalTurnos() }}</span>
           <p>Turnos</p>
         </div>
       </div>
 
-      <div class="stat">
+      <div class="stat-card peso">
         <mat-icon>monitor_weight</mat-icon>
 
         <div>
-          <strong>
+          <span class="stat-number">
             {{ ultimoPeso() ?? '-' }}
-          </strong>
+          </span>
 
           <p>Último peso</p>
         </div>
-      </div>
-    </div>
-
-    @if (proximoTurno()) {
-      <div class="proximo-turno-card">
-        <div class="proximo-turno-header">
-          <mat-icon>event_available</mat-icon>
-          <h2>Próximo Turno</h2>
-        </div>
-
-        <div class="proximo-turno-info">
-          <strong>{{ proximoTurno()?.motivo }}</strong>
-
-          <p>📅 {{ proximoTurno()?.fecha }}</p>
-
-          <p>⏰ {{ proximoTurno()?.hora }}</p>
-
-          <span class="estado-badge pendiente"> ⏳ Pendiente </span>
-        </div>
-      </div>
-    }
-
-    <!-- VACUNAS -->
-
-    <div class="historial-card">
-      <h2>💉 Vacunas</h2>
-
-      @if (mascota()?.vacunas?.length === 0) {
-        <p>No hay vacunas registradas.</p>
-      }
-
-      <div class="timeline">
-        @for (vacuna of vacunasOrdenadas(); track vacuna.nombre) {
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-              <strong>{{ vacuna.nombre }}</strong>
-
-              <p>💉 Aplicada: {{ vacuna.fecha }}</p>
-
-              <p>
-                📅 Próxima dosis:
-                {{ vacuna.proximaDosis }}
-              </p>
-            </div>
-          </div>
-        }
       </div>
     </div>
 
