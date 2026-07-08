@@ -1,55 +1,45 @@
 <mat-card>
-
   <h2>🐾 Registrar Mascota</h2>
+  <div class="form-grid">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="nombre" />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="nombre">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Especie</mat-label>
+      <input matInput [(ngModel)]="especie" />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Especie</mat-label>
-    <input matInput [(ngModel)]="especie">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Raza</mat-label>
+      <input matInput [(ngModel)]="raza" />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Raza</mat-label>
-    <input matInput [(ngModel)]="raza">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Edad</mat-label>
+      <input matInput type="number" [(ngModel)]="edad" />
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Edad</mat-label>
-    <input matInput type="number" [(ngModel)]="edad">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Dueño</mat-label>
+      <input matInput [(ngModel)]="duenio" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Dueño</mat-label>
-    <input matInput [(ngModel)]="duenio">
-  </mat-form-field>
-<div class="upload-box">
+  <div class="upload-box">
+    <h3>📸 Imagen de la mascota</h3>
 
-  <label>📸 Subir imagen</label>
+    <input type="file" accept="image/*" (change)="seleccionarImagen($event)" />
+  </div>
 
-  <input
-    type="file"
-    accept="image/*"
-    (change)="seleccionarImagen($event)"
-  >
+  <div class="preview" *ngIf="imagen">
+    <img [src]="imagen" alt="preview" />
+  </div>
 
-</div>
-
-<div
-  class="preview"
-  *ngIf="imagen"
->
-  <img
-    [src]="imagen"
-    alt="preview"
-  >
-</div>
-  
-  <button mat-raised-button color="primary" (click)="agregar()">
-{{ editando ? 'Actualizar Mascota' : 'Guardar Mascota' }} </button>
-  
-  
+  <div class="acciones-form">
+    <button mat-raised-button color="primary" (click)="agregar()">
+      {{ editando ? 'Actualizar Mascota' : 'Guardar Mascota' }}
+    </button>
+  </div>
 </mat-card>
