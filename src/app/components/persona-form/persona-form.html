@@ -1,40 +1,57 @@
-<mat-card>
-  <h2>🐾 Registrar Mascota</h2>
-  <div class="form-grid">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Nombre</mat-label>
-      <input matInput [(ngModel)]="nombre" />
-    </mat-form-field>
+<mat-card class="form-card">
+  <div class="form-header">
+    <div>
+      <h2>{{ editando ? 'Editar Mascota' : 'Registrar Mascota' }}</h2>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Especie</mat-label>
-      <input matInput [(ngModel)]="especie" />
-    </mat-form-field>
+      <p>Completá la información principal de la mascota.</p>
+    </div>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Raza</mat-label>
-      <input matInput [(ngModel)]="raza" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Edad</mat-label>
-      <input matInput type="number" [(ngModel)]="edad" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Dueño</mat-label>
-      <input matInput [(ngModel)]="duenio" />
-    </mat-form-field>
+    <div class="form-icon">🐾</div>
   </div>
 
-  <div class="upload-box">
-    <h3>📸 Imagen de la mascota</h3>
+  <div class="form-layout">
+    <!-- FORMULARIO -->
 
-    <input type="file" accept="image/*" (change)="seleccionarImagen($event)" />
-  </div>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="nombre" />
+      </mat-form-field>
 
-  <div class="preview" *ngIf="imagen">
-    <img [src]="imagen" alt="preview" />
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Especie</mat-label>
+        <input matInput [(ngModel)]="especie" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Raza</mat-label>
+        <input matInput [(ngModel)]="raza" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Edad</mat-label>
+        <input matInput type="number" [(ngModel)]="edad" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dueño</mat-label>
+        <input matInput [(ngModel)]="duenio" />
+      </mat-form-field>
+    </div>
+
+    <!-- IMAGEN -->
+
+    <div class="image-column">
+      <h3>📸 Imagen</h3>
+
+      <div class="upload-box">
+        <input type="file" accept="image/*" (change)="seleccionarImagen($event)" />
+      </div>
+
+      <div class="preview" *ngIf="imagen">
+        <img [src]="imagen" alt="preview" />
+      </div>
+    </div>
   </div>
 
   <div class="acciones-form">

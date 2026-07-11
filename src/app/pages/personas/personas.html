@@ -1,17 +1,41 @@
-<mat-card class="header">
-  <h1>🐾 Bienvenido a PetCare</h1>
+<div class="page-header">
+  <div class="header-top">
+    <div class="header-title">
+      <h1>🐾 Mascotas</h1>
+      <p>Gestión de todas las mascotas registradas en la clínica.</p>
+    </div>
 
-  <p>Gestioná mascotas, turnos y clientes de manera moderna.</p>
+    <button mat-raised-button color="primary" class="btn-nueva-mascota" (click)="abrirFormulario()">
+      <mat-icon>add</mat-icon>
+      Nueva Mascota
+    </button>
+  </div>
+</div>
 
-  <!-- <div class="stats">
-    <span>Total: {{ personaService.mascotasUsuario().length }}</span>
-  </div> -->
-</mat-card>
+<div class="filters-bar">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-icon matPrefix>search</mat-icon>
 
-<br />
+    <input matInput placeholder="Buscar mascota..." />
+  </mat-form-field>
 
-<app-persona-form></app-persona-form>
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Especie</mat-label>
 
-<br /><br />
+    <mat-select>
+      <mat-option value="">Todas</mat-option>
+      <mat-option value="Perro">Perro</mat-option>
+      <mat-option value="Gato">Gato</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Dueño</mat-label>
+
+    <mat-select>
+      <mat-option value="">Todos</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
 <app-persona-list></app-persona-list>
