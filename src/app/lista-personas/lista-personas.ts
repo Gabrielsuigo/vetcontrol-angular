@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MascotaService } from '../core/services/mascota.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +25,11 @@ import { Router } from '@angular/router';
   styleUrl: './lista-personas.css',
 })
 export class PersonaList {
-  filtro = '';
+  @Input() filtro = '';
+
+  @Input() especieFiltro = '';
+
+  @Input() duenioFiltro = '';
 
   usuarioActual = JSON.parse(localStorage.getItem('sesion') || '{}');
 
@@ -49,13 +53,17 @@ export class PersonaList {
     'Rabia Felina',
   ];
   get mascotasFiltradas() {
-    return this.personaService
-      .mascotas()
-      .filter(
-        (m) =>
-          m.usuarioEmail === this.usuarioActual.email &&
-          m.nombre.toLowerCase().includes(this.filtro.toLowerCase()),
-      );
+    return this.personaService.mascotas().filter((m) => {
+      const mismoUsuario = m.usuarioEmail === this.usuarioActual.email;
+
+      const coincideNombre = m.nombre.toLowerCase().includes(this.filtro.toLowerCase());
+
+      const coincideEspecie = this.especieFiltro === '' || m.especie === this.especieFiltro;
+
+      const coincideDuenio = this.duenioFiltro === '' || m.duenio === this.duenioFiltro;
+
+      return mismoUsuario && coincideNombre && coincideEspecie && coincideDuenio;
+    });
   }
 
   constructor(
