@@ -13,44 +13,108 @@
     <!-- FORMULARIO -->
 
     <div class="form-grid">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="nombre" />
-      </mat-form-field>
+      <div class="campo">
+        <label class="campo-label"> 🐾 Nombre de Mascota</label>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Especie</mat-label>
-        <input matInput [(ngModel)]="especie" />
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            placeholder="Ej: Firulais"
+            [(ngModel)]="nombre"
+            (blur)="marcarCampo('nombre')"
+            #inputNombre
+          />
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Raza</mat-label>
-        <input matInput [(ngModel)]="raza" />
-      </mat-form-field>
+        <div class="campo-error" *ngIf="tocado.nombre && nombreInvalido()">
+          Ingrese un nombre válido (solo letras, mínimo 2 caracteres).
+        </div>
+      </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Edad</mat-label>
-        <input matInput type="number" [(ngModel)]="edad" />
-      </mat-form-field>
+      <div class="campo">
+        <label class="campo-label">Especie</label>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Dueño</mat-label>
-        <input matInput [(ngModel)]="duenio" />
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            placeholder="Ej: Perro"
+            [(ngModel)]="especie"
+            (blur)="marcarCampo('especie')"
+          />
+        </mat-form-field>
+
+        <div class="campo-error" *ngIf="tocado.especie && especieInvalida()">
+          Ingrese una especie válida (solo letras).
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Raza</label>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            placeholder="Ej: Labrador"
+            [(ngModel)]="raza"
+            (blur)="marcarCampo('raza')"
+          />
+        </mat-form-field>
+
+        <div class="campo-error" *ngIf="tocado.raza && razaInvalida()">
+          Ingrese una raza válida (solo letras).
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="campo-label">Edad</label>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            type="number"
+            placeholder="Ej: 3"
+            [(ngModel)]="edad"
+            (blur)="marcarCampo('edad')"
+          />
+        </mat-form-field>
+
+        <div class="campo-error" *ngIf="tocado.edad && edadInvalida()">
+          La edad debe estar entre 1 y 40 años.
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">👤 Nombre del propietario</label>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            placeholder="Ej: Juan Pérez"
+            [(ngModel)]="duenio"
+            (blur)="marcarCampo('duenio')"
+          />
+        </mat-form-field>
+
+        <div class="campo-error" *ngIf="tocado.duenio && duenioInvalido()">
+          Ingrese un nombre de dueño válido (solo letras).
+        </div>
+      </div>
     </div>
 
     <!-- IMAGEN -->
 
     <div class="image-column">
-      <h3>📸 Imagen</h3>
-
       <div class="upload-box">
-        <input type="file" accept="image/*" (change)="seleccionarImagen($event)" />
+        <label class="upload-btn">
+          📷 Seleccionar imagen
+          <input type="file" accept="image/*" (change)="seleccionarImagen($event)" hidden />
+        </label>
       </div>
 
       <div class="preview" *ngIf="imagen">
         <img [src]="imagen" alt="preview" />
       </div>
+
+      <div class="preview-vacia" *ngIf="!imagen">Sin imagen</div>
     </div>
   </div>
 

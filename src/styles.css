@@ -116,3 +116,31 @@ button {
 
   box-shadow: 0 10px 30px rgba(22, 163, 74, 0.35) !important;
 }
+
+.snackbar-success {
+  --mdc-snackbar-container-color: #16a34a !important;
+  --mat-snack-bar-button-color: white !important;
+
+  color: white !important;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  border-radius: 16px !important;
+
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
+}
+
+.snackbar-warning {
+  --mdc-snackbar-container-color: #f59e0b !important;
+  --mat-snack-bar-button-color: white !important;
+
+  color: white !important;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  border-radius: 16px !important;
+
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+}
