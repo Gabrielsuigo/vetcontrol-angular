@@ -1,9 +1,9 @@
 <mat-card class="form-card">
   <div class="form-header">
     <div>
-      <h2>{{ editando ? 'Editar Mascota' : 'Registrar Mascota' }}</h2>
+      <h2>{{ editando ? 'Editar Mascota' : 'Registrar nueva mascota' }}</h2>
 
-      <p>Completá la información principal de la mascota.</p>
+      <p>Complete los datos para incorporar una mascota al sistema.</p>
     </div>
 
     <div class="form-icon">🐾</div>
@@ -105,7 +105,8 @@
     <div class="image-column">
       <div class="upload-box">
         <label class="upload-btn">
-          📷 Seleccionar imagen
+          <span class="material-icons">photo_camera</span>
+          Seleccionar imagen
           <input type="file" accept="image/*" (change)="seleccionarImagen($event)" hidden />
         </label>
       </div>
@@ -114,13 +115,19 @@
         <img [src]="imagen" alt="preview" />
       </div>
 
-      <div class="preview-vacia" *ngIf="!imagen">Sin imagen</div>
+      <div class="preview-vacia" *ngIf="!imagen">
+        <div class="preview-icono">🐶</div>
+
+        <p>Sin imagen cargada</p>
+
+        <small> Formatos permitidos: JPG · PNG </small>
+      </div>
     </div>
   </div>
 
   <div class="acciones-form">
     <button mat-raised-button color="primary" (click)="agregar()">
-      {{ editando ? 'Actualizar Mascota' : 'Guardar Mascota' }}
+      {{ editando ? 'Actualizar Mascota' : 'Registrar Mascota' }}
     </button>
   </div>
 </mat-card>
