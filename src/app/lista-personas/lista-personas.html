@@ -1,6 +1,6 @@
 <mat-card class="page-container">
   <div class="cards-mascotas">
-    <mat-card class="pet-card" *ngFor="let m of mascotasFiltradas">
+    <mat-card class="pet-card" *ngFor="let m of mascotasPaginadas">
       <!-- EDICIÓN -->
       <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
         <mat-form-field appearance="outline">
@@ -90,9 +90,13 @@
                 [class.alert]="m.vacunas.length === 0"
               ></span>
 
-              <span>
-                Estado sanitario:
+              <span class="status-label"> Estado sanitario: </span>
 
+              <span
+                class="status-text"
+                [class.ok]="m.vacunas.length > 0"
+                [class.alert]="m.vacunas.length === 0"
+              >
                 {{ m.vacunas.length > 0 ? 'Al día' : 'Sin vacunas' }}
               </span>
             </div>
@@ -115,4 +119,12 @@
       </ng-template>
     </mat-card>
   </div>
+  <mat-paginator
+    [length]="mascotasFiltradas.length"
+    [pageSize]="4"
+    [pageSizeOptions]="[4]"
+    showFirstLastButtons
+    (page)="cambiarPagina($event)"
+  >
+  </mat-paginator>
 </mat-card>

@@ -10,11 +10,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-persona-list',
   standalone: true,
   imports: [
+    MatPaginatorModule,
     MatMenuModule,
     MatIconModule,
     CommonModule,
@@ -40,6 +42,9 @@ export class PersonaList {
   mascotaEditandoId: number | null = null;
   historialAbiertoId: number | null = null;
   consultasAbiertasId: number | null = null;
+  pageSize = 4;
+
+  pageIndex = 0;
 
   vacunasDisponibles = [
     'Antirrábica',
@@ -68,6 +73,15 @@ export class PersonaList {
 
       return mismoUsuario && coincideNombre && coincideEspecie && coincideDuenio;
     });
+  }
+  get mascotasPaginadas() {
+    const inicio = this.pageIndex * this.pageSize;
+    const fin = inicio + this.pageSize;
+
+    return this.mascotasFiltradas.slice(inicio, fin);
+  }
+  cambiarPagina(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
   }
 
   constructor(

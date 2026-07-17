@@ -1,21 +1,24 @@
 .page-container {
   background: #f5f7fb;
-  padding: 32px;
-  border-radius: 24px;
+  padding: 5px;
+  border-radius: 2px;
   box-shadow: none;
 }
 
 .cards-mascotas {
   display: grid;
 
-  grid-template-columns: repeat(2, minmax(430px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
 
-  gap: 28px;
+  gap: 24px;
 
-  align-items: start;
+  /* margin-top: 5px; */
+
+  width: 100%;
 }
 
 .pet-card {
+  width: 100%;
   background: #fff;
   border: 1px solid #dcdcdc;
   border-radius: 18px;
@@ -113,20 +116,20 @@
 
 .pet-status {
   display: flex;
-
   align-items: center;
-
-  gap: 10px;
+  gap: 8px;
 
   margin-top: 20px;
 
-  padding: 14px 18px;
+  padding: 0;
 
-  border-radius: 14px;
+  background: none;
 
-  font-weight: 600;
+  border: none;
 
-  font-size: 15px;
+  font-size: 14px;
+
+  font-weight: 500;
 }
 
 .status-dot {
@@ -137,18 +140,6 @@
   border-radius: 50%;
 
   display: block;
-}
-
-.pet-status.ok {
-  background: #ecfdf5;
-
-  color: #166534;
-}
-
-.pet-status.alert {
-  background: #fef2f2;
-
-  color: #991b1b;
 }
 
 .status-dot.ok {
@@ -203,4 +194,61 @@
   .pet-actions {
     flex-direction: column;
   }
+}
+.status-label {
+  color: #111827;
+  font-weight: 600;
+}
+
+.status-text.ok {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.status-text.alert {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* =========================
+   PAGINADOR
+========================= */
+
+mat-paginator {
+  margin-top: 35px !important;
+
+  display: flex !important;
+  justify-content: center !important;
+
+  background: transparent !important;
+
+  border: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  justify-content: center !important;
+
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  display: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-range-label {
+  margin: 0 20px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+::ng-deep .mat-mdc-icon-button {
+  border-radius: 50%;
+
+  transition: 0.25s;
+}
+
+::ng-deep .mat-mdc-icon-button:hover {
+  background: #eef2ff;
 }
