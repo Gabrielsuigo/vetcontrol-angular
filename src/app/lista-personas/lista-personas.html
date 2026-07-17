@@ -1,78 +1,30 @@
-<mat-card>
-  <!-- <h2>🐾 Mascotas Registradas</h2> -->
-
-  <!-- DASHBOARD -->
-
-  <!-- <div class="dashboard">
-    <div class="dashboard-card mascotas">
-      <h3>
-        {{ personaService.mascotasUsuario().length }}
-      </h3>
-
-      <p>Mascotas</p>
-    </div>
-
-    <div class="dashboard-card dashboard-vacunas">
-      <h3>
-        {{ personaService.mascotasUsuario().reduce((total, m) => total + m.vacunas.length, 0) }}
-      </h3>
-
-      <p>Vacunas</p>
-    </div>
-
-    <div class="dashboard-card consultas">
-      <h3>
-        {{ personaService.mascotasUsuario().reduce((total, m) => total + m.consultas.length, 0) }}
-      </h3>
-
-      <p>Consultas</p>
-    </div>
-
-    <div class="dashboard-card alertas">
-      <h3>
-        {{ personaService.mascotasUsuario().filter((m) => m.vacunas.length === 0).length }}
-      </h3>
-
-      <p>Sin vacunas</p>
-    </div>
-  </div> -->
-
-  <!-- BUSCADOR -->
-
-  <!-- CARDS -->
-
+<mat-card class="page-container">
   <div class="cards-mascotas">
     <mat-card class="pet-card" *ngFor="let m of mascotasFiltradas">
-      <!-- EDITAR -->
-
+      <!-- EDICIÓN -->
       <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
         <mat-form-field appearance="outline">
           <mat-label>Nombre</mat-label>
-
           <input matInput [(ngModel)]="m.nombre" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Especie</mat-label>
-
           <input matInput [(ngModel)]="m.especie" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Raza</mat-label>
-
           <input matInput [(ngModel)]="m.raza" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Edad</mat-label>
-
           <input matInput type="number" [(ngModel)]="m.edad" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Dueño</mat-label>
-
           <input matInput [(ngModel)]="m.duenio" />
         </mat-form-field>
 
@@ -83,72 +35,83 @@
 
       <ng-template #vistaNormal>
         <div class="pet-modern-card">
-          <!-- BANNER -->
-
-          <div class="pet-banner"></div>
-
           <!-- FOTO -->
 
-          <div class="pet-avatar-container">
+          <div class="pet-image">
             <img
-              class="pet-avatar"
               [src]="m.imagen ? m.imagen : 'https://cdn-icons-png.flaticon.com/512/616/616408.png'"
-              alt="mascota"
+              alt="Mascota"
             />
           </div>
 
-          <!-- CONTENIDO -->
+          <!-- INFO -->
 
-          <div class="pet-content">
-            <h2 class="pet-modern-name">
-              {{ m.nombre }}
-            </h2>
+          <div class="pet-info">
+            <div class="pet-header">
+              <div>
+                <h2 class="pet-name">
+                  {{ m.nombre }}
+                </h2>
 
-            <!-- TAGS -->
+                <div class="pet-badges">
+                  <span class="badge especie">
+                    {{ m.especie }}
+                  </span>
 
-            <div class="pet-badges">
-              <span class="badge especie">
-                {{ m.especie }}
-              </span>
+                  <span class="badge raza">
+                    {{ m.raza }}
+                  </span>
 
-              <span class="badge raza">
-                {{ m.raza }}
-              </span>
+                  <span class="badge edad"> {{ m.edad }} años </span>
+                </div>
+              </div>
 
-              <span class="badge edad"> {{ m.edad }} años </span>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
             </div>
-
-            <!-- DUEÑO -->
 
             <div class="pet-owner">
-              <span> 👤 {{ m.duenio }} </span>
+              <mat-icon>person</mat-icon>
+
+              <span>
+                {{ m.duenio }}
+              </span>
             </div>
 
-            <!-- ESTADO -->
-
             <div
-              class="status-box"
+              class="pet-status"
               [class.ok]="m.vacunas.length > 0"
               [class.alert]="m.vacunas.length === 0"
             >
-              <span *ngIf="m.vacunas.length > 0"> 🟢 Vacunas al día </span>
+              <span
+                class="status-dot"
+                [class.ok]="m.vacunas.length > 0"
+                [class.alert]="m.vacunas.length === 0"
+              ></span>
 
-              <span *ngIf="m.vacunas.length === 0"> 🔴 Sin vacunas </span>
+              <span>
+                Estado sanitario:
+
+                {{ m.vacunas.length > 0 ? 'Al día' : 'Sin vacunas' }}
+              </span>
             </div>
 
-            <!-- BOTONES -->
+            <div class="pet-actions">
+              <button mat-stroked-button color="primary" (click)="verFicha(m.id)">Ver ficha</button>
 
-            <div class="panel-buttons">
-              <button mat-raised-button color="primary" (click)="verFicha(m.id)">
-                👁 Ver ficha
-              </button>
-
-              <button mat-raised-button color="accent" (click)="editar(m)">✏ Editar</button>
-
-              <button mat-raised-button color="warn" (click)="eliminar(m.id)">🗑 Eliminar</button>
+              <button mat-stroked-button color="primary" (click)="editar(m)">Editar</button>
             </div>
           </div>
         </div>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="eliminar(m.id)">
+            <mat-icon color="warn"> delete </mat-icon>
+
+            <span> Eliminar </span>
+          </button>
+        </mat-menu>
       </ng-template>
     </mat-card>
   </div>

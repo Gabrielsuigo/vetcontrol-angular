@@ -8,11 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-persona-list',
   standalone: true,
   imports: [
+    MatMenuModule,
+    MatIconModule,
     CommonModule,
     FormsModule,
     MatCardModule,
