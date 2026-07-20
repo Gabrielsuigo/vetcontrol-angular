@@ -211,24 +211,31 @@
 }
 
 /* =========================
-   PAGINADOR
+   PAGINADOR MATERIAL
 ========================= */
 
 mat-paginator {
-  margin-top: 35px !important;
+  margin: 45px auto 10px auto !important;
 
-  display: flex !important;
-  justify-content: center !important;
+  width: fit-content;
 
-  background: transparent !important;
+  background: white !important;
 
-  border: none !important;
+  border-radius: 18px;
+
+  border: 1px solid #dbe2ea;
+
+  padding: 8px 18px;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 ::ng-deep .mat-mdc-paginator-container {
   justify-content: center !important;
 
-  width: 100%;
+  gap: 12px;
+
+  min-height: 56px;
 }
 
 ::ng-deep .mat-mdc-paginator-page-size {
@@ -236,19 +243,32 @@ mat-paginator {
 }
 
 ::ng-deep .mat-mdc-paginator-range-label {
-  margin: 0 20px;
+  font-size: 16px;
 
-  font-weight: 600;
+  font-weight: 700;
 
   color: #334155;
+
+  margin: 0 18px;
 }
 
 ::ng-deep .mat-mdc-icon-button {
-  border-radius: 50%;
+  width: 42px !important;
+  height: 42px !important;
+
+  border-radius: 12px !important;
 
   transition: 0.25s;
+
+  background: #f8fafc;
 }
 
 ::ng-deep .mat-mdc-icon-button:hover {
-  background: #eef2ff;
+  background: #6366f1;
+
+  color: white;
+}
+
+::ng-deep .mat-mdc-icon-button svg {
+  transform: scale(1.2);
 }

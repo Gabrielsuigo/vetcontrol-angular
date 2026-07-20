@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-persona-list',
@@ -87,6 +89,7 @@ export class PersonaList {
   constructor(
     public personaService: MascotaService,
     private router: Router,
+    private dialog: MatDialog,
   ) {}
   editar(mascota: any) {
     this.mascotaEditandoId = mascota.id;
@@ -132,7 +135,32 @@ export class PersonaList {
   }
 
   eliminar(id: number) {
-    this.personaService.eliminar(id);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+
+      disableClose: true,
+
+      data: {
+        titulo: 'Eliminar mascota',
+
+        mensaje:
+          '¿Estás seguro que querés eliminar esta mascota? Esta acción no se puede deshacer.',
+
+        icono: 'delete',
+
+        color: 'warn',
+
+        textoAceptar: 'Eliminar',
+
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.personaService.eliminar(id);
+      }
+    });
   }
 
   eliminarVacuna(
