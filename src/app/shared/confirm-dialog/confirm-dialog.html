@@ -1,21 +1,25 @@
-<h2 mat-dialog-title class="dialog-title">
-  <mat-icon [color]="data.color || 'primary'">
-    {{ data.icono || 'help' }}
-  </mat-icon>
+<div class="dialog-container">
+  <div class="dialog-icon">
+    <mat-icon [color]="color">
+      {{ icono }}
+    </mat-icon>
+  </div>
 
-  {{ data.titulo }}
-</h2>
+  <h2 class="dialog-title">
+    {{ data.titulo }}
+  </h2>
 
-<div mat-dialog-content class="dialog-content">
-  <p>{{ data.mensaje }}</p>
-</div>
+  <p class="dialog-message">
+    {{ data.mensaje }}
+  </p>
 
-<div mat-dialog-actions align="end" class="dialog-actions">
-  <button mat-button (click)="cancelar()">
-    {{ data.textoCancelar || 'Cancelar' }}
-  </button>
+  <div class="dialog-actions">
+    <button mat-stroked-button (click)="cancelar()">
+      {{ data.textoCancelar || 'Cancelar' }}
+    </button>
 
-  <button mat-raised-button [color]="data.color || 'primary'" (click)="aceptar()">
-    {{ data.textoAceptar || 'Aceptar' }}
-  </button>
+    <button mat-raised-button [color]="color" (click)="aceptar()">
+      {{ data.textoAceptar || 'Aceptar' }}
+    </button>
+  </div>
 </div>

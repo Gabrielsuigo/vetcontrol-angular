@@ -1,8 +1,10 @@
 import { Component, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { MascotaService } from '../../core/services/mascota.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-consultas',
@@ -15,6 +17,10 @@ export class Consultas {
   mascotaService = inject(MascotaService);
 
   cdr = inject(ChangeDetectorRef);
+
+  notification = inject(NotificationService);
+
+  dialog = inject(MatDialog);
 
   mascotaId = 0;
 
@@ -47,7 +53,7 @@ export class Consultas {
         fecha: this.fecha,
       });
 
-      this.mensajeExito = '✏️ Consulta editada correctamente';
+      this.notification.success('Consulta editada correctamente');
 
       this.modoEdicion = false;
       this.mascotaEditandoId = 0;
@@ -61,7 +67,7 @@ export class Consultas {
         fecha: this.fecha,
       });
 
-      this.mensajeExito = '✅ Consulta registrada correctamente';
+      this.notification.success('Consulta registrada correctamente');
     }
 
     this.motivo = '';
@@ -69,25 +75,66 @@ export class Consultas {
     this.peso = 0;
     this.observaciones = '';
     this.fecha = new Date().toISOString().split('T')[0];
+  }
+  confirmarGuardarConsulta() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: this.modoEdicion ? 'Guardar cambios' : 'Registrar consulta',
 
-    setTimeout(() => {
-      this.mensajeExito = '';
-      this.cdr.detectChanges();
-    }, 3000);
+        subtitulo: 'Consultas médicas',
+
+        mensaje: this.modoEdicion
+          ? '¿Deseás guardar los cambios realizados en esta consulta?'
+          : '¿Deseás registrar esta consulta para la mascota seleccionada?',
+
+        tipo: 'save',
+
+        textoAceptar: this.modoEdicion ? 'Guardar' : 'Registrar',
+
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.registrarConsulta();
+      }
+    });
   }
   eliminarConsulta(mascotaId: number, index: number) {
-    const confirmar = confirm('¿Eliminar esta consulta?');
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: 'Eliminar consulta',
 
-    if (!confirmar) return;
+        subtitulo: 'Historial médico',
 
-    this.mascotaService.eliminarConsulta(mascotaId, index);
+        mensaje:
+          '¿Estás seguro de que querés eliminar esta consulta? Esta acción no se puede deshacer.',
 
-    this.mensajeExito = '🗑 Consulta eliminada correctamente';
+        tipo: 'delete',
 
-    setTimeout(() => {
-      this.mensajeExito = '';
-      this.cdr.detectChanges();
-    }, 3000);
+        textoAceptar: 'Eliminar',
+
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.mascotaService.eliminarConsulta(mascotaId, index);
+
+        this.mensajeExito = '🗑 Consulta eliminada correctamente';
+
+        setTimeout(() => {
+          this.mensajeExito = '';
+          this.cdr.detectChanges();
+        }, 3000);
+      }
+    });
   }
   editarConsulta(mascotaId: number, index: number) {
     const mascota = this.mascotaService.mascotasUsuario().find((m) => m.id === mascotaId);

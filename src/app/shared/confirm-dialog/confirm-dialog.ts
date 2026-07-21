@@ -21,12 +21,47 @@ export class ConfirmDialogComponent {
     public data: {
       titulo: string;
       mensaje: string;
-      icono?: string;
-      color?: string;
+
+      tipo?: 'delete' | 'save' | 'warning' | 'logout' | 'info';
+
       textoAceptar?: string;
       textoCancelar?: string;
     },
   ) {}
+  get icono() {
+    switch (this.data.tipo) {
+      case 'delete':
+        return 'delete';
+
+      case 'save':
+        return 'save';
+
+      case 'warning':
+        return 'warning';
+
+      case 'logout':
+        return 'logout';
+
+      default:
+        return 'help';
+    }
+  }
+
+  get color() {
+    switch (this.data.tipo) {
+      case 'delete':
+        return 'warn';
+
+      case 'warning':
+        return 'accent';
+
+      case 'logout':
+        return 'warn';
+
+      default:
+        return 'primary';
+    }
+  }
 
   cancelar() {
     this.dialogRef.close(false);

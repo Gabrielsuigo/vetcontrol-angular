@@ -1,39 +1,95 @@
-.dialog-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.dialog-container {
+  padding: 18px;
 
-  font-size: 24px;
+  text-align: center;
+}
+
+/* ============================= */
+
+.dialog-icon {
+  width: 78px;
+  height: 78px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background: #f3f4f6;
+
+  margin-bottom: 22px;
+}
+
+.dialog-icon mat-icon {
+  font-size: 42px;
+
+  width: 42px;
+  height: 42px;
+}
+
+/* ============================= */
+
+.dialog-title {
+  margin: 0;
+
+  font-size: 27px;
+
   font-weight: 700;
 
   color: #1e293b;
+}
+.dialog-subtitle {
+  margin-top: 8px;
 
-  margin-bottom: 10px;
+  font-size: 14px;
+
+  color: #94a3b8;
+
+  font-weight: 500;
 }
 
-.dialog-title mat-icon {
-  font-size: 30px;
-  width: 30px;
-  height: 30px;
-}
+/* ============================= */
 
-.dialog-content {
+.dialog-message {
+  margin-top: 18px;
+
+  margin-bottom: 30px;
+
+  color: #64748b;
+
   font-size: 16px;
-  color: #475569;
-  line-height: 1.6;
 
-  min-width: 380px;
-
-  padding-top: 8px;
+  line-height: 1.7;
 }
+
+/* ============================= */
 
 .dialog-actions {
-  margin-top: 24px;
-  gap: 12px;
+  display: flex;
+
+  justify-content: center;
+
+  gap: 16px;
 }
 
+/* ============================= */
+
 .dialog-actions button {
-  min-width: 120px;
+  min-width: 130px;
+
+  height: 46px;
+
   border-radius: 12px;
+
   font-weight: 600;
+
+  transition: 0.25s;
+}
+
+.dialog-actions button:hover {
+  transform: translateY(-2px);
 }

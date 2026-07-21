@@ -100,9 +100,26 @@ export class PersonaList {
   }
 
   guardar(mascota: any) {
-    this.personaService.editar(mascota.id, mascota);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
 
-    this.mascotaEditandoId = null;
+      data: {
+        titulo: 'Guardar cambios',
+        mensaje: '¿Deseás guardar los cambios realizados en esta mascota?',
+        tipo: 'save',
+        textoAceptar: 'Guardar',
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.personaService.editar(mascota.id, mascota);
+
+        this.mascotaEditandoId = null;
+      }
+    });
   }
 
   toggleHistorial(id: number) {
@@ -143,8 +160,11 @@ export class PersonaList {
       data: {
         titulo: 'Eliminar mascota',
 
-        mensaje:
-          '¿Estás seguro que querés eliminar esta mascota? Esta acción no se puede deshacer.',
+        subtitulo: 'Esta acción no se puede deshacer.',
+
+        mensaje: `¿Deseás eliminar a "${
+          this.personaService.mascotas().find((m) => m.id === id)?.nombre
+        }"?`,
 
         icono: 'delete',
 
@@ -174,20 +194,26 @@ export class PersonaList {
       index,
     );
   }
-  confirmarEliminarVacuna(
-    mascotaId: number,
+  confirmarEliminarVacuna(mascotaId: number, index: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: 'Eliminar vacuna',
+        subtitulo: 'Historial de vacunación',
+        mensaje:
+          '¿Estás seguro de que querés eliminar esta vacuna? Esta acción no se puede deshacer.',
+        tipo: 'delete',
+        textoAceptar: 'Eliminar',
+        textoCancelar: 'Cancelar',
+      },
+    });
 
-    index: number,
-  ) {
-    const confirmar = confirm('¿Seguro que querés eliminar esta vacuna?');
-
-    if (confirmar) {
-      this.eliminarVacuna(
-        mascotaId,
-
-        index,
-      );
-    }
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.eliminarVacuna(mascotaId, index);
+      }
+    });
   }
   agregarConsulta(
     id: number,

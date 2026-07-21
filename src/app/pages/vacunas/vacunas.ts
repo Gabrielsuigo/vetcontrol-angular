@@ -1,8 +1,9 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { MascotaService } from '../../core/services/mascota.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-vacunas',
@@ -14,6 +15,7 @@ import { MascotaService } from '../../core/services/mascota.service';
 export class Vacunas {
   mascotaService = inject(MascotaService);
   cdr = inject(ChangeDetectorRef);
+  dialog = inject(MatDialog);
   mascotaId = 0;
 
   nombre = '';
@@ -96,6 +98,29 @@ export class Vacunas {
     }, 3000);
   }
 
+  confirmarGuardarVacuna() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: this.modoEdicion ? 'Guardar cambios' : 'Registrar vacuna',
+        subtitulo: 'Vacunación',
+        mensaje: this.modoEdicion
+          ? '¿Deseás guardar los cambios realizados en esta vacuna?'
+          : '¿Deseás registrar esta vacuna?',
+        tipo: 'save',
+        textoAceptar: this.modoEdicion ? 'Guardar' : 'Registrar',
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.registrarVacuna();
+      }
+    });
+  }
+
   eliminarVacuna(mascotaId: number, index: number) {
     const confirmar = confirm('¿Eliminar esta vacuna?');
 
@@ -110,6 +135,28 @@ export class Vacunas {
       this.cdr.detectChanges();
     }, 3000);
   }
+  confirmarEliminarVacuna(mascotaId: number, index: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: 'Eliminar vacuna',
+        subtitulo: 'Historial de vacunación',
+        mensaje:
+          '¿Estás seguro de que querés eliminar esta vacuna? Esta acción no se puede deshacer.',
+        tipo: 'delete',
+        textoAceptar: 'Eliminar',
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado) {
+        this.eliminarVacuna(mascotaId, index);
+      }
+    });
+  }
+
   editarVacuna(mascotaId: number, index: number) {
     const mascota = this.mascotaService.mascotasUsuario().find((m) => m.id === mascotaId);
 

@@ -61,7 +61,7 @@
       <div class="campo">
         <label>&nbsp;</label>
 
-        <button class="btn-guardar" (click)="registrarVacuna()">
+        <button class="btn-guardar" (click)="confirmarGuardarVacuna()">
           {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Vacuna' }}
         </button>
       </div>
@@ -109,7 +109,7 @@
 
                 <button
                   class="btn-eliminar separar-eliminar"
-                  (click)="eliminarVacuna(mascota.id, $index)"
+                  (click)="confirmarEliminarVacuna(mascota.id, $index)"
                 >
                   🗑
                 </button>
