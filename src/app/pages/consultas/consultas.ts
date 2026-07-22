@@ -34,7 +34,7 @@ export class Consultas {
 
   fecha = new Date().toISOString().split('T')[0];
 
-  mensajeExito = '';
+  // mensajeExito = '';
 
   modoEdicion = false;
 
@@ -46,19 +46,37 @@ export class Consultas {
     if (!this.mascotaId) return;
 
     if (this.modoEdicion) {
-      this.mascotaService.editarConsulta(this.mascotaEditandoId, this.consultaEditandoIndex, {
-        motivo: this.motivo,
-        diagnostico: this.diagnostico,
-        peso: this.peso,
-        fecha: this.fecha,
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '430px',
+        disableClose: true,
+
+        data: {
+          titulo: 'Guardar cambios',
+          subtitulo: 'Consulta médica',
+          mensaje: '¿Deseás guardar los cambios realizados en esta consulta?',
+          tipo: 'save',
+          textoAceptar: 'Guardar',
+          textoCancelar: 'Cancelar',
+        },
       });
 
-      this.notification.success('Consulta editada correctamente');
+      dialogRef.afterClosed().subscribe((resultado) => {
+        if (!resultado) return;
 
-      this.modoEdicion = false;
-      this.mascotaEditandoId = 0;
-      this.consultaEditandoIndex = -1;
-      this.mascotaId = 0;
+        this.mascotaService.editarConsulta(this.mascotaEditandoId, this.consultaEditandoIndex, {
+          motivo: this.motivo,
+          diagnostico: this.diagnostico,
+          peso: this.peso,
+          fecha: this.fecha,
+        });
+
+        this.notification.success('Consulta editada correctamente');
+
+        this.modoEdicion = false;
+        this.mascotaEditandoId = 0;
+        this.consultaEditandoIndex = -1;
+        this.mascotaId = 0;
+      });
     } else {
       this.mascotaService.agregarConsulta(this.mascotaId, {
         motivo: this.motivo,
@@ -76,6 +94,7 @@ export class Consultas {
     this.observaciones = '';
     this.fecha = new Date().toISOString().split('T')[0];
   }
+
   confirmarGuardarConsulta() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '430px',
@@ -127,12 +146,7 @@ export class Consultas {
       if (resultado) {
         this.mascotaService.eliminarConsulta(mascotaId, index);
 
-        this.mensajeExito = '🗑 Consulta eliminada correctamente';
-
-        setTimeout(() => {
-          this.mensajeExito = '';
-          this.cdr.detectChanges();
-        }, 3000);
+        this.notification.success('Consulta eliminada correctamente');
       }
     });
   }
@@ -153,11 +167,7 @@ export class Consultas {
     this.peso = consulta.peso;
     this.fecha = consulta.fecha;
 
-    this.mensajeExito = '✏️ Editando consulta seleccionada';
-
-    setTimeout(() => {
-      this.mensajeExito = '';
-    }, 3000);
+    this.notification.info('Editando consulta');
 
     window.scrollTo({
       top: 0,
@@ -177,10 +187,6 @@ export class Consultas {
     this.observaciones = '';
     this.fecha = new Date().toISOString().split('T')[0];
 
-    this.mensajeExito = '❌ Edición cancelada';
-
-    setTimeout(() => {
-      this.mensajeExito = '';
-    }, 3000);
+    this.notification.info('Edición cancelada');
   }
 }

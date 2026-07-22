@@ -8,7 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from './core/auth/services/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { NotificationService } from './shared/services/notification.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +36,8 @@ export class App {
   sidebarAbierto = false;
   authService = inject(AuthService);
   router = inject(Router);
-  snackBar = inject(MatSnackBar);
+  notification = inject(NotificationService);
+  dialog = inject(MatDialog);
   esPaginaPublica(): boolean {
     return (
       this.router.url === '/' ||
@@ -43,15 +48,30 @@ export class App {
   }
 
   logout() {
-    this.authService.logout();
-    this.snackBar.open('✓ Sesión cerrada correctamente', '', {
-      duration: 4000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: ['logout-snackbar'],
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: 'Cerrar sesión',
+        subtitulo: 'VetControl',
+        mensaje: '¿Deseás cerrar la sesión actual?',
+        tipo: 'logout',
+        textoAceptar: 'Cerrar sesión',
+        textoCancelar: 'Cancelar',
+      },
     });
-    this.router.navigate(['/']);
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (!resultado) return;
+
+      this.authService.logout();
+
+      this.notification.success('Sesión cerrada correctamente');
+
+      this.router.navigate(['/']);
+    });
   }
+
   toggleSidebar() {
     this.sidebarAbierto = !this.sidebarAbierto;
   }

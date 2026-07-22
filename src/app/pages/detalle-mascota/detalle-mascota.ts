@@ -1,5 +1,5 @@
 import { Component, inject, computed } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MascotaService } from '../../core/services/mascota.service';
 import { MatIconModule } from '@angular/material/icon';
 import { TurnoService } from '../../core/services/turno.service';

@@ -8,6 +8,11 @@
   <h2 class="dialog-title">
     {{ data.titulo }}
   </h2>
+  @if (data.subtitulo) {
+    <p class="dialog-subtitle">
+      {{ data.subtitulo }}
+    </p>
+  }
 
   <p class="dialog-message">
     {{ data.mensaje }}

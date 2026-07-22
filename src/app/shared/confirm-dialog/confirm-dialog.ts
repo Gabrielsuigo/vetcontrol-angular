@@ -20,6 +20,7 @@ export class ConfirmDialogComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       titulo: string;
+      subtitulo?: string;
       mensaje: string;
 
       tipo?: 'delete' | 'save' | 'warning' | 'logout' | 'info';
@@ -56,7 +57,7 @@ export class ConfirmDialogComponent {
         return 'accent';
 
       case 'logout':
-        return 'warn';
+        return 'primary';
 
       default:
         return 'primary';

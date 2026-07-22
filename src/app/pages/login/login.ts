@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../shared/services/notification.service';
 
 import { AuthService } from '../../core/auth/services/auth.service';
 
@@ -21,39 +21,25 @@ export class Login {
   authService = inject(AuthService);
 
   router = inject(Router);
-  snackBar = inject(MatSnackBar);
-
+  notification = inject(NotificationService);
   email = '';
 
   password = '';
 
-  error = '';
-
   iniciarSesion() {
     if (!this.email || !this.password) {
-      this.snackBar.open('Completá todos los campos', 'Cerrar', {
-        duration: 3000,
-      });
-
+      this.notification.warning('Completá todos los campos');
       return;
     }
 
     const loginCorrecto = this.authService.login(this.email, this.password);
 
     if (!loginCorrecto) {
-      this.snackBar.open('Email o contraseña incorrectos', 'Cerrar', {
-        duration: 3000,
-      });
-
+      this.notification.error('Email o contraseña incorrectos');
       return;
     }
 
-    this.snackBar.open('Bienvenido al sistema', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: ['login-snackbar'],
-    });
+    this.notification.success('Bienvenido al sistema');
 
     this.router.navigate(['/dashboard']);
   }

@@ -1,9 +1,10 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MascotaService } from '../../core/services/mascota.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-vacunas',
@@ -14,15 +15,14 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 })
 export class Vacunas {
   mascotaService = inject(MascotaService);
-  cdr = inject(ChangeDetectorRef);
   dialog = inject(MatDialog);
+  notification = inject(NotificationService);
   mascotaId = 0;
 
   nombre = '';
 
   fecha = new Date().toISOString().split('T')[0];
   frecuencia = 12; // meses (1 año por defecto)
-  mensajeExito = '';
   modoEdicion = false;
   mascotaEditandoId = 0;
   vacunaEditandoIndex = -1;
@@ -70,7 +70,7 @@ export class Vacunas {
         this.frecuencia,
       );
 
-      this.mensajeExito = '✏️ Vacuna editada correctamente';
+      this.notification.success('Vacuna editada correctamente');
 
       this.modoEdicion = false;
       this.mascotaEditandoId = 0;
@@ -86,16 +86,11 @@ export class Vacunas {
         this.frecuencia,
       );
 
-      this.mensajeExito = '✅ Vacuna registrada correctamente';
+      this.notification.success('Vacuna registrada correctamente');
     }
 
     this.nombre = '';
     this.fecha = new Date().toISOString().split('T')[0];
-
-    setTimeout(() => {
-      this.mensajeExito = '';
-      this.cdr.detectChanges();
-    }, 3000);
   }
 
   confirmarGuardarVacuna() {
@@ -122,18 +117,9 @@ export class Vacunas {
   }
 
   eliminarVacuna(mascotaId: number, index: number) {
-    const confirmar = confirm('¿Eliminar esta vacuna?');
-
-    if (!confirmar) return;
-
     this.mascotaService.eliminarVacuna(mascotaId, index);
 
-    this.mensajeExito = '🗑 Vacuna eliminada correctamente';
-
-    setTimeout(() => {
-      this.mensajeExito = '';
-      this.cdr.detectChanges();
-    }, 3000);
+    this.notification.success('🗑 Vacuna eliminada correctamente');
   }
   confirmarEliminarVacuna(mascotaId: number, index: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -186,5 +172,6 @@ export class Vacunas {
     this.mascotaId = 0;
     this.nombre = '';
     this.fecha = new Date().toISOString().split('T')[0];
+    this.notification.info('Edición cancelada');
   }
 }

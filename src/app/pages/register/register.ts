@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { NotificationService } from '../../shared/services/notification.service';
 import { EmpresaService } from '../../core/services/empresa.service';
 
 import { AuthService } from '../../core/auth/services/auth.service';
@@ -24,7 +23,7 @@ export class Register {
 
   empresaService = inject(EmpresaService);
 
-  snackBar = inject(MatSnackBar);
+  notification = inject(NotificationService);
 
   router = inject(Router);
 
@@ -46,8 +45,6 @@ export class Register {
 
   telefono = '';
 
-  error = '';
-
   registrarse() {
     if (
       !this.nombre ||
@@ -60,13 +57,12 @@ export class Register {
       !this.direccion ||
       !this.telefono
     ) {
-      this.error = 'Completá todos los campos';
-
+      this.notification.warning('Completá todos los campos');
       return;
     }
 
     if (this.password !== this.confirmarPassword) {
-      this.error = 'Las contraseñas no coinciden';
+      this.notification.error('Las contraseñas no coinciden');
 
       return;
     }
@@ -88,18 +84,11 @@ export class Register {
     });
 
     if (!registrado) {
-      this.error = 'Ya existe un usuario con ese email';
-
+      this.notification.error('Ya existe un usuario con ese email');
       return;
     }
 
-    this.error = '';
-
-    this.snackBar.open('Veterinaria creada correctamente 👋 Ahora iniciá sesión', 'Cerrar', {
-      duration: 4000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
+    this.notification.success('Cuenta creada correctamente. Ahora iniciá sesión.');
 
     setTimeout(() => {
       this.router.navigate(['/login']);
