@@ -8,6 +8,8 @@
         </div>
 
         <h2>VetControl</h2>
+
+        <span class="logo-subtitle"> Sistema Veterinario </span>
       </div>
 
       <nav class="menu">
@@ -47,12 +49,23 @@
         </a>
       </nav>
 
-      <div class="sidebar-company">
-        <div class="company-avatar">🐾</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">
+          <img
+            [src]="authService.usuarioActual()?.fotoPerfil || 'assets/img/avatar-default.png'"
+            alt="Usuario"
+          />
+        </div>
 
-        <h3>VetControl</h3>
+        <div class="user-data">
+          <h3>
+            {{ authService.usuarioActual()?.nombre }}
+          </h3>
 
-        <p>+54 11 2503 3874</p>
+          <p>
+            {{ authService.usuarioActual()?.rol || 'Administrador' }}
+          </p>
+        </div>
       </div>
     </aside>
     @if (sidebarAbierto) {

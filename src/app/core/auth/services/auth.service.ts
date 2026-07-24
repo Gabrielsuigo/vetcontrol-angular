@@ -10,6 +10,8 @@ export interface Usuario {
   rol: string;
 
   fechaRegistro: string;
+
+  fotoPerfil: string;
 }
 
 @Injectable({
@@ -27,7 +29,13 @@ export class AuthService {
 
     if (existe) return false;
 
-    const nuevosUsuarios = [...this.usuarios(), usuario];
+    const nuevoUsuario = {
+      ...usuario,
+
+      fotoPerfil: usuario.fotoPerfil || 'assets/img/default-user.png',
+    };
+
+    const nuevosUsuarios = [...this.usuarios(), nuevoUsuario];
 
     localStorage.setItem('usuarios', JSON.stringify(nuevosUsuarios));
 

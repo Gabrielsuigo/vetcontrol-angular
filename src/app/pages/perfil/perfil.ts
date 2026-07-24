@@ -12,6 +12,7 @@ import { AuthService } from '../../core/auth/services/auth.service';
 })
 export class Perfil {
   authService = inject(AuthService);
-
   usuario = this.authService.usuarioActual;
+
+  fotoPerfil = 'https://ui-avatars.com/api/?background=6366F1&color=fff&size=256&name=Gabriel';
 }

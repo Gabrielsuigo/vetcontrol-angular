@@ -45,6 +45,8 @@ export class Register {
 
   telefono = '';
 
+  foto = 'assets/img/avatar-default.png';
+
   registrarse() {
     if (
       !this.nombre ||
@@ -81,6 +83,7 @@ export class Register {
       password: this.password,
       rol: 'Administrador',
       fechaRegistro: new Date().toLocaleDateString('es-AR'),
+      fotoPerfil: this.foto,
     });
 
     if (!registrado) {
