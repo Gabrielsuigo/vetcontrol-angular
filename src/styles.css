@@ -195,7 +195,7 @@ button {
 
   box-shadow: var(--card-shadow);
 
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 
 /* Títulos internos */
@@ -277,7 +277,7 @@ button {
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .page-card h2 {

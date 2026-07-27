@@ -1,11 +1,11 @@
-<div class="consultas-page">
-  <div class="consultas-header">
+<div class="page">
+  <div class="page-header">
     <h1>Consultas Médicas</h1>
 
     <p>Registrar consultas veterinarias de las mascotas.</p>
   </div>
 
-  <div class="consulta-form-card">
+  <div class="page-card">
     <h2>
       {{ modoEdicion ? '✏️ Editando Consulta' : 'Nueva Consulta' }}
     </h2>
@@ -37,7 +37,7 @@
     }
   </div>
 
-  <div class="consulta-form-card">
+  <div class="page-card">
     <h2>Consultas Registradas</h2>
 
     @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
