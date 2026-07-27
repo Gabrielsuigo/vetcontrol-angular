@@ -1,82 +1,44 @@
 :host {
   display: block;
-  padding: 28px 34px;
 }
 
-.page-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 22px;
+.personas-page {
+  padding: 24px;
 }
 
-.page-header h1 {
-  margin: 0;
-  font-size: 38px;
-  font-weight: 800;
-}
+/*=====================================
+  HEADER
+=====================================*/
 
-.page-header p {
-  margin-top: 8px;
-  font-size: 15px;
-  color: #64748b;
-}
+/*=====================================
+  BOTÓN
+=====================================*/
 
-.page-header > div {
-  flex: 1;
-}
-
-.page-header button {
-  margin-left: auto;
-  min-width: 180px;
-  height: 48px;
-  border-radius: 12px;
-  font-weight: 600;
-}
-
-.header-top {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: flex-start;
-}
-
-.header-title h1 {
-  margin: 0;
-
-  font-size: 32px;
-
-  font-weight: 600;
-}
-
-.header-title p {
-  margin-top: 8px;
-
-  color: #64748b;
-}
-
-.header-top button {
+.btn-nueva-mascota {
   height: 46px;
 
   border-radius: 12px;
 
   padding: 0 22px;
+
+  font-weight: 600;
 }
+
+/*=====================================
+  FILTROS
+=====================================*/
 
 .filters-bar {
   display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr;
 
-  gap: 18px;
+  grid-template-columns: 2fr 1fr 1fr;
 
-  margin-bottom: 35px;
+  gap: 16px;
+
+  margin-bottom: 24px;
 }
+
 .search-field,
 .filter-field {
   width: 100%;
-}
-.btn-nueva-mascota {
-  align-self: flex-start;
 }

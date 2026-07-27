@@ -1,6 +1,7 @@
-<div class="page-header">
-  <div class="header-top">
-    <div class="header-title">
+<div class="personas-page">
+  <!-- HEADER -->
+  <div class="page-header">
+    <div>
       <h1>Mascotas</h1>
       <p>Gestión de todas las mascotas registradas en la clínica.</p>
     </div>
@@ -10,37 +11,40 @@
       Nueva Mascota
     </button>
   </div>
+
+  <!-- FILTROS -->
+  <div class="filters-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix>search</mat-icon>
+
+      <input matInput [(ngModel)]="filtro" placeholder="Buscar mascota..." />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Especie</mat-label>
+
+      <mat-select [(ngModel)]="especieFiltro" placeholder="Seleccionar especie...">
+        <mat-option value="">Todas</mat-option>
+
+        <mat-option value="perro"> Perro </mat-option>
+
+        <mat-option value="gato"> Gato </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Dueño</mat-label>
+
+      <mat-select [(ngModel)]="duenioFiltro">
+        <mat-option value=""> Todos </mat-option>
+
+        <mat-option *ngFor="let d of duenios" [value]="d">
+          {{ d }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <app-persona-list [filtro]="filtro" [especieFiltro]="especieFiltro" [duenioFiltro]="duenioFiltro">
+  </app-persona-list>
 </div>
-
-<div class="filters-bar">
-  <mat-form-field appearance="outline" class="search-field">
-    <mat-icon matPrefix>search</mat-icon>
-
-    <input matInput [(ngModel)]="filtro" placeholder="Buscar mascota..." />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="filter-field">
-    <mat-label>Especie</mat-label>
-
-    <mat-select [(ngModel)]="especieFiltro" placeholder="Seleccionar especie...">
-      <mat-option value="">Todas</mat-option>
-      <mat-option value="perro">Perro</mat-option>
-      <mat-option value="gato">Gato</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="filter-field">
-    <mat-label>Dueño</mat-label>
-
-    <mat-select [(ngModel)]="duenioFiltro">
-      <mat-option value="">Todos</mat-option>
-
-      <mat-option *ngFor="let d of duenios" [value]="d">
-        {{ d }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<app-persona-list [filtro]="filtro" [especieFiltro]="especieFiltro" [duenioFiltro]="duenioFiltro">
-</app-persona-list>

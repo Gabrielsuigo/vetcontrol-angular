@@ -10,8 +10,6 @@
   flex-direction: column;
 
   gap: 25px;
-
-  background: #f5f7fb;
 }
 
 .turnos-hero {
@@ -82,18 +80,6 @@
 
 /* FORMULARIO */
 
-.form-card {
-  background: white;
-
-  padding: 25px;
-
-  border-radius: 24px;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
-  margin-bottom: 25px;
-}
-
 .section-title {
   display: flex;
   align-items: center;
@@ -103,12 +89,9 @@
 
 .section-title h2 {
   margin: 0;
-  color: black;
-  /* color: #4f46e5; */
-
-  font-size: 34px;
-
+  font-size: 24px;
   font-weight: 700;
+  color: #111827;
 }
 
 .section-icon {
@@ -197,14 +180,6 @@
 
 /* LISTA */
 
-.lista-turnos {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 20px;
-}
-
 .estado {
   display: inline-block;
 
@@ -276,13 +251,16 @@
 }
 
 .stats-dashboard {
-  background: white;
-  border-radius: 24px;
-  padding: 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  background: white;
+  border: 1px solid #e5e7eb;
+
+  border-radius: 20px;
+
+  padding: 24px;
 }
 
 .stat-item {
@@ -293,8 +271,12 @@
 
 .stat-item h2 {
   margin: 0;
-  font-size: 42px;
-  font-weight: 800;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  color: #111827;
 }
 
 .stat-item p {
@@ -354,12 +336,12 @@
 }
 
 .tabla-header {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .tabla-header h2 {
   margin: 0;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 700;
   color: #111827;
 }
@@ -373,14 +355,13 @@
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: -10px;
+  margin-bottom: 24px;
 }
 
 .turnos-header h1 {
   margin: 0;
   font-size: 32px;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 600;
 }
 
 .turnos-header p {

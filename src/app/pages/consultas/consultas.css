@@ -6,6 +6,18 @@
   margin-bottom: 24px;
 }
 
+.consultas-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.consultas-header p {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
 .consulta-form-card {
   background: white;
 

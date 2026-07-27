@@ -1,11 +1,13 @@
-<div class="vacunas-page">
-  <div class="vacunas-header">
-    <h1>Vacunas</h1>
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Vacunas</h1>
 
-    <p>Registrar y administrar las vacunas de las mascotas.</p>
+      <p>Registrar y administrar las vacunas de las mascotas.</p>
+    </div>
   </div>
 
-  <div class="vacuna-form-card">
+  <div class="page-card">
     <h2>Nueva Vacuna</h2>
 
     <div class="form-grid">
@@ -72,7 +74,7 @@
     }
   </div>
 
-  <div class="vacuna-form-card">
+  <div class="page-card">
     <h2>Vacunas Registradas</h2>
 
     @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
