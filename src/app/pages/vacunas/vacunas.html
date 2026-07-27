@@ -60,12 +60,14 @@
         <input type="text" placeholder="Opcional" />
       </div>
 
-      <div class="campo">
-        <label>&nbsp;</label>
-
-        <button class="btn-guardar" (click)="confirmarGuardarVacuna()">
+      <div class="form-actions">
+        <button class="btn-primary" (click)="confirmarGuardarVacuna()">
           {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Vacuna' }}
         </button>
+
+        @if (modoEdicion) {
+          <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
+        }
       </div>
     </div>
 

@@ -41,9 +41,122 @@ mat-card:hover {
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
 }
 
-/* botones */
+/* =====================================================
+   BOTONES GLOBALES
+===================================================== */
+
 button {
   border-radius: 12px !important;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+/* Botón principal */
+
+.btn-primary,
+.btn-guardar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #4b5563;
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover,
+.btn-guardar:hover {
+  background: #374151;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Botón secundario */
+
+.btn-secondary,
+.btn-cancelar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+
+  padding: 0 22px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #374151;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+.btn-cancelar:hover {
+  background: #f3f4f6;
+}
+
+/* Botón eliminar */
+
+.btn-eliminar {
+  border: none;
+
+  background: #ef4444;
+
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background: #dc2626;
+}
+
+/* Botón completar */
+
+.btn-completar {
+  border: none;
+
+  background: #22c55e;
+
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.btn-completar:hover {
+  background: #16a34a;
 }
 
 /* tabla */

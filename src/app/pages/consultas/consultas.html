@@ -1,40 +1,61 @@
 <div class="page">
   <div class="page-header">
-    <h1>Consultas Médicas</h1>
-
-    <p>Registrar consultas veterinarias de las mascotas.</p>
+    <div class="page-header-left">
+      <h1>Consultas Médicas</h1>
+      <p>Registrar consultas veterinarias de las mascotas.</p>
+    </div>
   </div>
 
   <div class="page-card">
     <h2>
       {{ modoEdicion ? '✏️ Editando Consulta' : 'Nueva Consulta' }}
     </h2>
+
     <div class="form-grid">
-      <select [(ngModel)]="mascotaId">
-        <option [ngValue]="0">Seleccionar mascota</option>
+      <div class="form-group">
+        <label>Mascota</label>
 
-        @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
-          <option [ngValue]="mascota.id">
-            {{ mascota.nombre }}
-          </option>
-        }
-      </select>
+        <select [(ngModel)]="mascotaId">
+          <option [ngValue]="0">Seleccionar mascota</option>
 
-      <input type="text" placeholder="Motivo" [(ngModel)]="motivo" />
+          @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
+            <option [ngValue]="mascota.id">
+              {{ mascota.nombre }}
+            </option>
+          }
+        </select>
+      </div>
 
-      <input type="text" placeholder="Diagnóstico" [(ngModel)]="diagnostico" />
+      <div class="form-group">
+        <label>Motivo</label>
+        <input type="text" placeholder="Motivo" />
+      </div>
 
-      <input type="number" placeholder="Peso" [(ngModel)]="peso" />
+      <div class="form-group">
+        <label>Diagnóstico</label>
+        <input type="text" placeholder="Diagnóstico" />
+      </div>
 
-      <input type="date" [(ngModel)]="fecha" />
+      <div class="form-group">
+        <label>Peso</label>
+        <input type="number" placeholder="Peso" />
+      </div>
+
+      <div class="form-group">
+        <label>Fecha</label>
+        <input type="date" />
+      </div>
     </div>
-    <button class="btn-guardar" (click)="confirmarGuardarConsulta()">
-      {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Consulta' }}
-    </button>
 
-    @if (modoEdicion) {
-      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
-    }
+    <div class="form-actions">
+      <button class="btn-primary" (click)="confirmarGuardarConsulta()">
+        {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Consulta' }}
+      </button>
+
+      @if (modoEdicion) {
+        <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
+      }
+    </div>
   </div>
 
   <div class="page-card">
