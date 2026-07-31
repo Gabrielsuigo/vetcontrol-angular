@@ -1,0 +1,206 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Historial Clínico</h1>
+      <p>Consultá el historial completo de cada mascota.</p>
+    </div>
+  </div>
+
+  <div class="page-card">
+    <h2>Seleccionar mascota</h2>
+
+    <div class="form-grid">
+      <div class="campo">
+        <label>Mascota</label>
+
+        <select [ngModel]="mascotaId()" (ngModelChange)="cambioMascota($event)">
+          <option [ngValue]="0">Seleccionar mascota</option>
+
+          @for (mascota of mascotas(); track mascota.id) {
+            <option [ngValue]="mascota.id">
+              {{ mascota.nombre }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  @if (mascotaSeleccionada(); as mascota) {
+    <div class="page-card resumen-card">
+      <div class="resumen-header">
+        <div class="foto-mascota">
+          @if (mascota.imagen) {
+            <img [src]="mascota.imagen" [alt]="mascota.nombre" />
+          } @else {
+            <div class="sin-foto">🐾</div>
+          }
+        </div>
+
+        <div class="datos-principales">
+          <h2>{{ mascota.nombre }}</h2>
+
+          <p>{{ mascota.especie }} · {{ mascota.raza }}</p>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div>
+          <strong>Edad</strong>
+          <p>{{ mascota.edad }} años</p>
+        </div>
+
+        <div>
+          <strong>Dueño</strong>
+          <p>{{ mascota.duenio }}</p>
+        </div>
+
+        <div>
+          <strong>Fecha de registro</strong>
+          <p>{{ mascota.fechaRegistro }}</p>
+        </div>
+
+        <div>
+          <strong>Consultas</strong>
+          <p>{{ mascota.consultas.length }}</p>
+        </div>
+
+        <div>
+          <strong>Vacunas</strong>
+          <p>{{ mascota.vacunas.length }}</p>
+        </div>
+
+        <div>
+          <strong>Peso actual</strong>
+
+          @if (ultimaConsulta()) {
+            <p>{{ ultimaConsulta()!.peso }} Kg</p>
+          } @else {
+            <p>Sin datos</p>
+          }
+        </div>
+      </div>
+
+      <hr />
+
+      <h3>Última consulta</h3>
+
+      @if (ultimaConsulta()) {
+        <div class="detalle-card">
+          <p><strong>Fecha:</strong> {{ ultimaConsulta()!.fecha }}</p>
+
+          <p><strong>Motivo:</strong> {{ ultimaConsulta()!.motivo }}</p>
+
+          <p><strong>Diagnóstico:</strong> {{ ultimaConsulta()!.diagnostico }}</p>
+        </div>
+      } @else {
+        <p>No hay consultas registradas.</p>
+      }
+
+      <hr />
+
+      <h3>Última vacuna</h3>
+
+      @if (proximaVacuna()) {
+        <div class="detalle-card">
+          <p><strong>Vacuna:</strong> {{ proximaVacuna()!.nombre }}</p>
+
+          <p><strong>Aplicada:</strong> {{ proximaVacuna()!.fecha }}</p>
+
+          <p><strong>Próxima dosis:</strong> {{ proximaVacuna()!.proximaDosis }}</p>
+        </div>
+      } @else {
+        <p>No hay vacunas registradas.</p>
+      }
+    </div>
+  }
+
+  <div class="page-card">
+    <div class="tabs">
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'resumen'"
+        (click)="cambiarPestania('resumen')"
+      >
+        Resumen
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'consultas'"
+        (click)="cambiarPestania('consultas')"
+      >
+        Consultas
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'vacunas'"
+        (click)="cambiarPestania('vacunas')"
+      >
+        Vacunas
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'peso'"
+        (click)="cambiarPestania('peso')"
+      >
+        Peso
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'diagnosticos'"
+        (click)="cambiarPestania('diagnosticos')"
+      >
+        Diagnósticos
+      </button>
+
+      <button
+        class="tab"
+        [class.active]="pestaniaActiva() === 'notas'"
+        (click)="cambiarPestania('notas')"
+      >
+        Notas
+      </button>
+    </div>
+  </div>
+  <div class="page-card">
+    @if (pestaniaActiva() === 'resumen') {
+      <h2>Resumen</h2>
+
+      <p>Acá irá el resumen.</p>
+    }
+
+    @if (pestaniaActiva() === 'consultas') {
+      <h2>Consultas</h2>
+
+      <p>Acá irá la tabla de consultas.</p>
+    }
+
+    @if (pestaniaActiva() === 'vacunas') {
+      <h2>Vacunas</h2>
+
+      <p>Acá irá la tabla de vacunas.</p>
+    }
+
+    @if (pestaniaActiva() === 'peso') {
+      <h2>Peso</h2>
+
+      <p>Acá irá el gráfico de peso.</p>
+    }
+
+    @if (pestaniaActiva() === 'diagnosticos') {
+      <h2>Diagnósticos</h2>
+
+      <p>Acá irán los diagnósticos.</p>
+    }
+
+    @if (pestaniaActiva() === 'notas') {
+      <h2>Notas</h2>
+
+      <p>Acá irán las notas.</p>
+    }
+  </div>
+</div>

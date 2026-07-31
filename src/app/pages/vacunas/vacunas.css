@@ -3,7 +3,8 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
   margin-top: 20px;
-  align-items: end;
+
+  align-items: start;
 }
 
 .form-grid input,
@@ -29,37 +30,6 @@
   margin-top: 25px;
 }
 
-.consulta-header,
-.consulta-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 120px 100px;
-  gap: 15px;
-  padding: 12px;
-  align-items: center;
-}
-
-.consulta-header {
-  background: #f3f4f6;
-  font-weight: 700;
-  border-radius: 10px;
-  margin-bottom: 8px;
-}
-
-.consulta-row {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  margin-bottom: 6px;
-}
-
-.acciones {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  width: 100%;
-}
-
 .btn-editar,
 .btn-eliminar {
   border: none;
@@ -78,18 +48,6 @@
 
 .separar-eliminar {
   margin-left: 20px;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-}
-
-.campo label {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #374151;
 }
 
 .form-actions {

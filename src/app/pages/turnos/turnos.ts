@@ -112,12 +112,26 @@ export class Turnos {
     });
   }
 
-  eliminar(id: number) {
-    this.turnoService.eliminar(id);
+  confirmarEliminarTurno(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '430px',
+      disableClose: true,
+      data: {
+        titulo: 'Eliminar turno',
+        subtitulo: 'Agenda veterinaria',
+        mensaje: '¿Estás seguro de eliminar este turno?',
+        tipo: 'delete',
+        textoAceptar: 'Eliminar',
+        textoCancelar: 'Cancelar',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (!resultado) return;
+
+      this.turnoService.eliminar(id);
+
+      this.notification.success('Turno eliminado correctamente');
+    });
   }
-  fechaActual = new Date().toLocaleDateString('es-AR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
 }

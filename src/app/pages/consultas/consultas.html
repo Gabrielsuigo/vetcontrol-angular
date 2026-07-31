@@ -63,8 +63,8 @@
 
     @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
       @if (mascota.consultas.length > 0) {
-        <div class="consulta-item">
-          <div class="consulta-header">
+        <div class="table-container">
+          <div class="table-header">
             <span>Mascota</span>
             <span>Fecha</span>
             <span>Motivo</span>
@@ -74,7 +74,7 @@
           </div>
 
           @for (consulta of mascota.consultas; track $index) {
-            <div class="consulta-row">
+            <div class="table-row">
               <span>🐶 {{ mascota.nombre }}</span>
 
               <span>{{ consulta.fecha }}</span>
@@ -85,8 +85,8 @@
 
               <span>{{ consulta.peso }} kg</span>
 
-              <span class="acciones">
-                <button class="btn-editar" (click)="editarConsulta(mascota.id, $index)">✏️</button>
+              <span class="table-actions">
+                <button class="btn-icon" (click)="editarConsulta(mascota.id, $index)">✏️</button>
 
                 <button
                   class="btn-eliminar separar-eliminar"

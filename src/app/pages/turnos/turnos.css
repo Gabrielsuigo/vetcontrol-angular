@@ -1,11 +1,5 @@
 /* FORMULARIO */
 
-.form-actions {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 24px;
-}
-
 /* ESTADISTICA */
 
 /* LISTA */
@@ -30,40 +24,6 @@
   background: #22c55e;
 
   color: white;
-}
-
-.acciones {
-  display: flex;
-
-  gap: 10px;
-}
-
-.btn-completar {
-  border: none;
-
-  background: #22c55e;
-
-  color: white;
-
-  padding: 10px 16px;
-
-  border-radius: 12px;
-
-  cursor: pointer;
-}
-
-.btn-eliminar {
-  border: none;
-
-  background: #ef4444;
-
-  color: white;
-
-  padding: 10px 16px;
-
-  border-radius: 12px;
-
-  cursor: pointer;
 }
 
 .empty-state {
@@ -175,4 +135,10 @@
   font-size: 24px;
   font-weight: 700;
   color: #111827;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
 }

@@ -12,6 +12,7 @@ import { Home } from './pages/home/home';
 import { Consultas } from './pages/consultas/consultas';
 import { Vacunas } from './pages/vacunas/vacunas';
 import { Demo } from './demo/demo';
+import { HistorialClinicoComponent } from './pages/historial-clinico/historial-clinico';
 
 export const routes: Routes = [
   {
@@ -51,10 +52,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // {
-  //   path: 'historial',
-  //   component: Historial,
-  // },
+  {
+    path: 'historial-clinico',
+    component: HistorialClinicoComponent,
+  },
 
   {
     path: 'turnos',

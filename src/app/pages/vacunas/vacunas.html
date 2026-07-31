@@ -59,21 +59,17 @@
 
         <input type="text" placeholder="Opcional" />
       </div>
-
-      <div class="form-actions">
-        <button class="btn-primary" (click)="confirmarGuardarVacuna()">
-          {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Vacuna' }}
-        </button>
-
-        @if (modoEdicion) {
-          <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
-        }
-      </div>
     </div>
 
-    @if (modoEdicion) {
-      <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
-    }
+    <div class="form-actions">
+      <button class="btn-primary" (click)="confirmarGuardarVacuna()">
+        {{ modoEdicion ? 'Guardar Cambios' : 'Registrar Vacuna' }}
+      </button>
+
+      @if (modoEdicion) {
+        <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar edición</button>
+      }
+    </div>
   </div>
 
   <div class="page-card">
@@ -81,8 +77,8 @@
 
     @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
       @if (mascota.vacunas.length > 0) {
-        <div class="vacuna-item">
-          <div class="consulta-header">
+        <div class="table-container">
+          <div class="table-header">
             <span>Mascota</span>
             <span>Vacuna</span>
             <span>Fecha aplicada</span>
@@ -92,7 +88,7 @@
           </div>
 
           @for (vacuna of mascota.vacunas; track $index) {
-            <div class="consulta-row">
+            <div class="table-row">
               <span>🐶 {{ mascota.nombre }}</span>
 
               <span>{{ vacuna.nombre }}</span>
@@ -103,8 +99,8 @@
 
               <span>{{ obtenerEstado(vacuna.proximaDosis) }}</span>
 
-              <span class="acciones">
-                <button class="btn-editar" (click)="editarVacuna(mascota.id, $index)">✏️</button>
+              <span class="table-actions">
+                <button class="btn-icon" (click)="editarVacuna(mascota.id, $index)">✏️</button>
 
                 <button
                   class="btn-eliminar separar-eliminar"

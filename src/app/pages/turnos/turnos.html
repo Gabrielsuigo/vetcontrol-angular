@@ -93,7 +93,7 @@
 
   <div class="page-card">
     <div class="tabla-header">
-      <h2>📅 Turnos Registrados</h2>
+      <h2>Turnos Registrados</h2>
     </div>
 
     @if (turnos().length === 0) {
@@ -137,7 +137,9 @@
                   <button class="btn-completar" (click)="completar(turno.id)">✔ Completar</button>
                 }
 
-                <button class="btn-eliminar" (click)="eliminar(turno.id)">🗑 Eliminar</button>
+                <button class="btn-eliminar" (click)="confirmarEliminarTurno(turno.id)">
+                  🗑 Eliminar
+                </button>
               </td>
             </tr>
           }

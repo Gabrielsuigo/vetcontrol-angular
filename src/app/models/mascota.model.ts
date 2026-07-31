@@ -10,6 +10,7 @@ export interface Consulta {
   diagnostico: string;
   peso: number;
   fecha: string;
+  notas?: string;
 }
 
 export interface Mascota {
