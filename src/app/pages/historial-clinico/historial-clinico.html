@@ -1,4 +1,5 @@
 <div class="page">
+  <!-- ENCABEZADO -->
   <div class="page-header">
     <div>
       <h1>Historial Clínico</h1>
@@ -6,6 +7,7 @@
     </div>
   </div>
 
+  <!-- SELECTOR DE MASCOTA -->
   <div class="page-card">
     <h2>Seleccionar mascota</h2>
 
@@ -26,95 +28,7 @@
     </div>
   </div>
 
-  @if (mascotaSeleccionada(); as mascota) {
-    <div class="page-card resumen-card">
-      <div class="resumen-header">
-        <div class="foto-mascota">
-          @if (mascota.imagen) {
-            <img [src]="mascota.imagen" [alt]="mascota.nombre" />
-          } @else {
-            <div class="sin-foto">🐾</div>
-          }
-        </div>
-
-        <div class="datos-principales">
-          <h2>{{ mascota.nombre }}</h2>
-
-          <p>{{ mascota.especie }} · {{ mascota.raza }}</p>
-        </div>
-      </div>
-
-      <div class="info-grid">
-        <div>
-          <strong>Edad</strong>
-          <p>{{ mascota.edad }} años</p>
-        </div>
-
-        <div>
-          <strong>Dueño</strong>
-          <p>{{ mascota.duenio }}</p>
-        </div>
-
-        <div>
-          <strong>Fecha de registro</strong>
-          <p>{{ mascota.fechaRegistro }}</p>
-        </div>
-
-        <div>
-          <strong>Consultas</strong>
-          <p>{{ mascota.consultas.length }}</p>
-        </div>
-
-        <div>
-          <strong>Vacunas</strong>
-          <p>{{ mascota.vacunas.length }}</p>
-        </div>
-
-        <div>
-          <strong>Peso actual</strong>
-
-          @if (ultimaConsulta()) {
-            <p>{{ ultimaConsulta()!.peso }} Kg</p>
-          } @else {
-            <p>Sin datos</p>
-          }
-        </div>
-      </div>
-
-      <hr />
-
-      <h3>Última consulta</h3>
-
-      @if (ultimaConsulta()) {
-        <div class="detalle-card">
-          <p><strong>Fecha:</strong> {{ ultimaConsulta()!.fecha }}</p>
-
-          <p><strong>Motivo:</strong> {{ ultimaConsulta()!.motivo }}</p>
-
-          <p><strong>Diagnóstico:</strong> {{ ultimaConsulta()!.diagnostico }}</p>
-        </div>
-      } @else {
-        <p>No hay consultas registradas.</p>
-      }
-
-      <hr />
-
-      <h3>Última vacuna</h3>
-
-      @if (proximaVacuna()) {
-        <div class="detalle-card">
-          <p><strong>Vacuna:</strong> {{ proximaVacuna()!.nombre }}</p>
-
-          <p><strong>Aplicada:</strong> {{ proximaVacuna()!.fecha }}</p>
-
-          <p><strong>Próxima dosis:</strong> {{ proximaVacuna()!.proximaDosis }}</p>
-        </div>
-      } @else {
-        <p>No hay vacunas registradas.</p>
-      }
-    </div>
-  }
-
+  <!-- PESTAÑAS -->
   <div class="page-card">
     <div class="tabs">
       <button
@@ -166,41 +80,172 @@
       </button>
     </div>
   </div>
-  <div class="page-card">
-    @if (pestaniaActiva() === 'resumen') {
-      <h2>Resumen</h2>
 
-      <p>Acá irá el resumen.</p>
-    }
+  <!-- ========================= -->
+  <!-- RESUMEN -->
+  <!-- ========================= -->
 
-    @if (pestaniaActiva() === 'consultas') {
+  @if (pestaniaActiva() === 'resumen') {
+    <div class="page-card resumen-layout">
+      @if (mascotaSeleccionada(); as mascota) {
+        <!-- INFORMACIÓN GENERAL -->
+        <div class="resumen-info">
+          <h2 class="resumen-heading">Información general</h2>
+
+          <div class="resumen-principal">
+            <!-- MASCOTA -->
+            <div class="resumen-mascota">
+              <img class="foto-mascota" [src]="mascota.imagen" [alt]="mascota.nombre" />
+
+              <div>
+                <h2>
+                  {{ mascota.nombre }}
+                </h2>
+                <p class="raza">{{ mascota.raza }}</p>
+
+                <div class="subtitulo">
+                  <span>
+                    {{ mascota.especie }}
+                  </span>
+
+                  <span class="edad-badge"> {{ mascota.edad }} años </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DATOS GENERALES -->
+            <div class="resumen-datos">
+              <div class="dato">
+                <span>Dueño</span>
+
+                <strong>
+                  {{ mascota.duenio }}
+                </strong>
+              </div>
+
+              <div class="dato">
+                <span>Fecha de registro</span>
+
+                <strong>
+                  {{ mascota.fechaRegistro }}
+                </strong>
+              </div>
+            </div>
+
+            <!-- ESTADO SANITARIO -->
+            <div class="estado">
+              <span> Estado sanitario </span>
+
+              <strong>
+                {{ estadoSanitario() }}
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- LÍNEA DE TIEMPO -->
+        <div class="timeline-section">
+          <h2>Línea de tiempo</h2>
+
+          <div class="timeline">
+            @for (evento of timeline(); track evento.fecha + evento.titulo) {
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  @if (evento.tipo === 'vacuna') {
+                    💉
+                  }
+
+                  @if (evento.tipo === 'consulta') {
+                    🩺
+                  }
+
+                  @if (evento.tipo === 'peso') {
+                    ⚖️
+                  }
+
+                  @if (evento.tipo === 'registro') {
+                    📋
+                  }
+                </div>
+
+                <div class="timeline-content">
+                  <div class="timeline-fecha">
+                    {{ evento.fecha }}
+                  </div>
+
+                  <h3>
+                    {{ evento.titulo }}
+                  </h3>
+
+                  <p>
+                    {{ evento.detalle }}
+                  </p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- ========================= -->
+  <!-- CONSULTAS -->
+  <!-- ========================= -->
+
+  @if (pestaniaActiva() === 'consultas') {
+    <div class="page-card">
       <h2>Consultas</h2>
 
-      <p>Acá irá la tabla de consultas.</p>
-    }
+      <p>Acá irá el historial de consultas.</p>
+    </div>
+  }
 
-    @if (pestaniaActiva() === 'vacunas') {
+  <!-- ========================= -->
+  <!-- VACUNAS -->
+  <!-- ========================= -->
+
+  @if (pestaniaActiva() === 'vacunas') {
+    <div class="page-card">
       <h2>Vacunas</h2>
 
-      <p>Acá irá la tabla de vacunas.</p>
-    }
+      <p>Acá irá el historial de vacunas.</p>
+    </div>
+  }
 
-    @if (pestaniaActiva() === 'peso') {
+  <!-- ========================= -->
+  <!-- PESO -->
+  <!-- ========================= -->
+
+  @if (pestaniaActiva() === 'peso') {
+    <div class="page-card">
       <h2>Peso</h2>
 
-      <p>Acá irá el gráfico de peso.</p>
-    }
+      <p>Acá irá la evolución del peso.</p>
+    </div>
+  }
 
-    @if (pestaniaActiva() === 'diagnosticos') {
+  <!-- ========================= -->
+  <!-- DIAGNÓSTICOS -->
+  <!-- ========================= -->
+
+  @if (pestaniaActiva() === 'diagnosticos') {
+    <div class="page-card">
       <h2>Diagnósticos</h2>
 
       <p>Acá irán los diagnósticos.</p>
-    }
+    </div>
+  }
 
-    @if (pestaniaActiva() === 'notas') {
+  <!-- ========================= -->
+  <!-- NOTAS -->
+  <!-- ========================= -->
+
+  @if (pestaniaActiva() === 'notas') {
+    <div class="page-card">
       <h2>Notas</h2>
 
       <p>Acá irán las notas.</p>
-    }
-  </div>
+    </div>
+  }
 </div>

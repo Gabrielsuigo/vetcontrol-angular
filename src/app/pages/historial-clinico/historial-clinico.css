@@ -1,3 +1,7 @@
+/* =========================
+   PESTAÑAS
+   ========================= */
+
 .tabs {
   display: flex;
   gap: 24px;
@@ -15,7 +19,6 @@
   padding: 14px 0;
 
   font-size: 14px;
-
   font-weight: 600;
 
   color: #6b7280;
@@ -51,87 +54,333 @@
   background: #4f46e5;
 }
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* =========================
+   ESTRUCTURA DEL RESUMEN
+   ========================= */
 
-  gap: 22px;
+.resumen-layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr);
+
+  gap: 32px;
+
+  align-items: start;
 }
 
-.info-grid div {
+/* =========================
+   INFORMACIÓN GENERAL
+   ========================= */
+
+.resumen-info {
+  min-width: 0;
+}
+
+.resumen-heading {
+  margin: 0 0 24px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.resumen-principal {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+/* =========================
+   MASCOTA
+   ========================= */
+
+.resumen-mascota {
+  display: flex;
+
+  align-items: center;
+
+  gap: 24px;
+}
+
+.foto-mascota {
+  width: 150px;
+  height: 150px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f3f4f6;
+}
+
+.resumen-mascota h2 {
+  margin: 0;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.subtitulo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 8px 0 0;
+
+  color: #6b7280;
+
+  font-size: 15px;
+}
+
+.raza {
+  margin: 4px 0 0;
+  color: #374151;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.edad-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background: #ecfdf5;
+
+  color: #059669;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+/* =========================
+   DATOS GENERALES
+   ========================= */
+
+.resumen-datos {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.dato {
   background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
 
   border-radius: 12px;
 
   padding: 16px;
-
-  border: 1px solid #e5e7eb;
 }
 
-.info-grid strong {
+.dato span {
   display: block;
 
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+
+  font-size: 12px;
 
   color: #6b7280;
-
-  font-size: 13px;
 
   text-transform: uppercase;
 
   letter-spacing: 0.5px;
 }
 
-.info-grid p {
-  margin: 0;
-
-  font-size: 19px;
-
-  font-weight: 600;
+.dato strong {
+  font-size: 17px;
 
   color: #111827;
 }
 
-.resumen-card {
+/* =========================
+   ESTADO SANITARIO
+   ========================= */
+
+.estado {
+  padding: 16px 18px;
+
+  border-radius: 12px;
+
+  background: #ecfdf5;
+
+  border: 1px solid #86efac;
+}
+
+.estado span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 13px;
+
+  color: #059669;
+}
+
+.estado strong {
+  font-size: 20px;
+
+  color: #047857;
+}
+
+/* =========================
+   LÍNEA DE TIEMPO
+   ========================= */
+
+.timeline-section {
+  min-width: 0;
+}
+
+.timeline-section h2 {
+  margin: 0 0 24px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.timeline {
+  position: relative;
+
+  padding-left: 42px;
+}
+
+/* Línea vertical */
+
+.timeline::before {
+  content: '';
+
+  position: absolute;
+
+  left: 16px;
+
+  top: 8px;
+  bottom: 8px;
+
+  width: 2px;
+
+  background: #e5e7eb;
+}
+
+/* Evento */
+
+.timeline-item {
+  position: relative;
+
   display: flex;
-  gap: 32px;
-  align-items: flex-start;
+
+  gap: 18px;
+
+  padding-bottom: 28px;
 }
 
-.resumen-imagen img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-
-  border-radius: 16px;
-
-  border: 4px solid #eef2ff;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+.timeline-item:last-child {
+  padding-bottom: 0;
 }
 
-.resumen-datos {
+/* Marcador */
+
+.timeline-marker {
+  position: absolute;
+
+  left: -42px;
+  top: 0;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #eef2ff;
+
+  border: 1px solid #c7d2fe;
+
+  border-radius: 50%;
+
+  font-size: 16px;
+
+  z-index: 1;
+}
+
+/* Contenido */
+
+.timeline-content {
   flex: 1;
 }
 
-.resumen-titulo {
-  margin-bottom: 28px;
+.timeline-fecha {
+  margin-bottom: 5px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #9ca3af;
 }
 
-.resumen-titulo h2 {
-  margin: 0;
+.timeline-content h3 {
+  margin: 0 0 5px;
 
-  font-size: 34px;
+  font-size: 15px;
 
   font-weight: 700;
 
   color: #111827;
 }
 
-.resumen-titulo p {
-  margin-top: 6px;
+.timeline-content p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.5;
 
   color: #6b7280;
+}
 
-  font-size: 17px;
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .resumen-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .resumen-mascota {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .resumen-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    gap: 16px;
+
+    overflow-x: auto;
+  }
 }

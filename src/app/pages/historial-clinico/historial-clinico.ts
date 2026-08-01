@@ -32,6 +32,82 @@ export class HistorialClinicoComponent {
     return this.mascotas().find((m) => m.id === this.mascotaId());
   });
 
+  timeline = computed(() => {
+    const mascota = this.mascotaSeleccionada();
+
+    if (!mascota) {
+      return [];
+    }
+
+    const eventos: {
+      tipo: string;
+      fecha: string;
+      titulo: string;
+      detalle: string;
+    }[] = [];
+
+    // Fecha de registro
+    eventos.push({
+      tipo: 'registro',
+      fecha: mascota.fechaRegistro,
+      titulo: 'Mascota registrada',
+      detalle: `${mascota.nombre} fue registrada en VetControl`,
+    });
+
+    // Consultas
+    mascota.consultas.forEach((consulta) => {
+      eventos.push({
+        tipo: 'consulta',
+        fecha: consulta.fecha,
+        titulo: 'Consulta',
+        detalle: consulta.motivo || 'Consulta veterinaria',
+      });
+
+      // Peso registrado durante la consulta
+      if (consulta.peso && consulta.peso > 0) {
+        eventos.push({
+          tipo: 'peso',
+          fecha: consulta.fecha,
+          titulo: 'Peso registrado',
+          detalle: `${consulta.peso} kg`,
+        });
+      }
+    });
+
+    // Vacunas
+    mascota.vacunas.forEach((vacuna) => {
+      eventos.push({
+        tipo: 'vacuna',
+        fecha: vacuna.fecha,
+        titulo: 'Vacuna aplicada',
+        detalle: vacuna.nombre,
+      });
+    });
+
+    // Ordenar del más reciente al más antiguo
+    return eventos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+  });
+
+  pesoActual = computed(() => {
+    const mascota = this.mascotaSeleccionada();
+
+    if (!mascota) return 0;
+
+    if (mascota.consultas.length === 0) return 0;
+
+    return mascota.consultas[mascota.consultas.length - 1].peso;
+  });
+
+  estadoSanitario = computed(() => {
+    const mascota = this.mascotaSeleccionada();
+
+    if (!mascota) return 'Sin datos';
+
+    if (mascota.consultas.length === 0) return 'Sin consultas';
+
+    return 'Al día';
+  });
+
   ultimaConsulta = computed(() => {
     const mascota = this.mascotaSeleccionada();
 
