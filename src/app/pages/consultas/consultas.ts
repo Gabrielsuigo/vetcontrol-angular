@@ -46,38 +46,20 @@ export class Consultas {
     if (!this.mascotaId) return;
 
     if (this.modoEdicion) {
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        width: '430px',
-        disableClose: true,
-
-        data: {
-          titulo: 'Guardar cambios',
-          subtitulo: 'Consulta médica',
-          mensaje: '¿Deseás guardar los cambios realizados en esta consulta?',
-          tipo: 'save',
-          textoAceptar: 'Guardar',
-          textoCancelar: 'Cancelar',
-        },
+      this.mascotaService.editarConsulta(this.mascotaEditandoId, this.consultaEditandoIndex, {
+        motivo: this.motivo,
+        diagnostico: this.diagnostico,
+        peso: this.peso,
+        fecha: this.fecha,
+        notas: this.observaciones,
       });
 
-      dialogRef.afterClosed().subscribe((resultado) => {
-        if (!resultado) return;
+      this.notification.success('Consulta editada correctamente');
 
-        this.mascotaService.editarConsulta(this.mascotaEditandoId, this.consultaEditandoIndex, {
-          motivo: this.motivo,
-          diagnostico: this.diagnostico,
-          peso: this.peso,
-          fecha: this.fecha,
-          notas: this.observaciones,
-        });
-
-        this.notification.success('Consulta editada correctamente');
-
-        this.modoEdicion = false;
-        this.mascotaEditandoId = 0;
-        this.consultaEditandoIndex = -1;
-        this.mascotaId = 0;
-      });
+      this.modoEdicion = false;
+      this.mascotaEditandoId = 0;
+      this.consultaEditandoIndex = -1;
+      this.mascotaId = 0;
     } else {
       this.mascotaService.agregarConsulta(this.mascotaId, {
         motivo: this.motivo,

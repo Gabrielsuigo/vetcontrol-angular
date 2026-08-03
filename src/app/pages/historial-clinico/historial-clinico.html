@@ -148,7 +148,10 @@
           <h2>Línea de tiempo</h2>
 
           <div class="timeline">
-            @for (evento of timeline(); track evento.fecha + evento.titulo) {
+            @for (
+              evento of mostrarHistorialCompleto() ? timeline() : timelineResumen();
+              track evento.fecha + evento.titulo
+            ) {
               <div class="timeline-item">
                 <div class="timeline-marker">
                   @if (evento.tipo === 'vacuna') {
@@ -182,6 +185,12 @@
                   </p>
                 </div>
               </div>
+            }
+
+            @if (hayMasEventos()) {
+              <button class="ver-historial" (click)="alternarHistorial()">
+                {{ mostrarHistorialCompleto() ? 'Mostrar menos' : 'Ver historial completo' }}
+              </button>
             }
           </div>
         </div>

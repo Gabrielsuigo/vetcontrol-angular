@@ -104,6 +104,26 @@ export class HistorialClinicoComponent {
     return eventos.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
   });
 
+  timelineResumen = computed(() => {
+    const eventos = this.timeline();
+
+    if (this.mostrarHistorialCompleto()) {
+      return eventos;
+    }
+
+    return eventos.slice(0, 4);
+  });
+
+  hayMasEventos = computed(() => {
+    return this.timeline().length > 4;
+  });
+
+  mostrarHistorialCompleto = signal(false);
+
+  alternarHistorial() {
+    this.mostrarHistorialCompleto.update((valor) => !valor);
+  }
+
   pesoActual = computed(() => {
     const mascota = this.mascotaSeleccionada();
 

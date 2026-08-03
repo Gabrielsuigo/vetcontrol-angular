@@ -54,19 +54,21 @@
 
 .btn-editar,
 .btn-eliminar {
-  border: none;
-  background: transparent;
+  border: none !important;
+  background: transparent !important;
+  color: #111827 !important;
   cursor: pointer;
   font-size: 18px;
-  transition: 0.2s;
-  padding: 0;
+  transition: transform 0.2s ease;
+  padding: 0 !important;
+  width: auto;
+  height: auto;
+  min-width: 0;
   white-space: nowrap;
+  box-shadow: none !important;
 }
 
-.btn-editar:hover {
-  transform: scale(1.2);
-}
-
+.btn-editar:hover,
 .btn-eliminar:hover {
   transform: scale(1.2);
 }
@@ -76,7 +78,6 @@
 }
 
 .btn-cancelar {
-  margin-top: 12px;
   margin-left: 10px;
 }
 

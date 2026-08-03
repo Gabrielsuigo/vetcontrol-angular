@@ -1,56 +1,16 @@
-/* FORMULARIO */
+/* =====================================================
+   TURNOS - ESTILOS PROPIOS
+===================================================== */
 
-/* ESTADISTICA */
-
-/* LISTA */
-
-.estado {
-  display: inline-block;
-
-  margin-top: 12px;
-
-  padding: 6px 12px;
-
-  border-radius: 999px;
-
-  background: #facc15;
-
-  color: #1e293b;
-
-  font-weight: 600;
-}
-
-.estado.completado {
-  background: #22c55e;
-
-  color: white;
-}
-
-.empty-state {
-  background: white;
-
-  padding: 45px 30px;
-
-  border-radius: 24px;
-
-  text-align: center;
-
-  color: #64748b;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
+/* ==========================
+   ESTADÍSTICAS
+========================== */
 
 .stats-dashboard {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
 
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-
-  padding: 26px 32px;
   margin-bottom: 32px;
 }
 
@@ -58,83 +18,185 @@
   display: flex;
   align-items: center;
   gap: 16px;
+
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  padding: 20px 22px;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .stat-item h2 {
   margin: 0;
 
-  font-size: 34px;
-
+  font-size: 28px;
   font-weight: 700;
 
   color: #111827;
 }
 
 .stat-item p {
-  margin: 0;
-  color: #64748b;
+  margin: 4px 0 0;
+
+  font-size: 13px;
+  color: #6b7280;
 }
 
 .stat-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 30px;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  font-size: 24px;
 }
 
 .stat-icon.purple {
-  background: #ede9fe;
+  background: #eef2ff;
 }
 
 .stat-icon.orange {
-  background: #fef3c7;
+  background: #fff7ed;
 }
 
 .stat-icon.green {
-  background: #dcfce7;
+  background: #ecfdf5;
 }
+
+/* ==========================
+   TABLA DE TURNOS
+========================== */
 
 .turnos-table {
   width: 100%;
+
   border-collapse: collapse;
+
   background: white;
-  border-radius: 24px;
+
+  border-radius: 12px;
+
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
+/* Encabezado */
+
 .turnos-table thead {
-  background: #f4f1ff;
+  background: #f3f4f6;
 }
 
 .turnos-table th {
-  padding: 18px;
+  padding: 12px;
+
   text-align: left;
-  color: #312e81;
+
+  color: #374151;
+
+  font-size: 14px;
   font-weight: 700;
 }
 
+/* Filas */
+
 .turnos-table td {
-  padding: 18px;
-  border-top: 1px solid #ececf3;
+  padding: 12px;
+
+  border-top: 1px solid #e5e7eb;
+
+  font-size: 14px;
+
+  color: #374151;
+}
+
+.turnos-table tbody tr {
+  transition: background 0.2s ease;
 }
 
 .turnos-table tbody tr:hover {
-  background: #fafaff;
+  background: #f9fafb;
 }
 
-.tabla-header {
-  margin-bottom: 20px;
+/* ==========================
+   ESTADO DEL TURNO
+========================== */
+
+.estado {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #fef3c7;
+
+  color: #92400e;
+
+  font-size: 12px;
+
+  font-weight: 600;
 }
 
-.tabla-header h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  color: #111827;
+.estado.completado {
+  background: #dcfce7;
+
+  color: #166534;
+}
+
+/* ==========================
+   ACCIONES
+========================== */
+
+/* ==========================
+   ESTADO VACÍO
+========================== */
+
+.empty-state {
+  padding: 40px 24px;
+
+  text-align: center;
+
+  color: #6b7280;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  background: #f9fafb;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 1000px) {
+  .stats-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .stats-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .turnos-table {
+    min-width: 800px;
+  }
+
+  .page-card {
+    overflow-x: auto;
+  }
 }
 
 .form-actions {

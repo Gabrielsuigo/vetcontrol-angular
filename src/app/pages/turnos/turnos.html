@@ -132,14 +132,16 @@
                 </span>
               </td>
 
-              <td class="acciones">
-                @if (turno.estado === 'Pendiente') {
-                  <button class="btn-completar" (click)="completar(turno.id)">✔ Completar</button>
-                }
+              <td>
+                <div class="table-actions">
+                  @if (turno.estado === 'Pendiente') {
+                    <button class="btn-completar" (click)="completar(turno.id)">✔ Completar</button>
+                  }
 
-                <button class="btn-eliminar" (click)="confirmarEliminarTurno(turno.id)">
-                  🗑 Eliminar
-                </button>
+                  <button class="btn-eliminar" (click)="confirmarEliminarTurno(turno.id)">
+                    🗑
+                  </button>
+                </div>
               </td>
             </tr>
           }
