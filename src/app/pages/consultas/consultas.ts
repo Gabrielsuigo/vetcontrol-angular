@@ -68,6 +68,7 @@ export class Consultas {
           diagnostico: this.diagnostico,
           peso: this.peso,
           fecha: this.fecha,
+          notas: this.observaciones,
         });
 
         this.notification.success('Consulta editada correctamente');
@@ -83,6 +84,7 @@ export class Consultas {
         diagnostico: this.diagnostico,
         peso: this.peso,
         fecha: this.fecha,
+        notas: this.observaciones,
       });
 
       this.notification.success('Consulta registrada correctamente');
@@ -166,6 +168,7 @@ export class Consultas {
     this.diagnostico = consulta.diagnostico;
     this.peso = consulta.peso;
     this.fecha = consulta.fecha;
+    this.observaciones = consulta.notas ?? '';
 
     this.notification.info('Editando consulta');
 

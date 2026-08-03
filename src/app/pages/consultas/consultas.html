@@ -28,22 +28,36 @@
 
       <div class="form-group">
         <label>Motivo</label>
-        <input type="text" placeholder="Motivo" />
+
+        <input type="text" placeholder="Motivo" [(ngModel)]="motivo" />
       </div>
 
       <div class="form-group">
         <label>Diagnóstico</label>
-        <input type="text" placeholder="Diagnóstico" />
+
+        <input type="text" placeholder="Diagnóstico" [(ngModel)]="diagnostico" />
       </div>
 
       <div class="form-group">
         <label>Peso</label>
-        <input type="number" placeholder="Peso" />
+
+        <input type="number" placeholder="Peso" [(ngModel)]="peso" />
       </div>
 
       <div class="form-group">
         <label>Fecha</label>
-        <input type="date" />
+
+        <input type="date" [(ngModel)]="fecha" />
+      </div>
+
+      <div class="form-group">
+        <label>Notas</label>
+
+        <textarea
+          placeholder="Observaciones o notas de la consulta"
+          [(ngModel)]="observaciones"
+          rows="4"
+        ></textarea>
       </div>
     </div>
 

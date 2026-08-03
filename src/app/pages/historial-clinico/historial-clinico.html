@@ -194,11 +194,42 @@
   <!-- ========================= -->
 
   @if (pestaniaActiva() === 'consultas') {
-    <div class="page-card">
-      <h2>Consultas</h2>
+    <h2>Consultas</h2>
 
-      <p>Acá irá el historial de consultas.</p>
-    </div>
+    @if (mascotaSeleccionada(); as mascota) {
+      @if (consultas().length > 0) {
+        <div class="consultas-lista">
+          @for (consulta of consultas(); track consulta.fecha + consulta.motivo) {
+            <div class="consulta-item">
+              <div class="consulta-header">
+                <div>
+                  <strong>{{ consulta.motivo || 'Consulta veterinaria' }}</strong>
+                  <span>{{ consulta.fecha }}</span>
+                </div>
+
+                <div class="consulta-peso">{{ consulta.peso }} kg</div>
+              </div>
+
+              <div class="consulta-datos">
+                <div>
+                  <span>Diagnóstico</span>
+                  <p>{{ consulta.diagnostico || 'Sin diagnóstico registrado' }}</p>
+                </div>
+
+                <div>
+                  <span>Notas</span>
+                  <p>{{ consulta.notas || 'Sin notas registradas' }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="sin-datos">Esta mascota todavía no tiene consultas registradas.</p>
+      }
+    } @else {
+      <p class="sin-datos">Seleccioná una mascota para ver sus consultas.</p>
+    }
   }
 
   <!-- ========================= -->

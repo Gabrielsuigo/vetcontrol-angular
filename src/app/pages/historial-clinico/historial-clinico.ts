@@ -32,6 +32,22 @@ export class HistorialClinicoComponent {
     return this.mascotas().find((m) => m.id === this.mascotaId());
   });
 
+  consultas = computed(() => {
+    return this.mascotaSeleccionada()?.consultas ?? [];
+  });
+
+  vacunas = computed(() => {
+    return this.mascotaSeleccionada()?.vacunas ?? [];
+  });
+
+  diagnosticos = computed(() => {
+    return this.consultas().filter((consulta) => consulta.diagnostico?.trim());
+  });
+
+  notas = computed(() => {
+    return this.consultas().filter((consulta) => consulta.notas?.trim());
+  });
+
   timeline = computed(() => {
     const mascota = this.mascotaSeleccionada();
 
