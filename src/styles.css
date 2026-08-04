@@ -530,6 +530,17 @@ button {
   gap: 10px;
 }
 
+/* =====================================================
+   ACCIONES DE FORMULARIOS
+===================================================== */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 .btn-icon {
   border: none;
   background: transparent;

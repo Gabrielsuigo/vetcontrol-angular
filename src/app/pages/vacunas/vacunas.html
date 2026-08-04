@@ -73,46 +73,63 @@
   </div>
 
   <div class="page-card">
-    <h2>Vacunas Registradas</h2>
+    <div class="tabla-header">
+      <h2>Vacunas Registradas</h2>
+    </div>
 
-    @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
-      @if (mascota.vacunas.length > 0) {
-        <div class="table-container">
-          <div class="table-header">
-            <span>Mascota</span>
-            <span>Vacuna</span>
-            <span>Fecha aplicada</span>
-            <span>Próxima dosis</span>
-            <span>Estado</span>
-            <span>Acciones</span>
-          </div>
+    <table class="registered-table">
+      <thead>
+        <tr>
+          <th>Mascota</th>
+          <th>Vacuna</th>
+          <th>Fecha aplicada</th>
+          <th>Próxima dosis</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
           @for (vacuna of mascota.vacunas; track $index) {
-            <div class="table-row">
-              <span>🐶 {{ mascota.nombre }}</span>
+            <tr>
+              <td>
+                <strong>{{ mascota.nombre }}</strong>
+              </td>
 
-              <span>{{ vacuna.nombre }}</span>
+              <td>{{ vacuna.nombre }}</td>
 
-              <span>{{ vacuna.fecha }}</span>
+              <td>{{ vacuna.fecha }}</td>
 
-              <span>{{ vacuna.proximaDosis }}</span>
+              <td>{{ vacuna.proximaDosis }}</td>
 
-              <span>{{ obtenerEstado(vacuna.proximaDosis) }}</span>
-
-              <span class="table-actions">
-                <button class="btn-icon" (click)="editarVacuna(mascota.id, $index)">✏️</button>
-
-                <button
-                  class="btn-eliminar separar-eliminar"
-                  (click)="confirmarEliminarVacuna(mascota.id, $index)"
+              <td>
+                <span
+                  class="estado"
+                  [class.estado-vencida]="obtenerEstado(vacuna.proximaDosis) === 'Vencida'"
                 >
-                  🗑
-                </button>
-              </span>
-            </div>
+                  <span class="estado-dot"></span>
+
+                  {{ obtenerEstado(vacuna.proximaDosis) }}
+                </span>
+              </td>
+
+              <td>
+                <div class="table-actions">
+                  <button class="btn-icon" (click)="editarVacuna(mascota.id, $index)">✏️</button>
+
+                  <button
+                    class="btn-eliminar"
+                    (click)="confirmarEliminarVacuna(mascota.id, $index)"
+                  >
+                    🗑
+                  </button>
+                </div>
+              </td>
+            </tr>
           }
-        </div>
-      }
-    }
+        }
+      </tbody>
+    </table>
   </div>
 </div>

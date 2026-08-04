@@ -73,46 +73,51 @@
   </div>
 
   <div class="page-card">
-    <h2>Consultas Registradas</h2>
+    <div class="tabla-header">
+      <h2>Consultas Registradas</h2>
+    </div>
 
-    @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
-      @if (mascota.consultas.length > 0) {
-        <div class="table-container">
-          <div class="table-header">
-            <span>Mascota</span>
-            <span>Fecha</span>
-            <span>Motivo</span>
-            <span>Diagnóstico</span>
-            <span>Peso</span>
-            <span>Acciones</span>
-          </div>
+    <table class="registered-table">
+      <thead>
+        <tr>
+          <th>Mascota</th>
+          <th>Fecha</th>
+          <th>Motivo</th>
+          <th>Diagnóstico</th>
+          <th>Peso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        @for (mascota of mascotaService.mascotasUsuario(); track mascota.id) {
           @for (consulta of mascota.consultas; track $index) {
-            <div class="table-row">
-              <span>🐶 {{ mascota.nombre }}</span>
+            <tr>
+              <td>
+                <strong>{{ mascota.nombre }}</strong>
+              </td>
 
-              <span>{{ consulta.fecha }}</span>
+              <td>{{ consulta.fecha }}</td>
 
-              <span>{{ consulta.motivo }}</span>
+              <td>{{ consulta.motivo }}</td>
 
-              <span>{{ consulta.diagnostico }}</span>
+              <td>{{ consulta.diagnostico }}</td>
 
-              <span>{{ consulta.peso }} kg</span>
+              <td>{{ consulta.peso }} kg</td>
 
-              <span class="table-actions">
-                <button class="btn-icon" (click)="editarConsulta(mascota.id, $index)">✏️</button>
+              <td>
+                <div class="table-actions">
+                  <button class="btn-icon" (click)="editarConsulta(mascota.id, $index)">✏️</button>
 
-                <button
-                  class="btn-eliminar separar-eliminar"
-                  (click)="eliminarConsulta(mascota.id, $index)"
-                >
-                  🗑
-                </button>
-              </span>
-            </div>
+                  <button class="btn-eliminar" (click)="eliminarConsulta(mascota.id, $index)">
+                    🗑
+                  </button>
+                </div>
+              </td>
+            </tr>
           }
-        </div>
-      }
-    }
+        }
+      </tbody>
+    </table>
   </div>
 </div>

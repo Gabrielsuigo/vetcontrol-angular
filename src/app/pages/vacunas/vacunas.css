@@ -1,3 +1,7 @@
+/* =====================================================
+   FORMULARIO DE VACUNAS
+===================================================== */
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -10,52 +14,161 @@
 .form-grid input,
 .form-grid select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
+  height: 46px;
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
   border-radius: 10px;
+
   font-size: 14px;
+  font-family: inherit;
+
   box-sizing: border-box;
+  background: white;
+
+  outline: none;
 }
+
+.form-grid input:focus,
+.form-grid select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* =====================================================
+   TABLA DE VACUNAS
+===================================================== */
+
+.registered-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+}
+
+/* Encabezado gris */
+
+.registered-table thead th {
+  background: #f3f4f6;
+
+  padding: 12px;
+
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #374151;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Bordes redondeados del encabezado */
+
+.registered-table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.registered-table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Filas */
+
+.registered-table td {
+  padding: 14px 10px;
+
+  font-size: 14px;
+  color: #374151;
+
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.registered-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* =====================================================
+   ESTADO DE LA VACUNA
+===================================================== */
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   ESTADO DE LA VACUNA
+===================================================== */
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #16a34a;
+}
+
+/* Punto del estado */
+
+/* .estado-dot {
+  width: 10px;
+  height: 10px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+} */
+
+/* Vacuna vencida */
+
+.estado.estado-vencida {
+  color: #dc2626;
+}
+
+.estado.estado-vencida .estado-dot {
+  background: #ef4444;
+}
+
+/* Elimina cualquier punto generado anteriormente */
+
+.estado::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Vencida */
+
+.estado:has(+ *) {
+  /* reservado para futuras mejoras */
+}
+
+/* =====================================================
+   MENSAJE DE ÉXITO
+===================================================== */
 
 .alert-success {
   margin-top: 15px;
   padding: 12px;
+
   border-radius: 10px;
+
   background: #dcfce7;
   color: #166534;
+
   font-weight: 600;
 }
-
-.vacuna-item {
-  margin-top: 25px;
-}
-
-.btn-editar,
-.btn-eliminar {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s;
-  padding: 0;
-  white-space: nowrap;
-}
-
-.btn-editar:hover,
-.btn-eliminar:hover {
-  transform: scale(1.2);
-}
-
-.separar-eliminar {
-  margin-left: 20px;
-}
-
 .form-actions {
   display: flex;
   gap: 12px;
   margin-top: 20px;
-}
-
-.btn-cancelar {
-  margin-left: 0;
 }
