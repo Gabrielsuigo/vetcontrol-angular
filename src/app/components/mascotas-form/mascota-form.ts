@@ -21,8 +21,8 @@ import { ViewChild, ElementRef } from '@angular/core';
     CommonModule,
     MatSnackBarModule,
   ],
-  templateUrl: './persona-form.html',
-  styleUrl: './persona-form.css',
+  templateUrl: './mascota-form.html',
+  styleUrl: './mascota-form.css',
 })
 export class PersonaForm {
   @ViewChild('inputNombre')

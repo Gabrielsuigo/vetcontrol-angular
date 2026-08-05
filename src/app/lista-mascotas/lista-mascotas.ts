@@ -29,8 +29,8 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog'
     MatFormFieldModule,
     MatExpansionModule,
   ],
-  templateUrl: './lista-personas.html',
-  styleUrl: './lista-personas.css',
+  templateUrl: './lista-mascotas.html',
+  styleUrl: './lista-mascotas.css',
 })
 export class PersonaList {
   @Input() filtro = '';

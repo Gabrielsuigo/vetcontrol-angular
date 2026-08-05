@@ -1,7 +1,7 @@
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Routes } from '@angular/router';
-import { Mascotas } from './pages/personas/personas';
+import { Mascotas } from './pages/mascotas/mascotas';
 import { Historial } from './pages/historial/historial';
 import { Turnos } from './pages/turnos/turnos';
 import { DetalleMascota } from './pages/detalle-mascota/detalle-mascota';

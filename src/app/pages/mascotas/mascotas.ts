@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PersonaList } from '../../lista-personas/lista-personas';
+import { PersonaList } from '../../lista-mascotas/lista-mascotas';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 
 import { MascotaService } from '../../core/services/mascota.service';
-import { PersonaForm } from '../../components/persona-form/persona-form';
+import { PersonaForm } from '../../components/mascotas-form/mascota-form';
 
 @Component({
   selector: 'app-mascotas',
@@ -27,8 +27,8 @@ import { PersonaForm } from '../../components/persona-form/persona-form';
     MatFormFieldModule,
     MatSelectModule,
   ],
-  templateUrl: './personas.html',
-  styleUrls: ['./personas.css'],
+  templateUrl: './mascotas.html',
+  styleUrls: ['./mascotas.css'],
 })
 export class Mascotas {
   filtro = '';
