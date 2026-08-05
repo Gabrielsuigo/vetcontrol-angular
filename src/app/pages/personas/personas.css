@@ -28,6 +28,10 @@
   FILTROS
 =====================================*/
 
+/*=====================================
+  FILTROS
+=====================================*/
+
 .filters-bar {
   display: grid;
 
@@ -38,7 +42,67 @@
   margin-bottom: 24px;
 }
 
+/* Campos */
+
 .search-field,
 .filter-field {
   width: 100%;
+}
+
+/* Altura y apariencia general */
+
+.search-field,
+.filter-field {
+  --mdc-outlined-text-field-container-shape: 10px;
+  --mdc-outlined-text-field-outline-color: #d1d5db;
+  --mdc-outlined-text-field-hover-outline-color: #9ca3af;
+  --mdc-outlined-text-field-focus-outline-color: #6366f1;
+}
+
+/* Altura */
+
+.search-field ::ng-deep .mat-mdc-text-field-wrapper,
+.filter-field ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 46px;
+  background: white;
+}
+
+/* Contenido centrado */
+
+.search-field ::ng-deep .mat-mdc-form-field-flex,
+.filter-field ::ng-deep .mat-mdc-form-field-flex {
+  height: 46px;
+  align-items: center;
+}
+
+/* Input */
+
+.search-field input {
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Select */
+
+.filter-field ::ng-deep .mat-mdc-select-value {
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Labels */
+
+.filter-field ::ng-deep .mdc-floating-label {
+  font-size: 13px;
+  color: #374151;
+}
+
+/* Icono de búsqueda */
+
+.search-field ::ng-deep .mat-mdc-form-field-icon-prefix {
+  padding-left: 12px;
+  padding-right: 8px;
+}
+
+.search-field ::ng-deep .mat-icon {
+  color: #374151;
 }
