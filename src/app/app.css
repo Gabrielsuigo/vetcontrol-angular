@@ -545,8 +545,9 @@ router-outlet + * {
 
   .main-content {
     margin-left: 0;
-
     width: 100%;
+    min-height: 100vh;
+    overflow: visible;
   }
 
   .topbar {
@@ -570,9 +571,9 @@ router-outlet + * {
 
   .page-container {
     width: 100%;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    min-height: auto;
+
+    overflow: visible;
 
     padding-bottom: 80px;
   }
