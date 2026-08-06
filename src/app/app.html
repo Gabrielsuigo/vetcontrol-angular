@@ -7,43 +7,51 @@
           <mat-icon>pets</mat-icon>
         </div>
 
-        <h2>VetControl</h2>
-
-        <span class="logo-subtitle"> Sistema Veterinario </span>
+        <div class="logo-text">
+          <h2>VetControl</h2>
+          <span class="logo-subtitle">Sistema Veterinario</span>
+        </div>
       </div>
 
       <nav class="menu">
         <a routerLink="/dashboard" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>dashboard</mat-icon>
           <span>Dashboard</span>
+          <span class="sidebar-arrow">→</span>
         </a>
 
         <a routerLink="/mascotas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>pets</mat-icon>
-          <span>Mascotas</span>
+          <span>Mascotas </span>
+          <span class="sidebar-arrow">→</span>
         </a>
 
         <a routerLink="/vacunas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>vaccines</mat-icon>
-          <span>Vacunas</span>
+          <span>Vacunas </span>
+          <span class="sidebar-arrow">→</span>
         </a>
 
         <a routerLink="/consultas" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>medical_services</mat-icon>
-          <span>Consultas</span>
+          <span>Consultas </span>
+          <span class="sidebar-arrow">→</span>
         </a>
-
         <a routerLink="/turnos" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>calendar_month</mat-icon>
-          <span>Turnos</span>
+          <span>Turnos </span>
+          <span class="sidebar-arrow">→</span>
         </a>
+
         <a routerLink="/historial-clinico" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>history</mat-icon>
           <span>Historial Clínico</span>
+          <span class="sidebar-arrow">→</span>
         </a>
         <a routerLink="/perfil" routerLinkActive="active" (click)="cerrarSidebar()">
           <mat-icon>person</mat-icon>
           <span>Perfil</span>
+          <span class="sidebar-arrow">→</span>
         </a>
 
         <a routerLink="/configuracion" (click)="cerrarSidebar()">

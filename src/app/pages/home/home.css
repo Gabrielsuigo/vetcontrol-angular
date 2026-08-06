@@ -38,7 +38,7 @@
 }
 
 .navbar-logo mat-icon {
-  color: #8b5cf6;
+  color: #374151;
 }
 
 .navbar-links {
@@ -279,7 +279,7 @@
 
   margin-bottom: 10px;
 
-  color: #8b5cf6;
+  color: #111827;
 
   font-weight: 800;
 }
@@ -427,17 +427,63 @@
 
   padding: 18px 42px;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  background: #374151;
 
   color: white;
   text-decoration: none;
 
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
 
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 
-  transition: transform 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+.demo-btn:hover {
+  background: #111827;
+}
+
+.navbar-actions a {
+  border-radius: 12px !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.navbar-actions a:first-child {
+  color: white;
+}
+
+.navbar-actions a:last-child {
+  background: #374151 !important;
+  color: white !important;
+}
+
+.navbar-actions a:last-child:hover {
+  background: #111827 !important;
+}
+
+////////////////////
+
+
+.navbar-actions a:focus,
+.navbar-actions a:focus-visible,
+.navbar-actions button:focus,
+.navbar-actions button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-actions a {
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.navbar-actions a:hover {
+  box-shadow: none !important;
 }
