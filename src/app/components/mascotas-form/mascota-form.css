@@ -151,15 +151,6 @@ mat-card h2::after {
   margin-bottom: 15px;
 }
 
-.campo-error {
-  color: #d32f2f;
-  font-size: 13px;
-  margin-top: -15px;
-  margin-bottom: 18px;
-  margin-left: 12px;
-  font-weight: 500;
-}
-
 .acciones-form button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
@@ -330,11 +321,30 @@ mat-card h2::after {
     grid-template-columns: 1fr;
   }
 
+  .form-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .form-card {
-    padding: 22px;
+    width: 100%;
+    padding: 22px !important;
+    margin-bottom: 30px;
+  }
+
+  .acciones-form {
+    width: 100%;
+    margin-top: 24px;
+    padding-bottom: 20px;
   }
 
   .acciones-form button {
     width: 100%;
+  }
+
+  .image-column {
+    width: 100%;
+    margin-top: 15px;
   }
 }

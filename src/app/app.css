@@ -427,11 +427,12 @@
 
 .main-content {
   flex: 1;
+  min-width: 0;
+  min-height: 0;
 
   margin-left: 280px;
 
   display: flex;
-
   flex-direction: column;
 }
 
@@ -489,10 +490,6 @@ router-outlet + * {
    RESPONSIVE
 ===================================================== */
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
 @media (max-width: 1024px) {
   .sidebar {
     width: 240px;
@@ -530,14 +527,6 @@ router-outlet + * {
     color: #111827;
 
     cursor: pointer;
-  }
-  .page-container {
-    width: 100%;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    padding-bottom: 80px;
   }
 
   .sidebar {
