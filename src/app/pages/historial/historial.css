@@ -38,10 +38,6 @@
   border: 1px solid #e5e7eb;
 }
 
-.historial-card:hover {
-  transform: translateY(-5px);
-}
-
 .historial-card img {
   width: 110px;
 

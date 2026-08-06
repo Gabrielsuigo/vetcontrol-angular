@@ -116,19 +116,6 @@
   color: #16a34a;
 }
 
-/* Punto del estado */
-
-/* .estado-dot {
-  width: 10px;
-  height: 10px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #22c55e;
-} */
-
 /* Vacuna vencida */
 
 .estado.estado-vencida {
@@ -147,10 +134,6 @@
 }
 
 /* Vencida */
-
-.estado:has(+ *) {
-  /* reservado para futuras mejoras */
-}
 
 /* =====================================================
    MENSAJE DE ÉXITO

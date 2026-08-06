@@ -1,76 +1,192 @@
 <div class="demo-page">
   <div class="demo-container">
+    <!-- HEADER -->
     <div class="demo-header">
-      <h1>🐾 VetControl Demo</h1>
+      <div>
+        <span class="demo-badge">🐾 DEMO INTERACTIVA</span>
 
-      <p>Explorá una versión demostrativa de la plataforma antes de registrarte.</p>
-    </div>
-    <h2 class="demo-section-title">📊 Resumen general</h2>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h2>3</h2>
-        <span>Mascotas</span>
-      </div>
+        <h1>VetControl</h1>
 
-      <div class="stat-card">
-        <h2>1</h2>
-        <span>Vacuna próxima</span>
-      </div>
-
-      <div class="stat-card">
-        <h2>8</h2>
-        <span>Consultas</span>
+        <p>Conocé cómo funciona nuestra plataforma de gestión para clínicas veterinarias.</p>
       </div>
     </div>
 
-    <h2 class="demo-section-title">📅 Próximos turnos</h2>
-    <div class="demo-list">
-      @for (turno of turnosDemo; track $index) {
-        <div class="pet-card">
-          <div>
-            <h3>{{ turno.mascota }}</h3>
-            <p>{{ turno.motivo }}</p>
-            <small>{{ turno.fecha }}</small>
+    <!-- RESUMEN -->
+    <h2 class="demo-section-title">Resumen general</h2>
+
+    <section class="stats-grid">
+      <div class="stat-card stat-pets">
+        <div class="stat-header">
+          <span class="stat-label">Mascotas</span>
+
+          <div class="stat-icon">
+            <span>🐾</span>
           </div>
         </div>
-      }
-    </div>
 
-    <h2 class="demo-section-title">🩺 Últimas consultas</h2>
+        <h2>{{ mascotasDemo.length }}</h2>
 
-    <div class="demo-list">
-      @for (consulta of consultasDemo; track $index) {
-        <div class="pet-card">
-          <div>
-            <h3>{{ consulta.mascota }}</h3>
-            <p>{{ consulta.motivo }}</p>
-            <small>{{ consulta.fecha }}</small>
+        <small>Mascotas registradas</small>
+      </div>
+
+      <div class="stat-card stat-vaccines">
+        <div class="stat-header">
+          <span class="stat-label">Vacunas</span>
+
+          <div class="stat-icon">
+            <span>💉</span>
           </div>
         </div>
-      }
-    </div>
-    <h2 class="demo-section-title">💉 Estado de vacunas</h2>
 
-    <div class="demo-list">
-      @for (mascota of mascotasDemo; track $index) {
-        <div class="pet-card">
-          <div>
-            <h3>{{ mascota.especie }} {{ mascota.nombre }}</h3>
-            <p>Vacuna: {{ mascota.vacuna }}</p>
-            <small>Próxima dosis: {{ mascota.proximaDosis }}</small>
+        <h2>{{ vacunasProximas }}</h2>
+
+        <small>Próximas dosis</small>
+      </div>
+
+      <div class="stat-card stat-consultas">
+        <div class="stat-header">
+          <span class="stat-label">Consultas</span>
+
+          <div class="stat-icon">
+            <span>🩺</span>
           </div>
-
-          <span class="estado">
-            {{ mascota.estado }}
-          </span>
         </div>
-      }
-    </div>
 
-    <div class="demo-actions">
-      <a routerLink="/register" class="crear-btn"> Crear cuenta </a>
+        <h2>{{ consultasDemo.length }}</h2>
 
-      <a routerLink="/" class="volver-btn"> Volver al inicio </a>
-    </div>
+        <small>Consultas registradas</small>
+      </div>
+
+      <div class="stat-card stat-turnos">
+        <div class="stat-header">
+          <span class="stat-label">Turnos</span>
+
+          <div class="stat-icon">
+            <span>📅</span>
+          </div>
+        </div>
+
+        <h2>{{ turnosDemo.length }}</h2>
+
+        <small>Próximos turnos</small>
+      </div>
+    </section>
+
+    <!-- TURNOS -->
+    <section class="demo-section">
+      <div class="section-heading">
+        <div>
+          <h2>📅 Próximos turnos</h2>
+          <p>Turnos programados para los próximos días.</p>
+        </div>
+      </div>
+
+      <div class="demo-table">
+        <div class="table-header">
+          <span>Mascota</span>
+          <span>Fecha</span>
+          <span>Hora</span>
+          <span>Motivo</span>
+        </div>
+
+        @for (turno of turnosDemo; track $index) {
+          <div class="table-row">
+            <strong>🐶 {{ turno.mascota }}</strong>
+
+            <span>{{ turno.fecha }}</span>
+
+            <span>{{ turno.hora }}</span>
+
+            <span>{{ turno.motivo }}</span>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- CONSULTAS -->
+    <section class="demo-section">
+      <div class="section-heading">
+        <div>
+          <h2>🩺 Últimas consultas</h2>
+          <p>Registro de las últimas atenciones realizadas.</p>
+        </div>
+      </div>
+
+      <div class="demo-table">
+        <div class="table-header consultas-header">
+          <span>Mascota</span>
+          <span>Fecha</span>
+          <span>Motivo</span>
+          <span>Diagnóstico</span>
+        </div>
+
+        @for (consulta of consultasDemo; track $index) {
+          <div class="table-row consultas-row">
+            <strong>🐶 {{ consulta.mascota }}</strong>
+
+            <span>{{ consulta.fecha }}</span>
+
+            <span>{{ consulta.motivo }}</span>
+
+            <span>{{ consulta.diagnostico }}</span>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- VACUNAS -->
+    <section class="demo-section">
+      <div class="section-heading">
+        <div>
+          <h2>💉 Estado de vacunas</h2>
+          <p>Seguimiento de las vacunas y próximas dosis.</p>
+        </div>
+      </div>
+
+      <div class="demo-table">
+        <div class="table-header vacunas-header">
+          <span>Mascota</span>
+          <span>Vacuna</span>
+          <span>Próxima dosis</span>
+          <span>Estado</span>
+        </div>
+
+        @for (mascota of mascotasDemo; track $index) {
+          <div class="table-row vacunas-row">
+            <strong> {{ mascota.especie }} {{ mascota.nombre }} </strong>
+
+            <span>{{ mascota.vacuna }}</span>
+
+            <span>{{ mascota.proximaDosis }}</span>
+
+            <span
+              class="estado"
+              [class.estado-vigente]="mascota.tipoEstado === 'vigente'"
+              [class.estado-proxima]="mascota.tipoEstado === 'proxima'"
+              [class.estado-vencida]="mascota.tipoEstado === 'vencida'"
+            >
+              <span class="estado-dot"></span>
+
+              {{ mascota.estado }}
+            </span>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="demo-cta">
+      <div>
+        <h2>¿Querés probar VetControl?</h2>
+
+        <p>Registrate y comenzá a gestionar la información de tu clínica.</p>
+      </div>
+
+      <div class="demo-actions">
+        <a routerLink="/register" class="crear-btn"> Crear cuenta </a>
+
+        <a routerLink="/" class="volver-btn"> Volver al inicio </a>
+      </div>
+    </section>
   </div>
 </div>

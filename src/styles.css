@@ -41,8 +41,6 @@ mat-card {
 }
 
 mat-card:hover {
-  transform: translateY(-6px);
-
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
 }
 
@@ -88,8 +86,6 @@ button {
 .btn-primary:hover,
 .btn-guardar:hover {
   background: #374151;
-
-  transform: translateY(-2px);
 
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
@@ -488,8 +484,6 @@ button {
 .btn-auth:hover {
   background: linear-gradient(135deg, #374151, #1f2937);
 
-  transform: translateY(-2px);
-
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
@@ -555,10 +549,6 @@ button {
   padding: 0;
 }
 
-.btn-icon:hover {
-  transform: scale(1.15);
-}
-
 /* =====================================================
    ICONOS DE ELIMINAR EN TABLAS
 ===================================================== */
@@ -581,5 +571,4 @@ button {
 .acciones .btn-eliminar:hover {
   background: transparent !important;
   color: #000000 !important;
-  transform: scale(1.15);
 }

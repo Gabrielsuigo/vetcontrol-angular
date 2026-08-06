@@ -205,8 +205,6 @@
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
-
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -442,8 +440,4 @@
   box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
 
   transition: transform 0.2s ease;
-}
-
-.demo-btn:hover {
-  transform: translateY(-2px);
 }
