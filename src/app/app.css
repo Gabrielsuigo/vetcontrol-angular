@@ -46,10 +46,6 @@
    LOGO
 ===================================================== */
 
-/* =====================================================
-   LOGO
-===================================================== */
-
 .logo-section {
   width: calc(100% - 32px);
 
@@ -441,10 +437,12 @@
 
 .page-container {
   flex: 1;
+  min-height: 0;
 
-  overflow: hidden;
-
+  overflow-x: hidden;
   overflow-y: auto;
+
+  -webkit-overflow-scrolling: touch;
 }
 
 router-outlet + * {
@@ -533,6 +531,14 @@ router-outlet + * {
 
     cursor: pointer;
   }
+  .page-container {
+    width: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding-bottom: 80px;
+  }
 
   .sidebar {
     width: 280px;
@@ -575,6 +581,11 @@ router-outlet + * {
 
   .page-container {
     width: 100%;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding-bottom: 80px;
   }
 }
 
