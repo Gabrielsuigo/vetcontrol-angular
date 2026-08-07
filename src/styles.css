@@ -1,5 +1,18 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+app-root {
+  display: block;
+  width: 100%;
+  min-height: 100dvh;
+}
+
 body {
   margin: 0;
 
