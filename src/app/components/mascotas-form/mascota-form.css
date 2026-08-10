@@ -97,15 +97,21 @@ mat-card h2::after {
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  width: 100%;
+  min-width: 0;
 }
 
 .full-width {
   width: 100%;
 }
-::ng-deep .mat-mdc-text-field-wrapper {
+.form-card ::ng-deep .mat-mdc-text-field-wrapper {
   min-height: 58px;
+}
+.form-card ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+  min-width: 0;
 }
 
 .acciones-form {
@@ -134,9 +140,11 @@ mat-card h2::after {
 
 .form-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 24px;
   align-items: start;
+  width: 100%;
+  min-width: 0;
 }
 
 .image-column {
@@ -240,6 +248,8 @@ mat-card h2::after {
 .campo {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  width: 100%;
 }
 
 .campo-label {
