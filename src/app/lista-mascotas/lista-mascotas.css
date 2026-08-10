@@ -162,10 +162,16 @@
 }
 
 @media (max-width: 768px) {
+  .cards-mascotas {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .pet-modern-card {
     flex-direction: column;
-
     align-items: center;
+    padding: 18px;
+    gap: 14px;
   }
 
   .pet-image {
@@ -173,23 +179,74 @@
   }
 
   .pet-image img {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  .pet-info {
     width: 100%;
-
-    max-width: 220px;
-
-    height: 220px;
-
-    margin: auto;
+    text-align: center;
   }
 
   .pet-header {
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 
-    gap: 15px;
+  .pet-name {
+    font-size: 25px;
+  }
+
+  .pet-badges {
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .badge {
+    padding: 6px 11px;
+    font-size: 12px;
+  }
+
+  .pet-owner {
+    justify-content: center;
+    margin-top: 14px;
+    font-size: 14px;
+  }
+
+  .pet-status {
+    justify-content: center;
+    margin-top: 14px;
   }
 
   .pet-actions {
     flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .pet-actions button {
+    width: 100%;
+  }
+
+  mat-paginator {
+    width: calc(100% - 20px);
+    max-width: 100%;
+    padding: 6px 8px;
+    margin: 30px auto 10px auto !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-range-label {
+    font-size: 13px;
+    margin: 0 8px;
+  }
+
+  ::ng-deep .mat-mdc-icon-button {
+    width: 38px !important;
+    height: 38px !important;
   }
 }
 .status-label {
