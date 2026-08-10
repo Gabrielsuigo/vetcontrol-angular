@@ -58,9 +58,8 @@ export class Mascotas {
   abrirFormulario() {
     this.dialog.open(PersonaForm, {
       width: '900px',
-
       maxWidth: '95vw',
-
+      maxHeight: '95vh',
       autoFocus: false,
     });
   }
