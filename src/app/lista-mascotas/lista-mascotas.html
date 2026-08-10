@@ -48,27 +48,32 @@
 
           <div class="pet-info">
             <div class="pet-header">
-              <div>
+              <div class="pet-title-row">
                 <h2 class="pet-name">
                   {{ m.nombre }}
                 </h2>
 
-                <div class="pet-badges">
-                  <span class="badge especie">
-                    {{ m.especie }}
-                  </span>
-
-                  <span class="badge raza">
-                    {{ m.raza }}
-                  </span>
-
-                  <span class="badge edad"> {{ m.edad }} años </span>
-                </div>
+                <button
+                  mat-icon-button
+                  class="pet-menu"
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Opciones de mascota"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
               </div>
 
-              <button mat-icon-button class="pet-menu" [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
+              <div class="pet-badges">
+                <span class="badge especie">
+                  {{ m.especie }}
+                </span>
+
+                <span class="badge raza">
+                  {{ m.raza }}
+                </span>
+
+                <span class="badge edad"> {{ m.edad }} años </span>
+              </div>
             </div>
 
             <div class="pet-owner">

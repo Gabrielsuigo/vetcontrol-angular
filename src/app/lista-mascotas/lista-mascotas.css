@@ -54,9 +54,14 @@
 }
 
 .pet-header {
+  width: 100%;
+}
+
+.pet-title-row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
+  width: 100%;
 }
 
 .pet-name {
@@ -168,65 +173,88 @@
   }
 
   .pet-modern-card {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: start;
+    gap: 16px;
     padding: 18px;
-    gap: 14px;
   }
 
   .pet-image {
-    width: 100%;
+    width: 120px;
   }
 
   .pet-image img {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin: 0;
   }
 
   .pet-info {
-    width: 100%;
-    text-align: center;
+    display: contents;
   }
 
   .pet-header {
-    flex-direction: row;
+    width: 100%;
+  }
+
+  .pet-title-row {
+    width: 100%;
+    display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 100%;
   }
 
   .pet-name {
     font-size: 25px;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .pet-menu {
+    width: 36px !important;
+    height: 36px !important;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+
+  .pet-menu mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
   }
 
   .pet-badges {
-    justify-content: center;
-    gap: 8px;
+    justify-content: flex-start;
+    gap: 6px;
     margin-top: 10px;
   }
 
   .badge {
-    padding: 6px 11px;
+    padding: 6px 10px;
     font-size: 12px;
   }
 
   .pet-owner {
-    justify-content: center;
-    margin-top: 14px;
+    justify-content: flex-start;
+    margin-top: 12px;
     font-size: 14px;
   }
 
   .pet-status {
+    grid-column: 1 / -1;
     justify-content: center;
-    margin-top: 14px;
+    margin-top: 8px;
+    font-size: 14px;
   }
 
   .pet-actions {
+    grid-column: 1 / -1;
     flex-direction: column;
     width: 100%;
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 12px;
   }
 
   .pet-actions button {
@@ -250,6 +278,7 @@
     height: 38px !important;
   }
 }
+
 .status-label {
   color: #111827;
   font-weight: 600;
@@ -327,20 +356,13 @@ mat-paginator {
 ::ng-deep .mat-mdc-icon-button svg {
 }
 
-.pet-header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
-
 .pet-menu {
   flex-shrink: 0;
-  margin-left: 10px;
 
   width: 42px !important;
   height: 42px !important;
+
+  margin-left: 10px;
 
   border-radius: 12px !important;
 
