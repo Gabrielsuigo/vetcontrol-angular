@@ -15,4 +15,6 @@ import { Footer } from '../../components/footer/footer';
 
   styleUrl: './home.css',
 })
-export class Home {}
+export class Home {
+  menuMovilAbierto = false;
+}

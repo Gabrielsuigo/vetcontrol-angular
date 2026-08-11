@@ -4,7 +4,14 @@
       <mat-icon>pets</mat-icon>
       <span>VetControl</span>
     </div>
-    <button class="menu-toggle">☰</button>
+    <button
+      class="menu-toggle"
+      (click)="menuMovilAbierto = !menuMovilAbierto"
+      [attr.aria-expanded]="menuMovilAbierto"
+      aria-label="Abrir menú"
+    >
+      ☰
+    </button>
 
     <nav class="navbar-links">
       <a href="#beneficios">Beneficios</a>
@@ -18,6 +25,20 @@
       <a routerLink="/register" mat-raised-button> Crear cuenta </a>
     </div>
   </header>
+
+  @if (menuMovilAbierto) {
+    <div class="mobile-menu">
+      <a href="#beneficios" (click)="menuMovilAbierto = false"> Beneficios </a>
+      <a href="#estadisticas" (click)="menuMovilAbierto = false"> Estadísticas </a>
+
+      <a routerLink="/login" (click)="menuMovilAbierto = false"> Iniciar sesión </a>
+
+      <a routerLink="/register" (click)="menuMovilAbierto = false"> Crear cuenta </a>
+
+      <a routerLink="/demo" (click)="menuMovilAbierto = false"> Probar Demo </a>
+    </div>
+  }
+
   <!-- HERO -->
   <section class="landing-hero">
     <div class="hero-content">
@@ -45,7 +66,7 @@
   </section>
 
   <!-- FEATURES -->
-  <section class="features">
+  <section class="features" id="beneficios">
     <div class="feature-card">
       <mat-icon>vaccines</mat-icon>
 
@@ -72,7 +93,7 @@
   </section>
   <!-- ESTADISTICAS -->
 
-  <section class="stats-section">
+  <section class="stats-section" id="estadisticas">
     <div class="stat-card">
       <h2>+1.500</h2>
       <p>Mascotas registradas</p>
