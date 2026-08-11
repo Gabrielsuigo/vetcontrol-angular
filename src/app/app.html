@@ -86,9 +86,15 @@
     <!-- CONTENIDO -->
     <div class="main-content">
       <header class="topbar">
-        <button class="menu-btn" (click)="toggleSidebar()">
+        <button
+          class="menu-btn"
+          [class.menu-open]="sidebarAbierto"
+          (click)="toggleSidebar()"
+          aria-label="Abrir menú"
+        >
           <mat-icon>menu</mat-icon>
         </button>
+
         <div class="user-info">
           <mat-icon>account_circle</mat-icon>
 

@@ -473,6 +473,11 @@ router-outlet + * {
   color: #0f766e;
 }
 
+.menu-btn.menu-open {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* =====================================================
    OVERLAY MOBILE
 ===================================================== */
