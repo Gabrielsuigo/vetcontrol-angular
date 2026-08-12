@@ -2,6 +2,14 @@
   <div class="layout">
     <!-- SIDEBAR -->
     <aside class="sidebar" [class.sidebar-open]="sidebarAbierto">
+      <button
+        class="sidebar-close-btn"
+        type="button"
+        (click)="cerrarSidebar()"
+        aria-label="Cerrar menú"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
       <div class="logo-section">
         <div class="logo-icon">
           <mat-icon>pets</mat-icon>

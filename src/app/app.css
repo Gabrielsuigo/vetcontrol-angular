@@ -13,36 +13,65 @@
 ===================================================== */
 
 .sidebar {
-  width: 280px;
-
+  width: min(320px, 82vw);
   height: 100vh;
 
   position: fixed;
-
   top: 0;
   left: 0;
 
   background: white;
-
   border-right: 1px solid #e5e7eb;
 
   display: flex;
-
   flex-direction: column;
 
-  justify-content: space-between;
-
-  align-items: center;
-
   padding: 20px 0;
-
   box-sizing: border-box;
 
   overflow-y: auto;
 
+  z-index: 1000;
+
   box-shadow: 8px 0 30px rgba(15, 23, 42, 0.06);
 }
 
+.sidebar-close-btn {
+  display: none;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 40px;
+  height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f3f4f6;
+  color: #111827;
+
+  cursor: pointer;
+
+  z-index: 1102;
+}
+
+.sidebar-close-btn:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.sidebar-close-btn mat-icon {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
 /* =====================================================
    LOGO
 ===================================================== */
@@ -220,6 +249,9 @@
   border-bottom: 1px solid #e5e7eb;
 
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+
+  position: relative;
+  z-index: 1;
 }
 
 /* =====================================================
@@ -427,11 +459,12 @@
 ===================================================== */
 
 .main-content {
-  margin-left: 0;
-  width: 100%;
+  margin-left: 280px;
+  width: calc(100% - 280px);
   height: 100dvh;
   min-height: 0;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .page-container {
@@ -503,6 +536,7 @@ router-outlet + * {
 
   .main-content {
     margin-left: 240px;
+    width: calc(100% - 240px);
   }
 
   .topbar {
@@ -539,8 +573,13 @@ router-outlet + * {
     width: 280px;
 
     transform: translateX(-100%);
-
     transition: transform 0.3s ease;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100dvh;
 
     z-index: 1000;
   }
@@ -549,11 +588,14 @@ router-outlet + * {
     transform: translateX(0);
   }
 
+  .sidebar-close-btn {
+    display: flex;
+  }
+
   .main-content {
     margin-left: 0;
     width: 100%;
     height: 100dvh;
-    min-height: 0;
 
     display: flex;
     flex-direction: column;
@@ -563,59 +605,71 @@ router-outlet + * {
 
   .topbar {
     height: 70px;
-
     padding: 0 16px;
-  }
 
-  .user-info {
-    margin-left: auto;
-    margin-right: 12px;
-  }
-
-  .logout-btn {
-    padding: 10px 12px;
+    flex-shrink: 0;
   }
 
   .page-container {
     width: 100%;
-
     height: calc(100dvh - 70px);
-    min-height: 0;
 
     overflow-x: hidden;
     overflow-y: auto;
 
-    -webkit-overflow-scrolling: touch;
-
     padding-bottom: 120px;
+
+    box-sizing: border-box;
+  }
+
+  .logo-section {
+    width: 100%;
+    padding: 0 60px 0 16px;
+    box-sizing: border-box;
+
+    margin-bottom: 30px;
+  }
+
+  .logo-section h2 {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .logo-text {
+    min-width: 0;
+    overflow: hidden;
   }
 }
-
 /* =====================================================
    CELULARES
 ===================================================== */
 
 @media (max-width: 600px) {
+  .sidebar {
+    width: min(280px, 85vw);
+  }
+
   .topbar {
     height: 64px;
-
     padding: 0 12px;
+  }
+
+  .menu-btn {
+    width: 40px;
+    height: 40px;
+
+    margin-right: 8px;
   }
 
   .user-info {
     gap: 6px;
-
     font-size: 14px;
-  }
-
-  .user-info mat-icon {
-    font-size: 22px;
   }
 
   .logout-btn {
     width: 92px;
     min-width: 92px;
-    height: 54px;
+    height: 50px;
 
     padding: 6px 8px;
 
@@ -630,52 +684,10 @@ router-outlet + * {
 
     font-size: 12px;
     line-height: 1.1;
-    text-align: center;
-
-    white-space: normal;
-  }
-
-  .logout-btn mat-icon {
-    margin: 0;
-
-    width: 20px;
-    height: 20px;
-
-    font-size: 20px;
-  }
-
-  .logout-btn span {
-    display: block;
-  }
-
-  .sidebar {
-    width: 270px;
-  }
-
-  .sidebar-user {
-    width: calc(100% - 24px);
-
-    margin: 16px 12px;
-
-    padding: 14px;
-  }
-
-  .user-avatar {
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid #111827;
-  }
-
-  .user-data h3 {
-    font-size: 14px;
-  }
-
-  .user-data p {
-    font-size: 12px;
   }
 
   .page-container {
+    height: calc(100dvh - 64px);
     padding-bottom: 140px;
   }
 }
@@ -685,14 +697,8 @@ router-outlet + * {
 ===================================================== */
 
 @media (max-width: 400px) {
-  .user-info span {
-    max-width: 100px;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
+  .sidebar {
+    width: 85vw;
   }
 
   .topbar {
@@ -703,25 +709,12 @@ router-outlet + * {
     width: 38px;
     height: 38px;
   }
-}
 
-.sidebar-arrow {
-  margin-left: auto;
-  color: #9ca3af;
-  font-size: 17px;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s ease;
-}
+  .user-info span {
+    max-width: 90px;
 
-.menu a:hover .sidebar-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: #111827;
-}
-
-.menu a.active .sidebar-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
