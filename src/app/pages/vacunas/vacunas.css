@@ -36,6 +36,43 @@
 }
 
 /* =====================================================
+   RESPONSIVE - FORMULARIO VACUNAS
+===================================================== */
+
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* =====================================================
+   TABLA RESPONSIVE
+===================================================== */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =====================================================
    TABLA DE VACUNAS
 ===================================================== */
 
@@ -89,16 +126,14 @@
 }
 
 /* =====================================================
-   ESTADO DE LA VACUNA
+   ACCIONES DE LA TABLA
 ===================================================== */
 
-.estado {
-  display: inline-flex;
+.table-actions {
+  display: flex;
   align-items: center;
-  gap: 7px;
-
-  font-size: 13px;
-  font-weight: 600;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 /* =====================================================
