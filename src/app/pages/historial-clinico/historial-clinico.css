@@ -7,16 +7,24 @@
   align-items: center;
   gap: 18px;
 
+  width: 100%;
+
   border-bottom: 1px solid #e5e7eb;
 
   margin-bottom: 24px;
-
   padding-bottom: 8px;
 
   overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  white-space: nowrap;
 }
 
 .tab {
+  flex: 0 0 auto;
+
   min-width: 100px;
   height: 40px;
 
@@ -44,28 +52,6 @@
     background-color 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease;
-}
-
-/* Al pasar el mouse */
-
-.tab:hover {
-  background: #f3f4f6;
-  color: #111827;
-}
-
-/* Pestaña seleccionada */
-
-.tab.active {
-  background: #4b5563;
-  color: white;
-
-  border-color: #4b5563;
-}
-
-/* Evitamos la línea violeta */
-
-.tab.active::after {
-  display: none;
 }
 
 /* =========================
