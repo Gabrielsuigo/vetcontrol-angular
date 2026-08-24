@@ -7,12 +7,15 @@ import { EmpresaService } from '../../core/services/empresa.service';
 
 import { AuthService } from '../../core/auth/services/auth.service';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 @Component({
   selector: 'app-register',
 
   standalone: true,
 
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, MatFormFieldModule, MatSelectModule],
 
   templateUrl: './register.html',
 
@@ -40,6 +43,29 @@ export class Register {
   razonSocial = '';
 
   pais = '';
+
+  paises = [
+    'Argentina',
+    'Bolivia',
+    'Brasil',
+    'Chile',
+    'Colombia',
+    'Ecuador',
+    'Paraguay',
+    'Perú',
+    'Uruguay',
+    'Venezuela',
+    'México',
+    'Estados Unidos',
+    'Canadá',
+    'España',
+    'Italia',
+    'Francia',
+    'Alemania',
+    'Reino Unido',
+    'Australia',
+    'Japón',
+  ];
 
   direccion = '';
 
