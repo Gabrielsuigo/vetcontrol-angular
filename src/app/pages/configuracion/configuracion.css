@@ -1,0 +1,262 @@
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+.configuracion-page {
+  width: 100%;
+}
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.config-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.25s ease;
+}
+
+.config-card:hover {
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* =====================================================
+   ENCABEZADO DE TARJETA
+===================================================== */
+
+.config-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 24px;
+}
+
+.config-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+
+  color: white;
+
+  box-shadow: 0 6px 16px rgba(15, 118, 110, 0.18);
+}
+
+.config-icon mat-icon {
+  width: 24px;
+  height: 24px;
+
+  font-size: 24px;
+}
+
+.config-card-header h2 {
+  margin: 0;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.config-card-header p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+
+  color: #6b7280;
+}
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+.config-card .form-grid {
+  margin-top: 0;
+}
+
+.config-card .form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.config-card .form-group label {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.config-card .form-group input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+.config-card .form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.config-card .form-group input:focus {
+  border-color: #0f766e;
+
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.config-card .form-group input[readonly] {
+  background: #f9fafb;
+
+  color: #6b7280;
+
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   ACCIONES
+===================================================== */
+
+.config-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 22px;
+}
+
+/* =====================================================
+   BOTÓN PRINCIPAL
+===================================================== */
+
+.config-actions .btn-primary {
+  min-height: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 12px !important;
+
+  background: #0f766e;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(15, 118, 110, 0.16);
+
+  transition: all 0.25s ease;
+}
+
+.config-actions .btn-primary:hover {
+  background: #0d9488;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.22);
+}
+
+.config-actions .btn-primary:active {
+  transform: translateY(0);
+}
+
+.config-actions .btn-primary mat-icon {
+  width: 19px;
+  height: 19px;
+
+  font-size: 19px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+  .config-card {
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+  .config-card-header {
+    margin-bottom: 20px;
+  }
+
+  .config-card-header h2 {
+    font-size: 19px;
+  }
+
+  .config-actions {
+    justify-content: stretch;
+  }
+
+  .config-actions .btn-primary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .configuracion-page {
+    padding: 18px;
+  }
+
+  .config-card {
+    padding: 18px;
+  }
+
+  .config-card-header {
+    align-items: flex-start;
+  }
+
+  .config-icon {
+    width: 44px;
+    height: 44px;
+  }
+}

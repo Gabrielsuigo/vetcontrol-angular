@@ -1,0 +1,173 @@
+<div class="page configuracion-page">
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Configuración</h1>
+      <p>Administrá tu cuenta, seguridad y datos de la veterinaria.</p>
+    </div>
+
+    <div class="page-date">
+      <mat-icon>settings</mat-icon>
+      Configuración
+    </div>
+  </div>
+
+  <!-- MI CUENTA -->
+  <section class="config-card">
+    <div class="config-card-header">
+      <div class="config-icon">
+        <mat-icon>person</mat-icon>
+      </div>
+
+      <div>
+        <h2>Mi cuenta</h2>
+        <p>Información personal de tu cuenta.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nombre completo</label>
+
+        <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre completo" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email" />
+      </div>
+
+      <div class="form-group">
+        <label>Rol</label>
+
+        <input type="text" [(ngModel)]="rol" name="rol" readonly />
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button type="button" class="btn-primary" (click)="guardarCuenta()">
+        <mat-icon>save</mat-icon>
+        Guardar cambios
+      </button>
+    </div>
+  </section>
+
+  <!-- SEGURIDAD -->
+  <section class="config-card">
+    <div class="config-card-header">
+      <div class="config-icon">
+        <mat-icon>lock</mat-icon>
+      </div>
+
+      <div>
+        <h2>Seguridad</h2>
+        <p>Cambiá la contraseña de tu cuenta.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Contraseña actual</label>
+
+        <input
+          type="password"
+          [(ngModel)]="passwordActual"
+          name="passwordActual"
+          placeholder="Contraseña actual"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Nueva contraseña</label>
+
+        <input
+          type="password"
+          [(ngModel)]="passwordNueva"
+          name="passwordNueva"
+          placeholder="Nueva contraseña"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Repetir nueva contraseña</label>
+
+        <input
+          type="password"
+          [(ngModel)]="passwordConfirmacion"
+          name="passwordConfirmacion"
+          placeholder="Repetí la nueva contraseña"
+        />
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button type="button" class="btn-primary" (click)="cambiarPassword()">
+        <mat-icon>lock_reset</mat-icon>
+        Cambiar contraseña
+      </button>
+    </div>
+  </section>
+
+  <!-- VETERINARIA -->
+  <section class="config-card">
+    <div class="config-card-header">
+      <div class="config-icon">
+        <mat-icon>local_hospital</mat-icon>
+      </div>
+
+      <div>
+        <h2>Datos de la veterinaria</h2>
+        <p>Administrá la información de tu veterinaria.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nombre comercial</label>
+
+        <input
+          type="text"
+          [(ngModel)]="nombreComercial"
+          name="nombreComercial"
+          placeholder="Nombre comercial"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Razón social</label>
+
+        <input
+          type="text"
+          [(ngModel)]="razonSocial"
+          name="razonSocial"
+          placeholder="Razón social"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>País</label>
+
+        <input type="text" [(ngModel)]="pais" name="pais" placeholder="País" />
+      </div>
+
+      <div class="form-group">
+        <label>Dirección</label>
+
+        <input type="text" [(ngModel)]="direccion" name="direccion" placeholder="Dirección" />
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono</label>
+
+        <input type="text" [(ngModel)]="telefono" name="telefono" placeholder="Teléfono" />
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button type="button" class="btn-primary" (click)="guardarVeterinaria()">
+        <mat-icon>save</mat-icon>
+        Guardar cambios
+      </button>
+    </div>
+  </section>
+</div>

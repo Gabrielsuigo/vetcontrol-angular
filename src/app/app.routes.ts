@@ -13,6 +13,7 @@ import { Consultas } from './pages/consultas/consultas';
 import { Vacunas } from './pages/vacunas/vacunas';
 import { Demo } from './demo/demo';
 import { HistorialClinicoComponent } from './pages/historial-clinico/historial-clinico';
+import { Configuracion } from './pages/configuracion/configuracion';
 
 export const routes: Routes = [
   {
@@ -60,6 +61,11 @@ export const routes: Routes = [
   {
     path: 'turnos',
     component: Turnos,
+  },
+
+  {
+    path: 'configuracion',
+    component: Configuracion,
   },
 
   {

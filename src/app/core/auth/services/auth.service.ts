@@ -73,4 +73,40 @@ export class AuthService {
 
     return sesion ? JSON.parse(sesion) : null;
   }
+  actualizarUsuario(datos: Partial<Usuario>): boolean {
+    const usuario = this.usuarioActual();
+
+    if (!usuario) return false;
+
+    const usuarioActualizado: Usuario = {
+      ...usuario,
+      ...datos,
+    };
+
+    const usuariosActualizados = this.usuarios().map((u) =>
+      u.email === usuario.email ? usuarioActualizado : u,
+    );
+
+    localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
+    localStorage.setItem('sesion', JSON.stringify(usuarioActualizado));
+
+    this.usuarios.set(usuariosActualizados);
+    this.usuarioActual.set(usuarioActualizado);
+
+    return true;
+  }
+
+  cambiarPassword(passwordActual: string, passwordNueva: string): boolean {
+    const usuario = this.usuarioActual();
+
+    if (!usuario) return false;
+
+    if (usuario.password !== passwordActual) {
+      return false;
+    }
+
+    return this.actualizarUsuario({
+      password: passwordNueva,
+    });
+  }
 }
