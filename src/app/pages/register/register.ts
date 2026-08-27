@@ -71,7 +71,7 @@ export class Register {
 
   telefono = '';
 
-  foto = 'assets/img/avatar-default.png';
+  foto = 'assets/img/default-user.svg';
 
   registrarse() {
     if (

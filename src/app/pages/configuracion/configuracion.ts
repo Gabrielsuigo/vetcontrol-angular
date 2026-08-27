@@ -26,6 +26,7 @@ export class Configuracion {
   nombre = '';
   email = '';
   rol = '';
+  fotoPerfil = 'assets/img/avatar-default.png';
 
   // =========================
   // SEGURIDAD
@@ -57,6 +58,7 @@ export class Configuracion {
       this.nombre = usuario.nombre;
       this.email = usuario.email;
       this.rol = usuario.rol;
+      this.fotoPerfil = usuario.fotoPerfil || 'assets/img/default-user.svg';
     }
 
     if (empresa) {

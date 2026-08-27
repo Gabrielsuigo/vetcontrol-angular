@@ -32,7 +32,7 @@ export class AuthService {
     const nuevoUsuario = {
       ...usuario,
 
-      fotoPerfil: usuario.fotoPerfil || 'assets/img/default-user.png',
+      fotoPerfil: usuario.fotoPerfil || 'assets/img/default-user.svg',
     };
 
     const nuevosUsuarios = [...this.usuarios(), nuevoUsuario];

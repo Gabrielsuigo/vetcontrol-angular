@@ -4,6 +4,8 @@
 
 .configuracion-page {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 /* =====================================================
@@ -13,14 +15,11 @@
 .config-card {
   background: white;
   border-radius: 20px;
-  padding: 24px;
+  padding: 28px;
   margin-bottom: 24px;
-
   border: 1px solid #e5e7eb;
-
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
-  transition: all 0.25s ease;
+  transition: box-shadow 0.25s ease;
 }
 
 .config-card:hover {
@@ -35,14 +34,12 @@
   display: flex;
   align-items: center;
   gap: 14px;
-
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .config-icon {
   width: 48px;
   height: 48px;
-
   flex-shrink: 0;
 
   display: flex;
@@ -61,7 +58,6 @@
 .config-icon mat-icon {
   width: 24px;
   height: 24px;
-
   font-size: 24px;
 }
 
@@ -78,7 +74,6 @@
   margin: 4px 0 0;
 
   font-size: 13px;
-
   color: #6b7280;
 }
 
@@ -86,35 +81,29 @@
    FORMULARIOS
 ===================================================== */
 
-.config-card .form-grid {
-  margin-top: 0;
-}
-
-.config-card .form-group {
+.form-group {
   display: flex;
   flex-direction: column;
-
-  gap: 7px;
+  gap: 8px;
 }
 
-.config-card .form-group label {
+.form-group label {
   font-size: 13px;
   font-weight: 600;
-
   color: #374151;
 }
 
-.config-card .form-group input {
+.form-group input {
   width: 100%;
-  height: 46px;
+  height: 48px;
 
-  padding: 0 14px;
+  padding: 0 15px;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   border: 1px solid #d1d5db;
 
-  background: white;
+  background: #ffffff;
 
   color: #111827;
 
@@ -123,25 +112,27 @@
 
   outline: none;
 
+  box-sizing: border-box;
+
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
-
-  box-sizing: border-box;
 }
 
-.config-card .form-group input::placeholder {
+.form-group input::placeholder {
   color: #9ca3af;
 }
 
-.config-card .form-group input:focus {
+.form-group input:focus {
   border-color: #0f766e;
 
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+
+  background: #ffffff;
 }
 
-.config-card .form-group input[readonly] {
+.form-group input[readonly] {
   background: #f9fafb;
 
   color: #6b7280;
@@ -150,24 +141,125 @@
 }
 
 /* =====================================================
+   MI CUENTA
+===================================================== */
+
+.account-grid {
+  display: grid;
+
+  grid-template-columns: 220px 1fr 1fr;
+
+  gap: 20px;
+}
+
+.profile-preview {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+}
+
+.profile-avatar {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border: 3px solid white;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.profile-info strong {
+  font-size: 14px;
+
+  color: #111827;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-info span {
+  font-size: 12px;
+
+  color: #6b7280;
+}
+
+/* =====================================================
+   SEGURIDAD
+===================================================== */
+
+.security-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+/* =====================================================
+   VETERINARIA
+===================================================== */
+
+.veterinaria-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.veterinaria-direccion {
+  grid-column: span 2;
+}
+
+/* =====================================================
    ACCIONES
 ===================================================== */
 
 .config-actions {
   display: flex;
+
   justify-content: flex-end;
 
-  margin-top: 22px;
+  margin-top: 24px;
 }
-
-/* =====================================================
-   BOTÓN PRINCIPAL
-===================================================== */
 
 .config-actions .btn-primary {
   min-height: 46px;
 
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -186,6 +278,7 @@
   font-family: inherit;
 
   font-size: 14px;
+
   font-weight: 700;
 
   cursor: pointer;
@@ -218,11 +311,49 @@
    RESPONSIVE
 ===================================================== */
 
+@media (max-width: 1000px) {
+  .account-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .profile-preview {
+    grid-column: span 2;
+  }
+
+  .security-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .veterinaria-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .veterinaria-direccion {
+    grid-column: span 2;
+  }
+}
+
 @media (max-width: 768px) {
   .config-card {
     padding: 20px;
 
     border-radius: 18px;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-preview {
+    grid-column: auto;
+  }
+
+  .veterinaria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .veterinaria-direccion {
+    grid-column: auto;
   }
 
   .config-card-header {

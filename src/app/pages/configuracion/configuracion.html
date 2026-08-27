@@ -2,12 +2,7 @@
   <div class="page-header">
     <div class="page-header-left">
       <h1>Configuración</h1>
-      <p>Administrá tu cuenta, seguridad y datos de la veterinaria.</p>
-    </div>
-
-    <div class="page-date">
-      <mat-icon>settings</mat-icon>
-      Configuración
+      <p>Administrá tu cuenta, seguridad y los datos de tu veterinaria.</p>
     </div>
   </div>
 
@@ -24,7 +19,18 @@
       </div>
     </div>
 
-    <div class="form-grid">
+    <div class="account-grid">
+      <div class="profile-preview">
+        <div class="profile-avatar">
+          <img [src]="fotoPerfil" alt="Foto de perfil" />
+        </div>
+
+        <div class="profile-info">
+          <strong>{{ nombre }}</strong>
+          <span>{{ rol }}</span>
+        </div>
+      </div>
+
       <div class="form-group">
         <label>Nombre completo</label>
 
@@ -61,11 +67,11 @@
 
       <div>
         <h2>Seguridad</h2>
-        <p>Cambiá la contraseña de tu cuenta.</p>
+        <p>Cambiá la contraseña para mantener tu cuenta protegida.</p>
       </div>
     </div>
 
-    <div class="form-grid">
+    <div class="security-grid">
       <div class="form-group">
         <label>Contraseña actual</label>
 
@@ -117,11 +123,11 @@
 
       <div>
         <h2>Datos de la veterinaria</h2>
-        <p>Administrá la información de tu veterinaria.</p>
+        <p>Administrá la información comercial y de contacto.</p>
       </div>
     </div>
 
-    <div class="form-grid">
+    <div class="veterinaria-grid">
       <div class="form-group">
         <label>Nombre comercial</label>
 
@@ -150,7 +156,7 @@
         <input type="text" [(ngModel)]="pais" name="pais" placeholder="País" />
       </div>
 
-      <div class="form-group">
+      <div class="form-group veterinaria-direccion">
         <label>Dirección</label>
 
         <input type="text" [(ngModel)]="direccion" name="direccion" placeholder="Dirección" />
