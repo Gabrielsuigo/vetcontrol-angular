@@ -26,7 +26,7 @@ export class Configuracion {
   nombre = '';
   email = '';
   rol = '';
-  fotoPerfil = 'assets/img/avatar-default.png';
+  fotoPerfil = 'assets/img/default-user.svg';
 
   // =========================
   // SEGURIDAD
