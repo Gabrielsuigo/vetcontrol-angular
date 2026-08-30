@@ -71,7 +71,20 @@ export class Register {
 
   telefono = '';
 
-  foto = '/img/default-user.svg';
+  foto = '/img/default-user.png';
+
+  mostrarAvatares = false;
+
+  avatares = [
+    '/img/default-user.png',
+    '/img/avatar-1.png',
+    '/img/avatar-2.png',
+    '/img/avatar-3.png',
+    '/img/avatar-4.png',
+    '/img/avatar-5.png',
+    '/img/avatar-6.png',
+    '/img/avatar-7.png',
+  ];
 
   registrarse() {
     if (

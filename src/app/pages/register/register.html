@@ -15,6 +15,44 @@
           <h2>Datos del Administrador</h2>
 
           <div class="form-group">
+            <label>Foto de perfil</label>
+
+            <div class="avatar-picker">
+              <button
+                type="button"
+                class="avatar-selected"
+                (click)="mostrarAvatares = !mostrarAvatares"
+              >
+                <img [src]="foto" alt="Avatar seleccionado" />
+
+                <span>
+                  {{ mostrarAvatares ? 'Cerrar avatares' : 'Elegir avatar' }}
+                </span>
+
+                <span class="avatar-chevron">
+                  {{ mostrarAvatares ? '▲' : '▼' }}
+                </span>
+              </button>
+
+              @if (mostrarAvatares) {
+                <div class="avatar-options">
+                  @for (avatar of avatares; track avatar) {
+                    <button
+                      type="button"
+                      class="avatar-option"
+                      [class.selected]="foto === avatar"
+                      (click)="foto = avatar; mostrarAvatares = false"
+                      aria-label="Seleccionar avatar"
+                    >
+                      <img [src]="avatar" alt="Avatar" />
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
             <label>Nombre completo</label>
 
             <input
