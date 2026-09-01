@@ -1,35 +1,115 @@
-<div class="perfil-container">
-  <div class="perfil-card">
-    <div class="perfil-header">
-      <div class="avatar">
-        <img [src]="fotoPerfil" alt="Foto de perfil" />
-      </div>
-
-      <h1>{{ usuario()?.nombre }}</h1>
-
-      <p class="rol">
-        {{ usuario()?.rol || 'Administrador' }}
-      </p>
-    </div>
-
-    <div class="perfil-info">
-      <div class="info-item">
-        <span>Email:</span>
-        <strong>{{ usuario()?.email }}</strong>
-      </div>
-
-      <div class="info-item">
-        <span>Rol:</span>
-        <strong>{{ usuario()?.rol || 'Administrador' }}</strong>
-      </div>
-
-      <div class="info-item">
-        <span>Fecha de registro:</span>
-        <strong>{{ usuario()?.fechaRegistro || 'No disponible' }}</strong>
-      </div>
-    </div>
-    <div class="form-actions">
-      <button class="btn-primary">Editar perfil</button>
+<div class="page perfil-page">
+  <!-- ENCABEZADO -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <h1>Mi perfil</h1>
+      <p>Información de tu cuenta y de la veterinaria.</p>
     </div>
   </div>
+
+  <!-- PERFIL -->
+  <section class="perfil-card">
+    <!-- CABECERA DEL PERFIL -->
+    <div class="perfil-top">
+      <div class="perfil-avatar">
+        <img [src]="usuario()?.fotoPerfil || 'assets/img/default-user.png'" alt="Foto de perfil" />
+      </div>
+
+      <div class="perfil-user">
+        <h2>{{ usuario()?.nombre || 'Administrador' }}</h2>
+
+        <div class="perfil-role">
+          <span class="status-dot"></span>
+          {{ usuario()?.rol || 'Administrador' }}
+        </div>
+
+        <span class="perfil-status"> Cuenta activa </span>
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN DE LA CUENTA -->
+    <div class="perfil-section">
+      <div class="section-title">
+        <div class="section-icon">
+          <mat-icon>person</mat-icon>
+        </div>
+
+        <div>
+          <h3>Información de la cuenta</h3>
+          <p>Datos personales del usuario.</p>
+        </div>
+      </div>
+
+      <div class="perfil-info-grid">
+        <div class="info-item">
+          <span class="info-label">Nombre completo</span>
+          <strong>{{ usuario()?.nombre || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <strong>{{ usuario()?.email || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Rol</span>
+          <strong>{{ usuario()?.rol || 'Administrador' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Fecha de registro</span>
+          <strong>{{ usuario()?.fechaRegistro || 'No disponible' }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN DE LA VETERINARIA -->
+    <div class="perfil-section">
+      <div class="section-title">
+        <div class="section-icon">
+          <mat-icon>local_hospital</mat-icon>
+        </div>
+
+        <div>
+          <h3>Veterinaria</h3>
+          <p>Información de la veterinaria asociada a tu cuenta.</p>
+        </div>
+      </div>
+
+      <div class="perfil-info-grid">
+        <div class="info-item">
+          <span class="info-label">Nombre comercial</span>
+          <strong>{{ empresa()?.nombreComercial || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Razón social</span>
+          <strong>{{ empresa()?.razonSocial || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">País</span>
+          <strong>{{ empresa()?.pais || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Dirección</span>
+          <strong>{{ empresa()?.direccion || 'No disponible' }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Teléfono</span>
+          <strong>{{ empresa()?.telefono || 'No disponible' }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCIONES -->
+    <div class="perfil-actions">
+      <a routerLink="/configuracion" class="btn-primary">
+        <mat-icon>edit</mat-icon>
+        Editar perfil
+      </a>
+    </div>
+  </section>
 </div>
