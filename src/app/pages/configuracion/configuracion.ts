@@ -26,7 +26,20 @@ export class Configuracion {
   nombre = '';
   email = '';
   rol = '';
-  fotoPerfil = '/img/default-user.svg';
+  fotoPerfil = '/img/default-user.png';
+
+  mostrarAvatares = false;
+
+  avatares = [
+    '/img/default-user.png',
+    '/img/avatar-1.png',
+    '/img/avatar-2.png',
+    '/img/avatar-3.png',
+    '/img/avatar-4.png',
+    '/img/avatar-5.png',
+    '/img/avatar-6.png',
+    '/img/avatar-7.png',
+  ];
 
   // =========================
   // SEGURIDAD
@@ -73,6 +86,10 @@ export class Configuracion {
   // =========================
   // GUARDAR CUENTA
   // =========================
+  seleccionarAvatar(avatar: string) {
+    this.fotoPerfil = avatar;
+    this.mostrarAvatares = false;
+  }
 
   guardarCuenta() {
     if (!this.nombre.trim() || !this.email.trim()) {
@@ -101,6 +118,7 @@ export class Configuracion {
     this.authService.actualizarUsuario({
       nombre: this.nombre.trim(),
       email: this.email.trim(),
+      fotoPerfil: this.fotoPerfil,
     });
 
     this.notification.success('Datos de la cuenta actualizados');

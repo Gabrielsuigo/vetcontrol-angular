@@ -4,6 +4,7 @@
 
 .perfil-page {
   width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
   padding: 28px 32px 40px;
 }
@@ -39,10 +40,10 @@
 
 .perfil-card {
   width: 100%;
-  max-width: 920px;
+  max-width: none;
   box-sizing: border-box;
 
-  margin: 0 auto;
+  margin: 0;
 
   background: #ffffff;
   border: 1px solid #e2e8f0;

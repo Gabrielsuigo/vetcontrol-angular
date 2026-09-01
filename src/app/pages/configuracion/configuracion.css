@@ -190,6 +190,131 @@
   object-fit: cover;
 }
 
+/* =====================================================
+   CAMBIO DE AVATAR
+===================================================== */
+
+.change-avatar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-top: 6px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #0f766e;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.change-avatar-btn:hover {
+  color: #0d9488;
+}
+
+.change-avatar-btn mat-icon {
+  width: 16px;
+  height: 16px;
+
+  font-size: 16px;
+}
+
+/* =====================================================
+   SELECTOR DE AVATARES
+===================================================== */
+
+.avatar-selector {
+  grid-column: 1 / -1;
+
+  margin-top: -8px;
+
+  padding: 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.avatar-selector-title {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Contenedor de avatares */
+
+.avatar-options {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+/* Cada avatar */
+
+.avatar-option {
+  width: 58px;
+  height: 58px;
+
+  padding: 2px;
+
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.avatar-option img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.avatar-option:hover {
+  transform: translateY(-2px);
+
+  border-color: #94a3b8;
+}
+
+.avatar-option.selected {
+  border-color: #0f766e;
+
+  box-shadow:
+    0 0 0 3px rgba(15, 118, 110, 0.12),
+    0 5px 12px rgba(15, 23, 42, 0.12);
+
+  transform: translateY(-2px);
+}
+
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -370,6 +495,18 @@
 
   .config-actions .btn-primary {
     width: 100%;
+  }
+  .avatar-selector {
+    grid-column: auto;
+  }
+
+  .avatar-options {
+    gap: 8px;
+  }
+
+  .avatar-option {
+    width: 52px;
+    height: 52px;
   }
 }
 

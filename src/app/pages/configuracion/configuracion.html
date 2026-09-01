@@ -28,8 +28,36 @@
         <div class="profile-info">
           <strong>{{ nombre }}</strong>
           <span>{{ rol }}</span>
+
+          <button
+            type="button"
+            class="change-avatar-btn"
+            (click)="mostrarAvatares = !mostrarAvatares"
+          >
+            <mat-icon>photo_camera</mat-icon>
+            Cambiar avatar
+          </button>
         </div>
       </div>
+
+      @if (mostrarAvatares) {
+        <div class="avatar-selector">
+          <span class="avatar-selector-title"> Elegí un avatar </span>
+
+          <div class="avatar-options">
+            @for (avatar of avatares; track avatar) {
+              <button
+                type="button"
+                class="avatar-option"
+                [class.selected]="fotoPerfil === avatar"
+                (click)="seleccionarAvatar(avatar)"
+              >
+                <img [src]="avatar" alt="Avatar" />
+              </button>
+            }
+          </div>
+        </div>
+      }
 
       <div class="form-group">
         <label>Nombre completo</label>
