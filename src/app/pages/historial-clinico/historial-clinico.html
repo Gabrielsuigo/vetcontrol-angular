@@ -246,10 +246,39 @@
   <!-- ========================= -->
 
   @if (pestaniaActiva() === 'vacunas') {
-    <div class="page-card">
-      <h2>Vacunas</h2>
+    <div class="page-card vacunas-historial">
+      <div class="seccion-header">
+        <div>
+          <h2>Vacunas</h2>
+          <p>Historial de vacunas aplicadas a la mascota.</p>
+        </div>
+      </div>
 
-      <p>Acá irá el historial de vacunas.</p>
+      @if (mascotaSeleccionada(); as mascota) {
+        @if (vacunas().length > 0) {
+          <div class="vacunas-lista">
+            @for (vacuna of vacunas(); track vacuna.fecha + vacuna.nombre) {
+              <div class="vacuna-item">
+                <div class="vacuna-icon">💉</div>
+
+                <div class="vacuna-info">
+                  <strong>{{ vacuna.nombre }}</strong>
+
+                  <span> Fecha de aplicación: {{ vacuna.fecha }} </span>
+
+                  @if (vacuna.proximaDosis) {
+                    <span> Próxima dosis: {{ vacuna.proximaDosis }} </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="sin-datos">Esta mascota todavía no tiene vacunas registradas.</p>
+        }
+      } @else {
+        <p class="sin-datos">Seleccioná una mascota para ver sus vacunas.</p>
+      }
     </div>
   }
 
@@ -258,10 +287,41 @@
   <!-- ========================= -->
 
   @if (pestaniaActiva() === 'peso') {
-    <div class="page-card">
-      <h2>Peso</h2>
+    <div class="page-card peso-historial">
+      <div class="seccion-header">
+        <div>
+          <h2>Evolución del peso</h2>
+          <p>Seguimiento del peso registrado en las consultas.</p>
+        </div>
 
-      <p>Acá irá la evolución del peso.</p>
+        @if (pesoActual() > 0) {
+          <div class="peso-actual">
+            <span>Peso actual</span>
+            <strong>{{ pesoActual() }} kg</strong>
+          </div>
+        }
+      </div>
+
+      @if (mascotaSeleccionada(); as mascota) {
+        @if (pesos().length > 0) {
+          <div class="peso-lista">
+            @for (registro of pesos(); track registro.fecha + registro.peso) {
+              <div class="peso-item">
+                <div class="peso-icon">⚖️</div>
+
+                <div class="peso-info">
+                  <strong>{{ registro.peso }} kg</strong>
+                  <span>{{ registro.fecha }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="sin-datos">Esta mascota todavía no tiene registros de peso.</p>
+        }
+      } @else {
+        <p class="sin-datos">Seleccioná una mascota para ver su evolución de peso.</p>
+      }
     </div>
   }
 

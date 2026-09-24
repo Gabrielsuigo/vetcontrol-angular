@@ -124,6 +124,22 @@ export class HistorialClinicoComponent {
     this.mostrarHistorialCompleto.update((valor) => !valor);
   }
 
+  pesos = computed(() => {
+    const mascota = this.mascotaSeleccionada();
+
+    if (!mascota) {
+      return [];
+    }
+
+    return mascota.consultas
+      .filter((consulta) => consulta.peso && consulta.peso > 0)
+      .map((consulta) => ({
+        fecha: consulta.fecha,
+        peso: consulta.peso,
+      }))
+      .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+  });
+
   pesoActual = computed(() => {
     const mascota = this.mascotaSeleccionada();
 
