@@ -699,3 +699,206 @@
     height: 40px;
   }
 }
+
+/* =========================
+   DIAGNÓSTICOS
+========================= */
+
+.diagnosticos-historial {
+  width: 100%;
+}
+
+.diagnosticos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.diagnostico-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  padding: 18px;
+
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.diagnostico-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+
+  font-size: 20px;
+}
+
+.diagnostico-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.diagnostico-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 8px;
+}
+
+.diagnostico-header strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.diagnostico-header span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.diagnostico-info p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #374151;
+}
+
+.diagnostico-motivo {
+  display: block;
+
+  margin-top: 8px;
+
+  font-size: 12px;
+  color: #6b7280;
+}
+
+@media (max-width: 600px) {
+  .diagnostico-item {
+    gap: 12px;
+  }
+
+  .diagnostico-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .diagnostico-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+
+/* =========================
+   NOTAS
+========================= */
+
+.notas-historial {
+  width: 100%;
+}
+
+.notas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nota-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.nota-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+
+  font-size: 20px;
+}
+
+.nota-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nota-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.nota-header strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.nota-header span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.nota-info p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.nota-motivo {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+@media (max-width: 600px) {
+  .nota-item {
+    gap: 12px;
+  }
+
+  .nota-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nota-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

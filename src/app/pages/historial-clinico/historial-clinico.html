@@ -330,10 +330,42 @@
   <!-- ========================= -->
 
   @if (pestaniaActiva() === 'diagnosticos') {
-    <div class="page-card">
-      <h2>Diagnósticos</h2>
+    <div class="page-card diagnosticos-historial">
+      <div class="seccion-header">
+        <div>
+          <h2>Diagnósticos</h2>
+          <p>Diagnósticos registrados durante las consultas.</p>
+        </div>
+      </div>
 
-      <p>Acá irán los diagnósticos.</p>
+      @if (mascotaSeleccionada(); as mascota) {
+        @if (diagnosticos().length > 0) {
+          <div class="diagnosticos-lista">
+            @for (consulta of diagnosticos(); track consulta.fecha + consulta.diagnostico) {
+              <div class="diagnostico-item">
+                <div class="diagnostico-icon">🩺</div>
+
+                <div class="diagnostico-info">
+                  <div class="diagnostico-header">
+                    <strong>Diagnóstico</strong>
+                    <span>{{ consulta.fecha }}</span>
+                  </div>
+
+                  <p>{{ consulta.diagnostico }}</p>
+
+                  @if (consulta.motivo) {
+                    <span class="diagnostico-motivo"> Motivo: {{ consulta.motivo }} </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="sin-datos">Esta mascota todavía no tiene diagnósticos registrados.</p>
+        }
+      } @else {
+        <p class="sin-datos">Seleccioná una mascota para ver sus diagnósticos.</p>
+      }
     </div>
   }
 
@@ -342,10 +374,42 @@
   <!-- ========================= -->
 
   @if (pestaniaActiva() === 'notas') {
-    <div class="page-card">
-      <h2>Notas</h2>
+    <div class="page-card notas-historial">
+      <div class="seccion-header">
+        <div>
+          <h2>Notas</h2>
+          <p>Observaciones y notas registradas durante las consultas.</p>
+        </div>
+      </div>
 
-      <p>Acá irán las notas.</p>
+      @if (mascotaSeleccionada(); as mascota) {
+        @if (notas().length > 0) {
+          <div class="notas-lista">
+            @for (consulta of notas(); track consulta.fecha + consulta.notas) {
+              <div class="nota-item">
+                <div class="nota-icon">📝</div>
+
+                <div class="nota-info">
+                  <div class="nota-header">
+                    <strong>Nota de consulta</strong>
+                    <span>{{ consulta.fecha }}</span>
+                  </div>
+
+                  <p>{{ consulta.notas }}</p>
+
+                  @if (consulta.motivo) {
+                    <span class="nota-motivo"> Motivo: {{ consulta.motivo }} </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="sin-datos">Esta mascota todavía no tiene notas registradas.</p>
+        }
+      } @else {
+        <p class="sin-datos">Seleccioná una mascota para ver sus notas.</p>
+      }
     </div>
   }
 </div>
