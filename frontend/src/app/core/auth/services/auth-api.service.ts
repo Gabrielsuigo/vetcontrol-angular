@@ -24,7 +24,7 @@ export interface RespuestaAuth {
 export class AuthApiService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3001/auth';
+  private apiUrl = 'https://vetcontrol-backend.onrender.com/auth';
 
   registrar(datos: {
     nombre: string;

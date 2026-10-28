@@ -9,7 +9,7 @@ import { Mascota } from '../../models/mascota.model';
 export class MascotaApiService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:3001/mascotas';
+  private apiUrl = 'https://vetcontrol-backend.onrender.com/mascotas';
 
   private obtenerHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
