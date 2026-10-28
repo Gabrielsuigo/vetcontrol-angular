@@ -3,12 +3,13 @@ import cors from 'cors';
 import rutas from './routes/index.js';
 
 const app = express();
-const PORT = 3001;
 
-// Permitir solicitudes desde el frontend de Angular
+const PORT = Number(process.env.PORT) || 3001;
+
+// Permitir solicitudes desde Angular local y desde Vercel
 app.use(
   cors({
-    origin: 'http://localhost:4200',
+    origin: ['http://localhost:4200', 'https://veterinaria-angular.vercel.app'],
   }),
 );
 
@@ -20,5 +21,5 @@ app.use('/', rutas);
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor de VetControl funcionando en http://localhost:${PORT}`);
+  console.log(`Servidor de VetControl funcionando en el puerto ${PORT}`);
 });
