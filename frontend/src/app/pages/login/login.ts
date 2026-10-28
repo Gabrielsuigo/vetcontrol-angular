@@ -3,44 +3,63 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NotificationService } from '../../shared/services/notification.service';
-
 import { AuthService } from '../../core/auth/services/auth.service';
+import { MascotaService } from '../../core/services/mascota.service';
 
 @Component({
   selector: 'app-login',
-
   standalone: true,
-
   imports: [CommonModule, FormsModule, RouterModule],
-
   templateUrl: './login.html',
-
   styleUrl: './login.css',
 })
 export class Login {
   authService = inject(AuthService);
-
   router = inject(Router);
   notification = inject(NotificationService);
+  mascotaService = inject(MascotaService);
+
   email = '';
-
   password = '';
+  cargando = false;
 
-  iniciarSesion() {
-    if (!this.email || !this.password) {
+  iniciarSesion(): void {
+    if (!this.email.trim() || !this.password) {
       this.notification.warning('Completá todos los campos');
       return;
     }
 
-    const loginCorrecto = this.authService.login(this.email, this.password);
+    if (this.cargando) return;
 
-    if (!loginCorrecto) {
-      this.notification.error('Email o contraseña incorrectos');
-      return;
-    }
+    this.cargando = true;
 
-    this.notification.success('Bienvenido al sistema');
+    this.authService.iniciarSesion(this.email, this.password).subscribe({
+      next: (respuesta) => {
+        if (!respuesta.token || !respuesta.usuario) {
+          this.notification.error('El servidor no devolvió los datos de la sesión');
+          this.cargando = false;
+          return;
+        }
 
-    this.router.navigate(['/dashboard']);
+        this.authService.guardarSesion(respuesta.usuario, respuesta.token);
+        this.mascotaService.cargarDesdeBackend();
+
+        this.notification.success('Bienvenido al sistema');
+        this.router.navigate(['/dashboard']);
+
+        this.cargando = false;
+      },
+      error: (error) => {
+        const mensaje =
+          error.status === 401
+            ? 'Email o contraseña incorrectos'
+            : error.status === 0
+              ? 'No se pudo conectar con el servidor'
+              : error.error?.mensaje || 'No se pudo iniciar sesión';
+
+        this.notification.error(mensaje);
+        this.cargando = false;
+      },
+    });
   }
 }

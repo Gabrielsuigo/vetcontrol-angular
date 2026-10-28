@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { getSpanishPaginatorIntl } from './core/paginator-es';
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    provideHttpClient(),
 
     provideAnimations(),
     importProvidersFrom(MatSnackBarModule),

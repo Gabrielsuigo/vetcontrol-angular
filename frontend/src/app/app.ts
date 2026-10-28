@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from './core/auth/services/auth.service';
+import { MascotaService } from './core/services/mascota.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NotificationService } from './shared/services/notification.service';
@@ -35,9 +36,16 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog';
 export class App {
   sidebarAbierto = false;
   authService = inject(AuthService);
+  mascotaService = inject(MascotaService);
   router = inject(Router);
   notification = inject(NotificationService);
   dialog = inject(MatDialog);
+
+  constructor() {
+    if (this.authService.usuarioActual() && localStorage.getItem('token')) {
+      this.mascotaService.cargarDesdeBackend();
+    }
+  }
   esPaginaPublica(): boolean {
     return (
       this.router.url === '/' ||

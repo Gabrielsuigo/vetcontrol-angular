@@ -162,15 +162,12 @@ export class PersonaForm {
     }
 
     const mascota = {
-      nombre: this.nombre,
+      nombre: this.nombre.trim(),
       edad: this.edad,
-      especie: this.especie,
-      raza: this.raza,
-      duenio: this.duenio,
+      especie: this.especie.trim(),
+      raza: this.raza.trim(),
+      duenio: this.duenio.trim(),
       imagen: this.imagen,
-      usuarioEmail: JSON.parse(localStorage.getItem('sesion') || '{}').email,
-      vacunas: [],
-      consultas: [],
     };
 
     let mensaje = '';
@@ -187,11 +184,27 @@ export class PersonaForm {
 
       mensaje = '✏️ Mascota actualizada correctamente';
     } else {
-      this.mascotaService.agregar(mascota);
+      this.mascotaService.agregarDesdeBackend(
+        mascota,
+        () => {
+          this.finalizarRegistro('🐾 Mascota registrada correctamente');
+        },
+        (mensajeError) => {
+          this.snackBar.open(mensajeError, 'Cerrar', {
+            duration: 4000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        },
+      );
 
-      mensaje = '🐾 Mascota registrada correctamente';
+      return;
     }
 
+    this.finalizarRegistro(mensaje);
+  }
+
+  private finalizarRegistro(mensaje: string): void {
     this.nombre = '';
     this.especie = '';
     this.raza = '';

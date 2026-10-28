@@ -1,16 +1,29 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/services/auth.service';
-
+import { MascotaApiService } from './mascota-api.service';
 import { Mascota, Vacuna, Consulta } from '../../models/mascota.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MascotaService {
+  private mascotaApi = inject(MascotaApiService);
   constructor(public authService: AuthService) {}
 
   mascotas = signal<Mascota[]>(this.cargar());
   mascotaEditando = signal<Mascota | null>(null);
+
+  cargarDesdeBackend(): void {
+    this.mascotaApi.listar().subscribe({
+      next: (mascotas) => {
+        this.mascotas.set(mascotas);
+      },
+      error: (error) => {
+        console.error('Error al cargar mascotas desde PostgreSQL:', error);
+      },
+    });
+  }
 
   mascotasUsuario = computed(() => {
     const usuario = this.authService.usuarioActual();
@@ -60,6 +73,27 @@ export class MascotaService {
       this.guardar(nueva);
 
       return nueva;
+    });
+  }
+
+  agregarDesdeBackend(
+    mascota: Pick<Mascota, 'nombre' | 'especie' | 'raza' | 'edad' | 'duenio' | 'imagen'>,
+    alGuardar: (mascota: Mascota) => void,
+    alError: (mensaje: string) => void,
+  ): void {
+    this.mascotaApi.registrar(mascota).subscribe({
+      next: (nuevaMascota) => {
+        this.mascotas.update((lista) => [...lista, nuevaMascota]);
+        alGuardar(nuevaMascota);
+      },
+      error: (error) => {
+        console.error('Error al registrar mascota en PostgreSQL:', error);
+
+        const mensaje =
+          error?.error?.mensaje || 'No se pudo registrar la mascota. Intentá nuevamente.';
+
+        alError(mensaje);
+      },
     });
   }
 
