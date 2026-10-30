@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import { pool } from '../config/database.js';
 import { registrar, iniciarSesion } from '../controllers/auth.controller.js';
+import { obtenerEmpresa, actualizarEmpresa } from '../controllers/empresa.controller.js';
 import { autenticar } from '../middleware/auth.middleware.js';
-import { listarMascotas, registrarMascota } from '../controllers/mascotas.controller.js';
+
+import {
+  listarMascotas,
+  registrarMascota,
+  editarMascota,
+} from '../controllers/mascotas.controller.js';
 
 const router = Router();
 
@@ -40,8 +46,13 @@ router.post('/auth/register', registrar);
 // Iniciar sesión
 router.post('/auth/login', iniciarSesion);
 
+// Obtener los datos de la veterinaria autenticada
+router.get('/empresa', autenticar, obtenerEmpresa);
+router.put('/empresa', autenticar, actualizarEmpresa);
+
 // Rutas de mascotas protegidas con JWT
 router.get('/mascotas', autenticar, listarMascotas);
 router.post('/mascotas', autenticar, registrarMascota);
+router.put('/mascotas/:id', autenticar, editarMascota);
 
 export default router;

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -60,12 +60,29 @@ export class Configuracion {
   telefono = '';
 
   constructor() {
-    this.cargarDatos();
+    this.cargarDatosCuenta();
+
+    // Detectar cuando llegan los datos de la veterinaria desde PostgreSQL.
+    effect(() => {
+      const empresa = this.empresaService.empresa();
+
+      if (empresa) {
+        this.nombreComercial = empresa.nombreComercial;
+        this.razonSocial = empresa.razonSocial;
+        this.pais = empresa.pais;
+        this.direccion = empresa.direccion;
+        this.telefono = empresa.telefono;
+      }
+    });
+
+    // Si todavía no se cargó la empresa, solicitarla al backend.
+    if (!this.empresaService.empresa()) {
+      this.empresaService.cargarDesdeBackend();
+    }
   }
 
-  private cargarDatos() {
+  private cargarDatosCuenta() {
     const usuario = this.authService.usuarioActual();
-    const empresa = this.empresaService.empresa();
 
     if (usuario) {
       this.nombre = usuario.nombre;
@@ -73,19 +90,12 @@ export class Configuracion {
       this.rol = usuario.rol;
       this.fotoPerfil = usuario.fotoPerfil || '/img/default-user.png';
     }
-
-    if (empresa) {
-      this.nombreComercial = empresa.nombreComercial;
-      this.razonSocial = empresa.razonSocial;
-      this.pais = empresa.pais;
-      this.direccion = empresa.direccion;
-      this.telefono = empresa.telefono;
-    }
   }
 
   // =========================
   // GUARDAR CUENTA
   // =========================
+
   seleccionarAvatar(avatar: string) {
     this.fotoPerfil = avatar;
     this.mostrarAvatares = false;
@@ -174,14 +184,25 @@ export class Configuracion {
       return;
     }
 
-    this.empresaService.guardarEmpresa({
-      nombreComercial: this.nombreComercial.trim(),
-      razonSocial: this.razonSocial.trim(),
-      pais: this.pais.trim(),
-      direccion: this.direccion.trim(),
-      telefono: this.telefono.trim(),
-    });
+    this.empresaService
+      .actualizarEmpresa({
+        nombreComercial: this.nombreComercial.trim(),
+        razonSocial: this.razonSocial.trim(),
+        pais: this.pais.trim(),
+        direccion: this.direccion.trim(),
+        telefono: this.telefono.trim(),
+      })
+      .subscribe({
+        next: () => {
+          this.notification.success('Datos de la veterinaria actualizados correctamente');
+        },
+        error: (error) => {
+          console.error('Error al guardar la veterinaria:', error);
 
-    this.notification.success('Datos de la veterinaria actualizados');
+          this.notification.error(
+            error.error?.mensaje || 'No se pudieron guardar los datos de la veterinaria',
+          );
+        },
+      });
   }
 }

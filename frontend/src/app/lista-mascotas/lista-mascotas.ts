@@ -103,7 +103,6 @@ export class PersonaList {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '430px',
       disableClose: true,
-
       data: {
         titulo: 'Guardar cambios',
         mensaje: '¿Deseás guardar los cambios realizados en esta mascota?',
@@ -114,11 +113,29 @@ export class PersonaList {
     });
 
     dialogRef.afterClosed().subscribe((resultado) => {
-      if (resultado) {
-        this.personaService.editar(mascota.id, mascota);
-
-        this.mascotaEditandoId = null;
+      if (!resultado) {
+        return;
       }
+
+      const datos = {
+        nombre: mascota.nombre,
+        especie: mascota.especie,
+        raza: mascota.raza,
+        edad: mascota.edad,
+        duenio: mascota.duenio,
+        imagen: mascota.imagen,
+      };
+
+      this.personaService.editar(
+        mascota.id,
+        datos,
+        () => {
+          this.mascotaEditandoId = null;
+        },
+        (mensajeError) => {
+          console.error('Error al guardar los cambios:', mensajeError);
+        },
+      );
     });
   }
 

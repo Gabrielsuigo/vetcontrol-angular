@@ -144,18 +144,11 @@ export class PersonaForm {
       duenio: true,
     };
 
-    if (
-      this.nombreInvalido() ||
-      this.especieInvalida() ||
-      this.razaInvalida() ||
-      this.edadInvalida() ||
-      this.duenioInvalido()
-    ) {
+    if (!this.formularioValido()) {
       this.snackBar.open('⚠ Complete correctamente todos los campos.', 'Cerrar', {
         duration: 3000,
         horizontalPosition: 'center',
         verticalPosition: 'top',
-        // panelClass: ['snackbar-warning'],
       });
 
       return;
@@ -170,24 +163,20 @@ export class PersonaForm {
       imagen: this.imagen,
     };
 
-    let mensaje = '';
-
     if (this.editando) {
       const mascotaActual = this.mascotaService.mascotaEditando();
 
-      if (mascotaActual) {
-        this.mascotaService.editar(mascotaActual.id, mascota);
+      if (!mascotaActual) {
+        return;
       }
 
-      this.editando = false;
-      this.mascotaService.mascotaEditando.set(null);
-
-      mensaje = '✏️ Mascota actualizada correctamente';
-    } else {
-      this.mascotaService.agregarDesdeBackend(
+      this.mascotaService.editar(
+        mascotaActual.id,
         mascota,
         () => {
-          this.finalizarRegistro('🐾 Mascota registrada correctamente');
+          this.editando = false;
+          this.mascotaService.mascotaEditando.set(null);
+          this.finalizarRegistro('✏️ Mascota actualizada correctamente');
         },
         (mensajeError) => {
           this.snackBar.open(mensajeError, 'Cerrar', {
@@ -201,9 +190,20 @@ export class PersonaForm {
       return;
     }
 
-    this.finalizarRegistro(mensaje);
+    this.mascotaService.agregarDesdeBackend(
+      mascota,
+      () => {
+        this.finalizarRegistro('🐾 Mascota registrada correctamente');
+      },
+      (mensajeError) => {
+        this.snackBar.open(mensajeError, 'Cerrar', {
+          duration: 4000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+    );
   }
-
   private finalizarRegistro(mensaje: string): void {
     this.nombre = '';
     this.especie = '';

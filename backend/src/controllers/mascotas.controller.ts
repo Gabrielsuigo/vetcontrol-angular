@@ -132,3 +132,101 @@ export async function registrarMascota(req: RequestAutenticado, res: Response): 
     });
   }
 }
+
+// Editar una mascota de la clínica del usuario autenticado
+export async function editarMascota(req: RequestAutenticado, res: Response): Promise<void> {
+  const usuario = req.usuario;
+
+  if (!usuario) {
+    res.status(401).json({
+      mensaje: 'Debés iniciar sesión para editar una mascota',
+    });
+    return;
+  }
+
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id) || id <= 0) {
+    res.status(400).json({
+      mensaje: 'El identificador de la mascota no es válido',
+    });
+    return;
+  }
+
+  const { nombre, especie, raza, edad, duenio, imagen } = req.body;
+
+  if (
+    typeof nombre !== 'string' ||
+    !nombre.trim() ||
+    typeof especie !== 'string' ||
+    !especie.trim() ||
+    typeof raza !== 'string' ||
+    typeof duenio !== 'string' ||
+    !duenio.trim() ||
+    !Number.isInteger(edad) ||
+    edad < 0 ||
+    (imagen !== undefined && typeof imagen !== 'string')
+  ) {
+    res.status(400).json({
+      mensaje: 'Completá correctamente los datos de la mascota',
+    });
+    return;
+  }
+
+  try {
+    const resultado = await pool.query(
+      `UPDATE mascotas
+       SET nombre = $1,
+           especie = $2,
+           raza = $3,
+           edad = $4,
+           duenio = $5,
+           imagen = COALESCE($6, imagen)
+       WHERE id = $7
+         AND empresa_id = $8
+       RETURNING
+         id,
+         nombre,
+         especie,
+         raza,
+         edad,
+         duenio,
+         imagen,
+         fecha_registro AS "fechaRegistro"`,
+      [
+        nombre.trim(),
+        especie.trim(),
+        raza.trim(),
+        edad,
+        duenio.trim(),
+        imagen ?? null,
+        id,
+        usuario.empresaId,
+      ],
+    );
+
+    if (resultado.rowCount === 0) {
+      res.status(404).json({
+        mensaje: 'No se encontró la mascota en tu clínica',
+      });
+      return;
+    }
+
+    const usuarioResultado = await pool.query('SELECT email FROM usuarios WHERE id = $1', [
+      usuario.usuarioId,
+    ]);
+
+    res.json({
+      ...resultado.rows[0],
+      usuarioEmail: usuarioResultado.rows[0]?.email ?? '',
+      vacunas: [],
+      consultas: [],
+    });
+  } catch (error) {
+    console.error('Error al editar mascota:', error);
+
+    res.status(500).json({
+      mensaje: 'No se pudo editar la mascota',
+    });
+  }
+}

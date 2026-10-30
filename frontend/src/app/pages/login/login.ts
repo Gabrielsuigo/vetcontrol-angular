@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { NotificationService } from '../../shared/services/notification.service';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { MascotaService } from '../../core/services/mascota.service';
+import { EmpresaService } from '../../core/services/empresa.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class Login {
   router = inject(Router);
   notification = inject(NotificationService);
   mascotaService = inject(MascotaService);
+  empresaService = inject(EmpresaService);
 
   email = '';
   password = '';
@@ -42,6 +44,11 @@ export class Login {
         }
 
         this.authService.guardarSesion(respuesta.usuario, respuesta.token);
+
+        // Cargar los datos correspondientes a la veterinaria autenticada
+        this.empresaService.cargarDesdeBackend();
+
+        // Cargar las mascotas correspondientes a la veterinaria autenticada
         this.mascotaService.cargarDesdeBackend();
 
         this.notification.success('Bienvenido al sistema');

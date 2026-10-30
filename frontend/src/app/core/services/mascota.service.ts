@@ -107,13 +107,26 @@ export class MascotaService {
     });
   }
 
-  editar(id: number, datos: Partial<Mascota>) {
-    this.mascotas.update((lista) => {
-      const nueva = lista.map((m) => (m.id === id ? { ...m, ...datos } : m));
+  editar(
+    id: number,
+    datos: Pick<Mascota, 'nombre' | 'especie' | 'raza' | 'edad' | 'duenio' | 'imagen'>,
+    alGuardar: (mascota: Mascota) => void,
+    alError: (mensaje: string) => void,
+  ): void {
+    this.mascotaApi.editar(id, datos).subscribe({
+      next: (mascotaActualizada) => {
+        this.mascotas.update((lista) => lista.map((m) => (m.id === id ? mascotaActualizada : m)));
 
-      this.guardar(nueva);
+        alGuardar(mascotaActualizada);
+      },
+      error: (error) => {
+        console.error('Error al editar mascota en PostgreSQL:', error);
 
-      return nueva;
+        const mensaje =
+          error?.error?.mensaje || 'No se pudo actualizar la mascota. Intentá nuevamente.';
+
+        alError(mensaje);
+      },
     });
   }
 
